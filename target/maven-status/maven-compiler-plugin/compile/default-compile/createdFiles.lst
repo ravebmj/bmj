@@ -1,0 +1,12 @@
+org\bmj\userinsights\dao\IUserInsightDao.class
+org\bmj\userinsights\listener\InsightSessionListener.class
+org\bmj\userinsights\filter\RequestMonitorFilter.class
+org\bmj\userinsights\server\ApplicationContextProvider.class
+org\bmj\userinsights\searchresults\controller\SearchResults.class
+org\bmj\userinsights\server\AppContext.class
+org\bmj\userinsights\service\IUserInsightService.class
+org\bmj\userinsights\dao\UserInsightDaoImpl.class
+org\bmj\userinsights\controller\HomePage.class
+org\bmj\userinsights\service\UserInsightService.class
+org\bmj\userinsights\dashboard\controller\DashBoard.class
+org\bmj\userinsights\entity\Person.class
