@@ -12,10 +12,10 @@
 	<!-- Message properties setting end -->
 	
 	<context:component-scan base-package="org.bmj.userinsights.controller" />
-	<context:component-scan base-package="org.bmj.userinsights.searchresults.controller" />
+	<context:component-scan base-package="org.bmj.userinsights.search.controller" />
 	<context:component-scan base-package="org.bmj.userinsights.dashboard.controller" />	
 	<context:component-scan base-package="org.bmj.userinsights.login.controller" />
-	<context:component-scan base-package="org.bmj.userinsights.createinsight.controller" />
+	<context:component-scan base-package="org.bmj.userinsights.insight.controller" />
 	<!-- Tiles changes start here  -->
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
