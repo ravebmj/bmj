@@ -46,6 +46,10 @@ public class LoginPage {
 		}
 		    
 	}
+	/**
+	 * Set user details in session
+	 * @param request
+	 */	
 	private void setBMJSessionToken(HttpServletRequest request) {
 		HttpSession session=request.getSession(true);// Create new session if not exist.Or use exist session.
 		BMJSessionToken bmjSessionToken=new BMJSessionToken();
