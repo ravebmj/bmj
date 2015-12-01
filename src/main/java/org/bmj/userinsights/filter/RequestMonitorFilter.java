@@ -36,11 +36,17 @@ public class RequestMonitorFilter implements Filter {
 		isAuthenticationRequire = checkPageAuthentication(
 				isAuthenticationRequire, pageRequested);
 		if(isAuthenticationRequire){// Page require authentication.
-			log.debug(" Authentication Required "+pageRequested);
-			req.setAttribute("pageRequested", pageRequested);
-        	RequestDispatcher dispatcher =
-				req.getRequestDispatcher("/login.html");
-			dispatcher.forward(req, res);
+			if(session!=null && session.getAttribute("BMJSessionToken")!=null){//Session is active with current login user details.
+				log.debug(" Session is active for Authenticated pages.  "+pageRequested);
+				chain.doFilter(request, response);
+			}else{// session is deactive.
+				log.debug(" Authentication Required "+pageRequested);
+				req.setAttribute("pageRequested", pageRequested);
+	        	RequestDispatcher dispatcher =
+					req.getRequestDispatcher("/login.html");
+				dispatcher.forward(req, res);
+			}
+
 		}else{//Page not required authentication.
 			log.debug(" Authentication Not Required "+pageRequested);
 			chain.doFilter(request, response);

@@ -2,9 +2,11 @@ package org.bmj.userinsights.login.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.login.dto.LoginDTO;
+import org.bmj.userinsights.server.BMJSessionToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,15 +33,24 @@ public class LoginPage {
 		String pageRequested=loginData.getPageRequested();
 		pageRequested=pageRequested.substring(pageRequested.lastIndexOf("/")+1, pageRequested.length()-5);
 		System.out.println(loginData.getPageRequested()+" -"+userName+" - "+password+"-"+pageRequested);
-		if(userName.equals("nilesh") && password.equals("password")){
+		if(userName.equals("nilesh") && password.equals("password")){// If user is authenticated.Replace this with new logic.
+			setBMJSessionToken(request);
 			ModelAndView mv = new ModelAndView(pageRequested);
 			return mv; 
 		}else{
 			ModelAndView mv = new ModelAndView("login");
+			loginData.setName("");
+			loginData.setPassword("");
 			mv.addObject("loginDTO", loginData);
 			return mv; 
 		}
 		    
+	}
+	private void setBMJSessionToken(HttpServletRequest request) {
+		HttpSession session=request.getSession(true);// Create new session if not exist.Or use exist session.
+		BMJSessionToken bmjSessionToken=new BMJSessionToken();
+		bmjSessionToken.setUserName("nilesh");
+		session.setAttribute("BMJSessionToken", bmjSessionToken);
 	}  	
 	
 	@RequestMapping("/login1")  
