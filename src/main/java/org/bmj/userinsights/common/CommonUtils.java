@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 
 
-
+// CommonUtil class to access common functionality
 public class CommonUtils {
 	static ResourceBundle messagesProperties= MessageBundle.getResourceBundle();
 	private static final  Logger log = Logger.getLogger(CommonUtils.class);
