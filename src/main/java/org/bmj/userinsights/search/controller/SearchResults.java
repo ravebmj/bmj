@@ -24,11 +24,12 @@ public class SearchResults {
      * with Parameter
      */
     @RequestMapping(value= "/advanceSearch", method=RequestMethod.POST)  
-    public ModelAndView shows(HttpServletRequest request) {
+    public ModelAndView advanceSearch(HttpServletRequest request) {
     	
     	ModelAndView model = new ModelAndView("searchresults");  
         return model; 
     }    
     
+     
     
 }
