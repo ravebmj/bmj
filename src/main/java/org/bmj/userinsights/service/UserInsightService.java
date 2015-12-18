@@ -10,7 +10,7 @@ public class UserInsightService implements IUserInsightService {
 	@Override
 	public String getPerson(String id) throws Exception {
 		// TODO Auto-generated method stub
-		return getDaoRef().getPerson("2");
+		return getDaoRef().getPerson(id);
 	}
 	/**
 	 * get reference to GCSDao implementation.

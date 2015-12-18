@@ -24,7 +24,7 @@ public class HomePage {
 		System.out.println("++++4444+++++ "+messageSource.getMessage("welcomemessage", null, "Default",null));
 		
 		System.out.println(userInsightService.getPerson("1"));
-		log.debug(" ****4444***** "+userInsightService.getPerson("2"));
+		//System.out.println(" ****4444***** "+userInsightService.getPerson("2"));
         return "redirect:dashboard.html";  
     }  
 

@@ -1,2 +1,1 @@
-    <hr/>  
-    <p>Copyright  2010-2014 javatpoint.com.</p>  
+<div id="footer" class="fl">Copyright &copy;2015 BMJ Publishing Group Ltd <div class="ver fr">Ver 0.1</div></div>

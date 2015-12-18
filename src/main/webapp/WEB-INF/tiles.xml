@@ -6,26 +6,33 @@
 	<definition name="base.definition"  
         template="/WEB-INF/views/layout.jsp">  
         <put-attribute name="title" value="" />  
-        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />  
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />       
         <put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />  
         <put-attribute name="body" value="" />  
         <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />  
     </definition>
-	<definition name="plain.definition"
+	 <definition name="plain.definition"
 		template="/WEB-INF/views/plain.jsp">
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />          			          
-	</definition>    
-	<definition name="dashboard" extends="base.definition">
+	</definition>	 
+	 <definition name="insight.definition"
+		template="/WEB-INF/views/insight.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
+        <put-attribute name="searchheader" value="/WEB-INF/views/searchheader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />          			          
+	</definition>      
+	<definition name="dashboard" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp" />
 		<put-attribute name="title" value="DashBoard" />
-	</definition>    
-	<definition name="searchresults" extends="base.definition">
+	</definition>	   
+	<definition name="searchresults" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/searchresults.jsp" />
 		<put-attribute name="title" value="Searchr Results" />
 	</definition>	
-	<definition name="createInsight" extends="base.definition">
+	<definition name="createInsight" extends="plain.definition">
 		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
 		<put-attribute name="title" value="Searchr Results" />
 	</definition>
