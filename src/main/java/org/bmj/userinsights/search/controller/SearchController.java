@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class SearchResults {
+public class SearchController {
 	/*
 	 * Return Search Result Page
 	 */
@@ -23,7 +23,9 @@ public class SearchResults {
     	
     	System.out.println("in the showSearchResults "+dashboardDto.getSearchTxt());
     	
-    	
+    	System.out.println("in the showSearchResults "+dashboardDto.getSearchAllInsight());
+    	//String[] values = req.getParameterValues("insightId");
+    	System.out.println("insight id: "+req.getParameter("insightId"));
     	
         return new ModelAndView("searchresults","dashboardDto",dashboardDto);  
 

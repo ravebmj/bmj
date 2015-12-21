@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomePage {
 	
-	@Autowired
+	/*@Autowired
 	MessageSource messageSource;
 	
 	@Autowired
@@ -23,9 +23,9 @@ public class HomePage {
 		
 		System.out.println("++++4444+++++ "+messageSource.getMessage("welcomemessage", null, "Default",null));
 		
-		System.out.println(userInsightService.getPerson("1"));
+		//System.out.println(userInsightService.getPerson("1"));
 		//System.out.println(" ****4444***** "+userInsightService.getPerson("2"));
         return "redirect:dashboard.html";  
-    }  
+    }  */
 
 }

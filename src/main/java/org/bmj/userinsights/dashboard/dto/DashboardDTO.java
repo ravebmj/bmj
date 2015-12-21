@@ -8,10 +8,10 @@ public class DashboardDTO implements Serializable{
 
 	private static final long serialVersionUID = -8014402374004189946L;
 	
-	private String searchTxt;
+	private String searchTxt;	
 	private String searchAllInsight;
 	private List<SearchAllInsightsDto> searchAllInsightsDtoLst;
-	
+	private List<RecentInsightsDto> recentInsightsDtoLst;
 
 	public String getSearchAllInsight() {
 		return searchAllInsight;
@@ -36,6 +36,14 @@ public class DashboardDTO implements Serializable{
 	public void setSearchAllInsightsDtoLst(
 			List<SearchAllInsightsDto> searchAllInsightsDtoLst) {
 		this.searchAllInsightsDtoLst = searchAllInsightsDtoLst;
+	}
+
+	public List<RecentInsightsDto> getRecentInsightsDtoLst() {
+		return recentInsightsDtoLst;
+	}
+
+	public void setRecentInsightsDtoLst(List<RecentInsightsDto> recentInsightsDtoLst) {
+		this.recentInsightsDtoLst = recentInsightsDtoLst;
 	}
 
 }

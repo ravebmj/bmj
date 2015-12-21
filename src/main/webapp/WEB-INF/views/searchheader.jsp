@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 
@@ -48,17 +48,19 @@
 		<h2 class="advance-search-title">Advanced Search</h2>
 	<div class="fl">
 			<div tabindex="1" class="wrapper-dropdown-1" id="dd" style="float:left;">
-					<%-- <form:select path="">
-						<form:options items=""/>
-					</form:select> --%>
+			      
+					 <form:select path="searchAllInsight">
+					 	<form:option value="0" label="Search all insights"/>
+						<form:options items="${dashboardDto.searchAllInsightsDtoLst}" itemLabel="searchInsightName" itemValue="searchInsightId"/>
+					</form:select> 
+				
 			
-			
-						<span>Search all insights</span>
+						<!-- <span>Search all insights</span>
 						<ul class="dropdown">
 							<li><a href="#"><i class="icon-envelope icon-large"></i>Classic mail</a></li>
 							<li><a href="#"><i class="icon-truck icon-large"></i>UPS Delivery</a></li>
 							<li><a href="#"><i class="icon-plane icon-large"></i>Private jet</a></li>
-						</ul>
+						</ul> -->
 					</div>
 					<div tabindex="1" class="wrapper-dropdown-2" id="dd2" style="float:left;">
 						<span>Search all severities</span>
