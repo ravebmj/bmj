@@ -19,11 +19,16 @@ $(document).ready(function() {
     } );
 
 } );
+
+
 </script>
 <script>
 function submitForm(insightid){
-	alert(insightid);
-    $('#dashboardForm').submit();
+	$("#dashboardForm").submit();
+	/* $.post('viewInsight.html', { insightId: insightid }, function(data) { 
+	    
+	}); */
+   
 }
 </script>
 
@@ -31,7 +36,7 @@ function submitForm(insightid){
 
 <c:url value="/questionPost" var="postUrl"/>
 
-<form:form id="dashboardForm" action="viewinsight.html" modelAttribute="dashboardDto" method="post">
+<form:form id="dashboardForm" action="viewinsight.html" modelAttribute="dashboardDto" method="post"> 
 <div id="wrapper">
 	<div id="main-container fl">
 	
@@ -98,7 +103,7 @@ function submitForm(insightid){
     <div class="viewall-top fr"><a href="#">view all</a></div>
    </div>
    </div> 
-</form:form>
+</form:form> 
 
 
 

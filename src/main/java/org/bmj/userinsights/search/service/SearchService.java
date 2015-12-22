@@ -29,6 +29,6 @@ public class SearchService implements ISearchService {
 		}
 		
 		return dto;
-	}
 
+	}
 }
