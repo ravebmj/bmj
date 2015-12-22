@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 	
-<script src="js/insight.js"></script> 
+
 
   <link href="css/style.css" rel="stylesheet">
 
@@ -204,38 +204,11 @@ $( document ).ready(function() {
     And pass insight id as parameter
     */
     $(".insightTitle").click(function(){
-    	alert("clicked");
-    	viewInsight(this.id);
-    	//$.post('viewinsight.html', { insightId: this.id }, function(data) {       
-       // });
-    	//$("#form1").attr('action','searchresults.html');
     	
-    	var form;
-		    form = $('<form />', {
-		        action: "viewinsight.html",
-		        method: 'post',
-		        style: 'display: none;'
-		    });
-		    alert('jiii');
-		   // var input = 
-		   // $("<input>").attr("type", "hidden").attr("name", "mydata").val("Bla").appendTo(form);
-		    
-		    //form.appendTo('body').submit();
-		    //alert("hii");
-    	
-    	
-    	//witjout form
-    	//$(".insightTitle").attr({href: "viewinsight.html?insightId='hiiiii'"});
-    	//$("#form1").submit();
-    	
-    		//event.preventDefault();
-    		//$.post('viewinsight.html', { insightId: this.id }, function(data) { });
-    	
+    	viewInsight(this.id); 
+ 	   	
     });
 
-    /*
-    Button click
-    */
     
    
 
