@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
 
-
+// this is a test commit for Atif
 // CommonUtil class to access common functionality
 public class CommonUtils {
 	static ResourceBundle messagesProperties= MessageBundle.getResourceBundle();

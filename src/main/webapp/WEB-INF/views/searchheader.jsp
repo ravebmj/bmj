@@ -4,6 +4,46 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+	<script type="text/javascript">
+
+    function show(obj) 
+    {
+        var e1 = document.getElementById('search-bottom');
+		
+        if ( e1.style.display == 'none' )
+		{
+            e1.style.display = 'block';
+				document.getElementById('btn-insight').style.margin="-60px 98px 8px 0";
+				document.getElementById('close').style.display="block";
+					document.getElementById('search-bottom').style.height="206px";
+					document.getElementById('gbqfab').style.display="none";
+						document.getElementById('gbqfab').style.cursor="pointer";
+						document.getElementById('headbg').style.height="461px";
+						document.getElementById('headbg').style.background="url(images/headbgclick.png) left top repeat-x";
+
+
+		}
+		
+
+			
+      
+	}
+
+	function hide(obj) {
+
+    var el = document.getElementById('search-bottom');
+
+        el.style.display = 'none';
+			document.getElementById('btn-insight').style.margin="10px 17px 8px 0";
+			document.getElementById('gbqfab').style.display="block";
+				document.getElementById('gbqfab').style.cursor="pointer";
+				document.getElementById('headbg').style.height="305px";
+				document.getElementById('headbg').style.background="url(images/headbgmin.png) left top repeat-x";
+
+}
+
+
+</script>
 
 
 <div id="wrapper">

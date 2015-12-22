@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
+import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.search.service.ISearchService;
+import org.bmj.userinsights.search.service.SearchService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,7 +39,10 @@ public class SearchController {
     	//String[] values = req.getParameterValues("insightId");
     	System.out.println("insight id: "+req.getParameter("insightId"));
     	
-        return new ModelAndView("searchresults","dashboardDto",dashboardDto);  
+    	SearchService searchService = new SearchService();
+    	SearchResultDto searchDto = searchService.getAllInsight();
+    	
+        return new ModelAndView("searchresults","searchDto",searchDto);  
 
     } 
     
@@ -51,6 +57,16 @@ public class SearchController {
         return model; 
     }    
     
+    /*
+     * Advance Search
+     * with Parameter
+     */
+    @RequestMapping(value= "/dashBoardSearch", method=RequestMethod.POST)  
+    public ModelAndView dashBoardSearch(HttpServletRequest request) {
+    	
+    	ModelAndView model = new ModelAndView("searchresults");  
+        return model; 
+    }
      
     
 }

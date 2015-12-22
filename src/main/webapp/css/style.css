@@ -1,5 +1,4 @@
 body{margin:0px; padding:0px; font-family:'Helvetica', Arial, sans-serif;background:#fff url(../images/headbg.png) left top repeat-x}
-a{text-decoration:none;}
 #wrapper{width:1000px; margin:0 auto}
 .header{width:1000px; height:112px;}
 .logo{width:344px; height:111px;}
@@ -3450,48 +3449,3 @@ a#searchTable_next{    background:url(../images/next-active.png) no-repeat -22px
 
 .title{width:22%!important;}
 .no_sort{width:15%;}
-
-body#inside{background:none;}
-
-
-
-#search-panel-line {
-    border-top:2px solid  #296dbd;
-
-    width: 1000px;
-}
-.edit{float:right;}
-.editbtn{color:#fff;font-size:18px;background:#fa8733;border:none;
-
-}
-
-
-legend {
-    background: #ffffff none repeat scroll 0 0;
-    border: none;
-    color: #202122;
-    padding: 2px 6px 7px 6px;
-	margin:0 0 0 -9px;
-	font-size:14px;
-	font-weight:900;
-}
-fieldset {
-	padding:0px;
-    border-top: 1px solid #cbcac6;
-	 border-bottom: none;
-	  border-left:none;
-	   border-right:none;
-    margin-top: 10px;
-	margin-bottom:20px;
-    width:100%;
-}
-
-.margintop20{margin-top:20px;}
-.margintop10{margin-top:10px;}
-.dtable{display:inline-table;margin-right:20px;font-size:11px;color:#5d5f64;text-align:center;}
-.grey_highlight{color:#202122!important;font-size:14px!important;font-weight:900!important}
-.view span{font-size:14px;color:#535659;font-size:14px;}
-.view a{text-decoration:none;color:#296dbd;font-size:14px;}
-span{color:#5a5e64}
-.grey_highlight_11{color:#5d5f64;font-size:11px;}
-.h2_25{font-size:25px;color:#3f4144;font-weight:normal}
