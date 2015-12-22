@@ -23,7 +23,7 @@ function viewInsight(insightId){
  * This method will call search with basis of any of three
  * 1 field will contain value rest will be null
  */
-function search(tag, projectName, product){
+function search(searchType, id){
 	var form; // dynamic form that will call controller
     form = $('<form />', {
         action: "dashBoardSearch.html",
@@ -31,9 +31,8 @@ function search(tag, projectName, product){
         style: 'display: none;'
     });
     //Form parameter insightId
-    $("<input>").attr("type", "hidden").attr("name", "tag").val(tag).appendTo(form);//tag value appended to form
-    $("<input>").attr("type", "hidden").attr("name", "product").val(product).appendTo(form);//product value appended to form
-    $("<input>").attr("type", "hidden").attr("name", "projectName").val(projectName).appendTo(form);//projectName append to form
+    $("<input>").attr("type", "hidden").attr("name", "searchType").val(searchType).appendTo(form);//searchType value appended to form
+    $("<input>").attr("type", "hidden").attr("name", "id").val(id).appendTo(form);//id append to form
     
     //Form submit
     form.appendTo('body').submit();
