@@ -90,6 +90,62 @@
 		</property>
 	</bean>
 	
+	<bean id="insightServiceRef" class="org.bmj.userinsights.insight.service.InsightService"></bean>
+	
+	<bean id="refInsightDao" class="org.bmj.userinsights.insight.Dao.InsightDao">
+		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
+	</bean> 
+ 	
+ 	<bean id="refInsightDaoImpl"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		scope="request">
+		<property name="transactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="target">
+			<ref local="refInsightDao"/>
+		</property> 
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="fetch*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="searchServiceRef" class="org.bmj.userinsights.search.service.SearchService"></bean>
+	
+	<bean id="refSearchDao" class="org.bmj.userinsights.search.Dao.SearchDao">
+		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
+	</bean> 
+ 	
+ 	<bean id="refSearchDaoImpl"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		scope="request">
+		<property name="transactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="target">
+			<ref local="refSearchDao"/>
+		</property> 
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="fetch*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	
 	
 	
 	
