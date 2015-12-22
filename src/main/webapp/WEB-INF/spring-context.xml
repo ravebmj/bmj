@@ -65,12 +65,30 @@
 	</bean>
 	
 	
-	
-	
-	
-	
-	
-	
+	<bean id="dashboardServiceRef" class="org.bmj.userinsights.dashboard.service.DashboardService"></bean>
+	<bean id="refDashboardDao" class="org.bmj.userinsights.dashboard.Dao.DashboardDao">
+		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
+	</bean> 
+ 	
+ 	<bean id="refDashboardDaoImpl"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		scope="request">
+		<property name="transactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="target">
+			<ref local="refDashboardDao"/>
+		</property> 
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="fetch*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
 	
 	
 	

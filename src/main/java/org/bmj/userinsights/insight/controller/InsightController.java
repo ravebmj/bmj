@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class InsightController {
 	private static final  Logger log = Logger.getLogger(InsightController.class);
 	
+	
+	
 	@RequestMapping("/createinsight")  
     public ModelAndView showCreateInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto) throws Exception {
 		
