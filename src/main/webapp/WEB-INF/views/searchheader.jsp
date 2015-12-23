@@ -48,8 +48,7 @@
 
 
 <div id="wrapper">
-	<div id="search-panel" class="fl">
-	 <form:form class="gb_Qd" action="searchresults.html" id="gbqf" name="gbqf" method="post" data-ved="0ELsnCBg" modelAttribute="dashboardDto">	
+	<div id="search-panel" class="fl">	
 	<div id="gbq">
     <div class="gbt" id="gbq2">
         <div id="gbqfw" role="search">
@@ -65,7 +64,7 @@
                         <div id="gbqfqw" class="gbqfqw " gh="sb">
                             <div id="gbqfaa"></div>
                             <div id="gbqfqwb" class="gbqfqwb" style="left: 0px; right: 19px;">
-                                <form:input id="gbqfq" class="gbqfif" name="q" type="text" path="searchTxt" autocomplete="off" value="" aria-label="Search" dir="ltr" spellcheck="false" aria-haspopup="true" aria-live="off" aria-owns="gs_sbt50" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; position: absolute; z-index: 6; left: 0px; background: url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D&quot;) transparent;"/>
+                                <input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" aria-label="Search" dir="ltr" spellcheck="false" aria-haspopup="true" aria-live="off" aria-owns="gs_sbt50" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; position: absolute; z-index: 6; left: 0px; background: url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D&quot;) transparent;"/>
                             </div>
                             <div id="gbqfab" onclick="show()" style="cursor:pointer;">
                                 <div class="aoo J-JN-I" tabindex="0" gh="sda" role="button" data-tooltip="Show search options" aria-label="Advanced search options">
@@ -76,8 +75,8 @@
                     </div>
                 </fieldset>
                 <div class="gb_R gb_Pd" id="gbqfbw">
-                    <form:button type="submit" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
-                    </form:button>
+                    <button type="submit" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
+                    </button>
                 </div>
            
         </div>
@@ -90,10 +89,12 @@
 	<div class="fl">
 			<div tabindex="1" class="wrapper-dropdown-1" id="dd" style="float:left;">
 			      
-					 <form:select path="searchAllInsight">
-					 	<form:option value="0" label="Search all insights"/>
-						<form:options items="${dashboardDto.searchAllInsightsDtoLst}" itemLabel="searchInsightName" itemValue="searchInsightId"/>
-					</form:select> 
+			      ${searchCriteria.insightType[0]} sjgfk 
+			      <form:select path="searchCriteria.keyword">
+			      		< <form:option value="0" label="Search all insights"/>
+						<form:options items="${searchCriteria.insightType}" itemLabel="searchInsightName" itemValue="searchInsightId"/> 
+			      </form:select>
+					  
 				
 			
 						<!-- <span>Search all insights</span>
@@ -128,11 +129,11 @@
 					</div>
 			</div>
 		</div>
-		 </form:form>
+		 
 	</div>
-		<form:form id="addNewInsightForm" action="createinsight.html" method="post"  modelAttribute="dashboardDto">
-			<div style="float:right;margin:10px 17px 0 10px;" id="btn-insight"><form:button type="submit" id="btnAddNewInsight" name="addnewinsight" value=" "><img src="images/addnewinsight.png"></form:button></div>
-		</form:form>
+		
+			<div style="float:right;margin:10px 17px 0 10px;" id="btn-insight"><button type="submit" id="btnAddNewInsight" name="addnewinsight" value=" "><img src="images/addnewinsight.png"></button></div>
+		
 	  </div>
   
 

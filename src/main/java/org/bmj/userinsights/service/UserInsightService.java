@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bmj.userinsights.common.dto.DecodedNamesDto;
 import org.bmj.userinsights.dao.IUserInsightDao;
+import org.bmj.userinsights.search.dto.SearchCriteria;
 import org.bmj.userinsights.server.AppContext;
 import org.bmj.userinsights.service.IUserInsightService;
 import org.springframework.context.ApplicationContext;
@@ -30,5 +31,16 @@ public class UserInsightService implements IUserInsightService {
 	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
 		return getDaoRef().getCodeListDecodedNames(codelistName, applicationId);
 		
+	}
+	
+	/*
+	 * This method will search field
+	 * @see org.bmj.userinsights.service.IUserInsightService#getSearchCriteriaDto()
+	 */
+	@Override
+	public SearchCriteria getSearchCriteriaDto() throws Exception {
+		SearchCriteria searchCriteria = new SearchCriteria();
+		
+		return searchCriteria;
 	}
 }

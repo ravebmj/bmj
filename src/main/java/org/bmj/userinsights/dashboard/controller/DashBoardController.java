@@ -9,13 +9,17 @@ import org.bmj.userinsights.dashboard.dto.DashboardDTO;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
 import org.bmj.userinsights.dashboard.service.IDashboardService;
+import org.bmj.userinsights.search.dto.SearchCriteria;
 import org.bmj.userinsights.service.IUserInsightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+@SessionAttributes("searchCriteria")
 @Controller
 public class DashBoardController {
 	
@@ -48,11 +52,12 @@ public class DashBoardController {
     	System.out.println("in the showDashboard");    	
     	DashboardDTO dashboardDto = new DashboardDTO();
     	ModelAndView mav = new ModelAndView("dashboard");    	
-    	
+    	SearchCriteria searchCriteria=null;
 		try {
 			 getCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
 			lstSearchAllInsightsDto = dashboardService.getSearchAllInsightsDtoLst();// populate the possible values for the SearchAllInsights dropdown in Advanced Search section
-			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights(); 
+			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();
+			searchCriteria = userInsightService.getSearchCriteriaDto();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,6 +67,7 @@ public class DashBoardController {
     	dashboardDto.setRecentInsightsDtoLst(lstRecentInsightsDto);
     	
         mav.addObject("dashboardDto", dashboardDto);  
+        mav.addObject("searchCriteria", searchCriteria);
     	
     	
         return mav;  
