@@ -18,5 +18,9 @@
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedDate" column="modified_date"/>
 	</class>
- 	
+ 	<query name="CodelistCodeDecode.getCodelistCodeDecode">
+        <![CDATA[
+    	from CodelistCodeDecode where codelistId = :codelistId    	
+        ]]>
+    </query>
 </hibernate-mapping>
