@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.InsightProduct" table="insight_product">
+		<id name="id" column="insight_product_id">
+			<generator class="native"/>
+		</id>
+		<property name="insightId" column="insight_id"/>
+		<property name="productId" column="product_id"/>
+		<property name="addedUser" column="added_user"/>
+		<property name="addedDate" column="added_date" type="date"/>
+	
+	</class>
+	
+</hibernate-mapping>

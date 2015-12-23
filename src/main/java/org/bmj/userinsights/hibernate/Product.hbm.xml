@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.Product" table="product_library">
+		<id name="id" column="product_id">
+			<generator class="native"/>
+		</id>
+		<property name="name" column="product_name"/>
+		<property name="description" column="product_description"/>
+		<property name="applicationId" column="product_application_id"/>
+		<property name="addedUser" column="added_user"/>
+		<property name="addedDate" column="added_date" type="date"/>
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedDate" column="modified_date" type="date"/>
+	</class>
+	
+</hibernate-mapping>

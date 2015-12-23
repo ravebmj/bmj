@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.InsightDetail" table="insight_details">
+		<id name="id" column="insight_details_id">
+			<generator class="native"/>
+		</id>
+		<property name="title" column="insight_title"/>
+		<property name="description" column="insight_description"/>
+		<property name="type" column="insight_type"/>
+		
+		<property name="foundDate" column="insight_found_date"/>
+		<property name="foundCount" column="insight_found_count"/>
+		<property name="insightServerity" column="insight_severity"/>
+		
+		<property name="insightApplicationID" column="insight_application_id"/>
+		
+		<property name="addedUser" column="added_user"/>
+		<property name="addedDate" column="added_date" type="date"/>
+		
+		<property name="modifiedUser" column="modified_user"/>
+		<property name="modifiedDate" column="modified_date" type="date"/>
+	
+	</class>
+	
+
+
+</hibernate-mapping>
