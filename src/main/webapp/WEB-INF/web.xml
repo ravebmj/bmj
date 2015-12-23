@@ -33,6 +33,10 @@
 	<listener>
 		<listener-class>org.bmj.userinsights.listener.InsightSessionListener</listener-class>
 	</listener>	
+	<servlet-mapping>
+			<servlet-name>dispatcher</servlet-name>
+			<url-pattern>*.ajx</url-pattern>
+	</servlet-mapping>	
 <!-- 	<session-config>
 	    <session-timeout>5</session-timeout>
 	</session-config> -->	
