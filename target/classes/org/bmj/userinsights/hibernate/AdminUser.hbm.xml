@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.AdminUser" table="admin_user">
+		<id name="adminuserId" column="admin_user_id">
+			<generator class="native"/>
+		</id>
+		<property name="adminuserName" column="admin_user_name"/>
+		<property name="adminuserPassword" column="admin_user_password"/>
+		<property name="adminuserFirstName" column="admin_user_first_name"/>
+		<property name="adminuserMiddleName" column="admin_user_middle_name"/>
+		<property name="adminuserLastName" column="admin_user_last_name"/>
+		<property name="adminuserEmailAddress" column="admin_user_emai_address"/>
+		<property name="adminuserApplicationId" column="admin_user_application_id"/>
+		<property name="addedDate" column="added_date"/>
+	</class>
+ 	
+</hibernate-mapping>

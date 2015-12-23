@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.ApplicationUser" table="application_user">
+		<id name="appuserId" column="app_user_id">
+			<generator class="native"/>
+		</id>
+		<property name="appuserName" column="app_user_name"/>
+		<property name="appuserDescription" column="app_user_description"/>
+		<property name="appuserIdentityCriteria" column="app_user_identity_criteria"/>		
+		<property name="addedDate" column="added_date"/>
+	</class>
+ 	
+</hibernate-mapping>
