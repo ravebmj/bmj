@@ -205,8 +205,9 @@ $( document ).ready(function() {
     */
     $(".insightTitle").click(function(){
     	
-    	viewInsight(this.id); 
- 	   	
+    	//viewInsight(this.id);
+    	
+    	//quickAdvanceSearch("keyword", "insightType", "serverity", "createdDate", "fromDate", "toDate") 	   	
     });
 
     
