@@ -3,40 +3,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-<script type="text/javascript">
-
-$(document).ready(function() {
-
-    $('#example').DataTable( {
-
-        "paging":   false,
-
-        "ordering": false,
-
-        "info":     false
-
-    } );
-
-} );
-
-
-</script>
-<script>
-function submitForm(insightid){
-	$("#dashboardForm").submit();
-	/* $.post('viewInsight.html', { insightId: insightid }, function(data) { 
-	    
-	}); */
-   
-}
-</script>
+<script src="js/insight.js"></script> 	
 
 
 
-<c:url value="/questionPost" var="postUrl"/>
-
-<form:form id="dashboardForm" action="viewinsight.html" modelAttribute="dashboardDto" method="post"> 
 <div id="wrapper">
 	<div id="main-container fl">
 	
@@ -69,7 +39,7 @@ function submitForm(insightid){
 	            <td>
 	              <div class="row-start-1 fl">
 					<div class="table-title-row fl">
-	               <a  href="#" onclick="submitForm(${currQue.insightId})"> <c:out value="${currQue.insightName}"/></a><br/>
+	               <a  href="#" onclick="viewInsight(${currQue.insightId})"> <c:out value="${currQue.insightName}"/></a><br/>
 	              	</div>
 	              </div>  
 	            </td>
@@ -103,7 +73,7 @@ function submitForm(insightid){
     <div class="viewall-top fr"><a href="#">view all</a></div>
    </div>
    </div> 
-</form:form> 
+
 
 
 

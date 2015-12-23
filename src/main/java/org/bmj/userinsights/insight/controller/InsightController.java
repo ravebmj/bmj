@@ -36,7 +36,7 @@ public class InsightController {
 	@RequestMapping(value="/viewinsight",method=RequestMethod.POST)  
     public ModelAndView showViewInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
-		System.out.println("in the showCreateInsight");
+		System.out.println("in the showViewInsight"+insightId);
 		
        return new ModelAndView("viewInsight","dashboardDto",dashboardDto);
     }  

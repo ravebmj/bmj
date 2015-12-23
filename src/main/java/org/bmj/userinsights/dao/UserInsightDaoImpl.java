@@ -2,6 +2,7 @@ package org.bmj.userinsights.dao;
 
 import java.util.List;
 
+import org.bmj.userinsights.common.dto.DecodedNamesDto;
 import org.bmj.userinsights.entity.Person;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -20,6 +21,19 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 			return person.getFname();
 		}
 
+		return null;
+	}
+
+	@Override
+	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,
+			String applicationId) throws Exception {
+		
+		List returnVal = this.getHibernateTemplate()
+				.findByNamedQueryAndNamedParam("Person.getPerson",
+						new String[]{""},, new Integer(id));
+		
+		
+		
 		return null;
 	}
 

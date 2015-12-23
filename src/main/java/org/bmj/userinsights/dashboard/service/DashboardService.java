@@ -5,14 +5,14 @@ import java.util.List;
 import org.bmj.userinsights.dao.IUserInsightDao;
 import org.bmj.userinsights.dashboard.Dao.IDashboardDao;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
-import org.bmj.userinsights.dashboard.dto.SearchAllInsightsDto;
+import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
 
 public class DashboardService implements IDashboardService{
 
 	@Override
-	public List<SearchAllInsightsDto> getSearchAllInsightsDtoLst()
+	public List<InsightTypesDto> getSearchAllInsightsDtoLst()
 			throws Exception {
 		
 		return getDaoRef().getSearchAllInsightsDtoLst();

@@ -1,5 +1,8 @@
 package org.bmj.userinsights.service;
 
+import java.util.List;
+
+import org.bmj.userinsights.common.dto.DecodedNamesDto;
 import org.bmj.userinsights.dao.IUserInsightDao;
 import org.bmj.userinsights.server.AppContext;
 import org.bmj.userinsights.service.IUserInsightService;
@@ -21,5 +24,11 @@ public class UserInsightService implements IUserInsightService {
 		ApplicationContext ctx = null; 
 		ctx = AppContext.getApplicationContext();
 		return (IUserInsightDao)ctx.getBean("refUserInsightDaoImpl");
+	}
+	
+	
+	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
+		return getDaoRef().getCodeListDecodedNames(codelistName, applicationId);
+		
 	}
 }

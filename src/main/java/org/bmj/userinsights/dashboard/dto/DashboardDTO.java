@@ -10,7 +10,7 @@ public class DashboardDTO implements Serializable{
 	
 	private String searchTxt;	
 	private String searchAllInsight;
-	private List<SearchAllInsightsDto> searchAllInsightsDtoLst;
+	private List<InsightTypesDto> searchAllInsightsDtoLst;
 	private List<RecentInsightsDto> recentInsightsDtoLst;
 
 	public String getSearchAllInsight() {
@@ -29,12 +29,12 @@ public class DashboardDTO implements Serializable{
 		this.searchTxt = searchTxt;
 	}
 
-	public List<SearchAllInsightsDto> getSearchAllInsightsDtoLst() {
+	public List<InsightTypesDto> getSearchAllInsightsDtoLst() {
 		return searchAllInsightsDtoLst;
 	}
 
 	public void setSearchAllInsightsDtoLst(
-			List<SearchAllInsightsDto> searchAllInsightsDtoLst) {
+			List<InsightTypesDto> searchAllInsightsDtoLst) {
 		this.searchAllInsightsDtoLst = searchAllInsightsDtoLst;
 	}
 
