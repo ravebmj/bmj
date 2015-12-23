@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bmj.userinsights.common.dto.DecodedNamesDto;
 import org.bmj.userinsights.dao.IUserInsightDao;
+import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.search.dto.SearchCriteria;
 import org.bmj.userinsights.server.AppContext;
 import org.bmj.userinsights.service.IUserInsightService;
@@ -29,7 +30,7 @@ public class UserInsightService implements IUserInsightService {
 	
 	
 	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
-		return getDaoRef().getCodeListDecodedNames(codelistName, applicationId);
+		return (List<DecodedNamesDto>)getDaoRef().getCodeListDecodedNames(codelistName, applicationId);
 		
 	}
 	
@@ -38,9 +39,9 @@ public class UserInsightService implements IUserInsightService {
 	 * @see org.bmj.userinsights.service.IUserInsightService#getSearchCriteriaDto()
 	 */
 	@Override
-	public SearchCriteria getSearchCriteriaDto() throws Exception {
+	public SearchCriteria getSearchCriteriaDto(List<InsightTypesDto> lstInsightTypesDto) throws Exception {
 		SearchCriteria searchCriteria = new SearchCriteria();
-		
+		searchCriteria.setLstInsightTypesDto(lstInsightTypesDto);
 		return searchCriteria;
 	}
 }
