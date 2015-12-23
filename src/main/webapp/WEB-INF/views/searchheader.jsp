@@ -89,10 +89,10 @@
 	<div class="fl">
 			<div tabindex="1" class="wrapper-dropdown-1" id="dd" style="float:left;">
 			      
-			      ${searchCriteria.insightType[0]} sjgfk 
+			     
 			      <form:select path="searchCriteria.keyword">
 			      		< <form:option value="0" label="Search all insights"/>
-						<form:options items="${searchCriteria.insightType}" itemLabel="searchInsightName" itemValue="searchInsightId"/> 
+						<form:options items="${searchCriteria.lstInsightTypesDto}" itemLabel="insightTypeName" itemValue="insightTypeName"/> 
 			      </form:select>
 					  
 				

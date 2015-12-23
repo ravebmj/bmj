@@ -4,31 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
-import org.bmj.userinsights.dashboard.dto.SearchAllInsightsDto;
+import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
 
 	@Override
-	public List<SearchAllInsightsDto> getSearchAllInsightsDtoLst()
+	public List<InsightTypesDto> getSearchAllInsightsDtoLst()
 			throws Exception {
-		List<SearchAllInsightsDto> lstSearchAllInsightsDto = new ArrayList<SearchAllInsightsDto>();
+		List<InsightTypesDto> lstSearchAllInsightsDto = new ArrayList<InsightTypesDto>();
     	
-    	SearchAllInsightsDto obj1 = new SearchAllInsightsDto();
+    	/*InsightTypesDto obj1 = new InsightTypesDto();
     	obj1.setSearchInsightId(1);
     	obj1.setSearchInsightName("Classic mail");
     	
-    	SearchAllInsightsDto obj2 = new SearchAllInsightsDto();
+    	InsightTypesDto obj2 = new InsightTypesDto();
     	obj2.setSearchInsightId(2);
     	obj2.setSearchInsightName("UPS Delivery");
     	
-    	SearchAllInsightsDto obj3 = new SearchAllInsightsDto();
+    	InsightTypesDto obj3 = new InsightTypesDto();
     	obj3.setSearchInsightId(3);
     	obj3.setSearchInsightName("Private Jet");
     	
     	lstSearchAllInsightsDto.add(obj1);
     	lstSearchAllInsightsDto.add(obj2);
-    	lstSearchAllInsightsDto.add(obj3);
+    	lstSearchAllInsightsDto.add(obj3);*/
     	
 		return lstSearchAllInsightsDto;
 	}
