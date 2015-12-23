@@ -188,6 +188,30 @@
 		<property name="mappingResources">
 			<list>
 				<value>org/bmj/userinsights/hibernate/Person.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/Tag.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/Project.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/Product.hbm.xml</value>
+				
+				<value>org/bmj/userinsights/hibernate/InsightWebLink.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightTag.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightProject.hbm.xml</value>
+				
+				<value>org/bmj/userinsights/hibernate/InsightProduct.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightMainUserType.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightGeographies.hbm.xml</value>
+				
+				<value>org/bmj/userinsights/hibernate/InsightFoundVia.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightDetails.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightConfig.hbm.xml</value>
+				
+				<value>org/bmj/userinsights/hibernate/CodeListName.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/CodelistCodeDecode.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/ApplicationUser.hbm.xml</value>
+				
+				<value>org/bmj/userinsights/hibernate/AdminUser.hbm.xml</value>
+				
+				
+				
 			</list>
 		</property>
 

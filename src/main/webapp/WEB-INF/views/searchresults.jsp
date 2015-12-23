@@ -156,14 +156,14 @@ $(document).ready( function () {
 		<table id="searchTable" class="display">
  <thead>
   <tr>
-    <td><input type="checkbox"></td> <td class="title">Title</td><td class="type">Type</td><td class="product">Product</td><td class="project">Project</td><td class="users">Users</td><td class="tags">Tags</td><td class="ledited">Last Edited</td>
+    <td><input type="checkbox" class="headCheckBox"></td> <td class="title">Title</td><td class="type">Type</td><td class="product">Product</td><td class="project">Project</td><td class="users">Users</td><td class="tags">Tags</td><td class="ledited">Last Edited</td>
   </tr>
  </thead>
  
  <tbody>
  	<c:forEach items="${searchDto.searchResult}" var="insight">
 	  <tr>
-	    <td><input type="checkbox"></td> <td><a id="${insight.title}" class="insightTitle">${insight.title}</a></td>
+	    <td><input type="checkbox" id="${insight.projectName}" class="tailsCheckBox"></td> <td><a id="${insight.title}" class="insightTitle">${insight.title}</a></td>
 	    <td>${insight.type}</td>   
 	    <td>${insight.product}</td>
 	    <td>${insight.projectName}</td>   
@@ -205,11 +205,29 @@ $( document ).ready(function() {
     */
     $(".insightTitle").click(function(){
     	
-    	//viewInsight(this.id);
-    	
-    	//quickAdvanceSearch("keyword", "insightType", "serverity", "createdDate", "fromDate", "toDate") 	   	
+    	viewInsight(this.id);
+    	   	
     });
 
+    
+    /*
+    */
+    
+    $(".headCheckBox").click(function(){
+    	alert("comin");
+    	alert(this.checked);
+    	if(this.checked){
+    	var  ob=	$(".tailsCheckBox");
+    	alert(ob[0].id);
+    	jQuery.each(ob, function(index, item) {
+    		alert(index+"  "+"  "+item);
+    	    // do something with `item` (or `this` is also `item` if you like)
+    	});
+    	
+    	}
+    	
+    });
+    		
     
    
 

@@ -7,6 +7,7 @@ public class Product {
 	private int id;
 	private String name;
 	private String description;
+	private int applicationId;
 	private Date addedDate;
 	private Date modifiedDate;
 	private int addedUser;
@@ -68,6 +69,14 @@ public class Product {
 
 	public void setModifiedUser(int modifiedUser) {
 		this.modifiedUser = modifiedUser;
+	}
+
+	public int getAplicationId() {
+		return applicationId;
+	}
+
+	public void setAplicationId(int aplicationId) {
+		this.applicationId = aplicationId;
 	}
 	
 	
