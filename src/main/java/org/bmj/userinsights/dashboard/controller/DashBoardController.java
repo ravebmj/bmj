@@ -1,5 +1,6 @@
 package org.bmj.userinsights.dashboard.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -47,23 +48,24 @@ public class DashBoardController {
 	
     @RequestMapping("/dashboard")  
     public ModelAndView showDashboard() {
-    	List<InsightTypesDto> lstSearchAllInsightsDto = null;
+    	List<InsightTypesDto> lstInsightTypesDto = null;
     	List<RecentInsightsDto> lstRecentInsightsDto = null;
     	System.out.println("in the showDashboard");    	
     	DashboardDTO dashboardDto = new DashboardDTO();
     	ModelAndView mav = new ModelAndView("dashboard");    	
     	SearchCriteria searchCriteria=null;
 		try {
-			 getCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
-			lstSearchAllInsightsDto = dashboardService.getSearchAllInsightsDtoLst();// populate the possible values for the SearchAllInsights dropdown in Advanced Search section
+			lstInsightTypesDto = getCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
+			//lstSearchAllInsightsDto = dashboardService.getSearchAllInsightsDtoLst();// populate the possible values for the SearchAllInsights dropdown in Advanced Search section
 			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();
-			searchCriteria = userInsightService.getSearchCriteriaDto();
+			
+			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
-    	dashboardDto.setSearchAllInsightsDtoLst(lstSearchAllInsightsDto);
+    	dashboardDto.setInsightTypesDtoLst(lstInsightTypesDto);
     	dashboardDto.setRecentInsightsDtoLst(lstRecentInsightsDto);
     	
         mav.addObject("dashboardDto", dashboardDto);  
@@ -74,9 +76,20 @@ public class DashBoardController {
     } 
     
     
-    private List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,String applicationId){
-    	userInsightService.getCodeListDecodedNames(codelistName,applicationId);
-    	return null;
+    private List<InsightTypesDto> getCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
+    	List<DecodedNamesDto> decodedNamesDtoLst = userInsightService.getCodeListDecodedNames(codelistName,applicationId);
+    	List<InsightTypesDto> lstInsighsTypes = new ArrayList<InsightTypesDto>();
+    	if(decodedNamesDtoLst!=null && decodedNamesDtoLst.size()>0){
+    		for(DecodedNamesDto decodedObj:decodedNamesDtoLst){
+    			InsightTypesDto insightTypesDto = new InsightTypesDto();
+    			insightTypesDto.setInsightTypeId(decodedObj.getCodeDecodedCode());
+    			insightTypesDto.setInsightTypeName(decodedObj.getCodeDecodedName());
+    			lstInsighsTypes.add(insightTypesDto);
+    		}
+    	}
+    	
+    	
+    	return lstInsighsTypes;
     	
     }
    

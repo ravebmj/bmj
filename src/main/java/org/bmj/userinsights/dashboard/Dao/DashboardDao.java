@@ -14,7 +14,7 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
 			throws Exception {
 		List<InsightTypesDto> lstSearchAllInsightsDto = new ArrayList<InsightTypesDto>();
     	
-    	InsightTypesDto obj1 = new InsightTypesDto();
+    	/*InsightTypesDto obj1 = new InsightTypesDto();
     	obj1.setSearchInsightId(1);
     	obj1.setSearchInsightName("Classic mail");
     	
@@ -28,7 +28,7 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
     	
     	lstSearchAllInsightsDto.add(obj1);
     	lstSearchAllInsightsDto.add(obj2);
-    	lstSearchAllInsightsDto.add(obj3);
+    	lstSearchAllInsightsDto.add(obj3);*/
     	
 		return lstSearchAllInsightsDto;
 	}
