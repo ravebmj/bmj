@@ -6,22 +6,25 @@ public class InsightTypesDto implements Serializable{
 
 	private static final long serialVersionUID = -2044322730825914074L;
 
-	private Integer searchInsightId;
-	private String searchInsightName;
+	private Integer insightTypeId;
+	private String insightTypeName;
+	
+	
+	public Integer getInsightTypeId() {
+		return insightTypeId;
+	}
+	public void setInsightTypeId(Integer insightTypeId) {
+		this.insightTypeId = insightTypeId;
+	}
+	public String getInsightTypeName() {
+		return insightTypeName;
+	}
+	public void setInsightTypeName(String insightTypeName) {
+		this.insightTypeName = insightTypeName;
+	}
 	
 	
 	
 	
-	public Integer getSearchInsightId() {
-		return searchInsightId;
-	}
-	public void setSearchInsightId(Integer searchInsightId) {
-		this.searchInsightId = searchInsightId;
-	}
-	public String getSearchInsightName() {
-		return searchInsightName;
-	}
-	public void setSearchInsightName(String searchInsightName) {
-		this.searchInsightName = searchInsightName;
-	}
+	
 }
