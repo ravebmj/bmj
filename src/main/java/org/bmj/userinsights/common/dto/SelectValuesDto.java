@@ -2,7 +2,7 @@ package org.bmj.userinsights.common.dto;
 
 import java.io.Serializable;
 
-public class DecodedNamesDto implements Serializable{
+public class SelectValuesDto implements Serializable{
 
 	private static final long serialVersionUID = -3462157332392603651L;
 	
