@@ -50,6 +50,7 @@ function quickAdvanceSearch(keyword, insightType, serverity, createdDate, fromDa
         method: 'post',
         style: 'display: none;'
     });
+    
     //Form parameter insightId
     $("<input>").attr("type", "hidden").attr("name", "keyword").val(keyword).appendTo(form);//search keyword, text which is being searched
     $("<input>").attr("type", "hidden").attr("name", "insightType").val(insightType).appendTo(form);//insight 
