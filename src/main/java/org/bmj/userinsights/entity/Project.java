@@ -31,12 +31,12 @@ public class Project {
 		this.name = name;
 	}
 
-	public String getDescripttion() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescripttion(String descripttion) {
-		this.description = descripttion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getApplicationId() {

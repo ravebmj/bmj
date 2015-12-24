@@ -4,23 +4,23 @@ import java.util.Date;
 
 public class CodeListName {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String description; 
-	private int applicationId;
-	private int codeListStatus;
-	private int addedUser;
+	private Integer applicationId;
+	private Integer codeListStatus;
+	private Integer addedUser;
 	private Date addedDate;
-	private int modifiedUser;
+	private Integer modifiedUser;
 	private Date modifiedDate;
 	
 	public CodeListName(){}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -40,43 +40,35 @@ public class CodeListName {
 		this.description = description;
 	}
 
-	public int getApplicationId() {
+	public Integer getApplicationId() {
 		return applicationId;
 	}
 
-	public void setApplicationId(int applicationId) {
+	public void setApplicationId(Integer applicationId) {
 		this.applicationId = applicationId;
 	}
 
-	public int getCodeListStatus() {
+	public Integer getCodeListStatus() {
 		return codeListStatus;
 	}
 
-	public void setCodeListStatus(int codeListStatus) {
+	public void setCodeListStatus(Integer codeListStatus) {
 		this.codeListStatus = codeListStatus;
 	}
 
-	public int getAddedUser() {
+	public Integer getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddedUser(int addedUser) {
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
 
-	public Date getAddedDate() {
-		return addedDate;
-	}
-
-	public void setAddedDate(Date addedDate) {
-		this.addedDate = addedDate;
-	}
-
-	public int getModifiedUser() {
+	public Integer getModifiedUser() {
 		return modifiedUser;
 	}
 
-	public void setModifiedUser(int modifiedUser) {
+	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
 
@@ -87,6 +79,15 @@ public class CodeListName {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
+	public Date getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
 	
 	
 	

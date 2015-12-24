@@ -36,21 +36,35 @@ public class InsightTag {
 		this.tagId = tagId;
 	}
 
-	public int getAddUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public int getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddUser(int addUser) {
-		this.addedUser = addUser;
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(int addedUser) {
+		this.addedUser = addedUser;
 	}
 
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
 
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
+
+	
 	
 	
 
