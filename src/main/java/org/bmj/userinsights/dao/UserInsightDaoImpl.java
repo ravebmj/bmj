@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bmj.userinsights.common.dto.SelectValuesDto;
+import org.bmj.userinsights.entity.CodeListName;
 import org.bmj.userinsights.entity.CodelistCodeDecode;
-import org.bmj.userinsights.entity.CodelistName;
+
 import org.bmj.userinsights.entity.Person;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -28,23 +29,23 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 	}
 
 	@Override
-	public List<SelectValuesDto> getSelectValuesDtoLst(String codelistName,
+	public List<SelectValuesDto> getSelectValuesDtoLst(String name,
 			String applicationId) throws Exception {
 		List<SelectValuesDto> DecodedNamesDtoLst = new ArrayList<SelectValuesDto>();
-		CodelistName codelistNameObj = null;
+		CodeListName codelistNameObj = null;
 		
 		List returnVal = this.getHibernateTemplate()
 				.findByNamedQueryAndNamedParam("CodelistName.getCodelistName",
-						new String[]{"codelistName","applicationId"},new Object[]{codelistName,Integer.valueOf(applicationId)});
+						new String[]{"name","applicationId"},new Object[]{name,Integer.valueOf(applicationId)});
 		
 		if(returnVal!=null && returnVal.size()>0){
-			codelistNameObj = (CodelistName) returnVal.get(0);
+			codelistNameObj = (CodeListName) returnVal.get(0);
 		}
 		
 		if(codelistNameObj!=null){
 			List<CodelistCodeDecode> lstCodelistCodeDecode = (List<CodelistCodeDecode>) this.getHibernateTemplate()
 					.findByNamedQueryAndNamedParam("CodelistCodeDecode.getCodelistCodeDecode",
-							new String[]{"codelistId"},new Object[]{codelistNameObj.getCodelistId()});	
+							new String[]{"codelistId"},new Object[]{codelistNameObj.getId()});	
 			if(lstCodelistCodeDecode!=null && lstCodelistCodeDecode.size()>0){
 				
 				for(CodelistCodeDecode codeDecode : lstCodelistCodeDecode){
