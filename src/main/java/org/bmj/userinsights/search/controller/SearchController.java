@@ -52,9 +52,17 @@ public class SearchController {
      * with Parameter
      */
     @RequestMapping(value= "/advanceSearch", method=RequestMethod.POST)  
-    public ModelAndView advanceSearch(HttpServletRequest request) {
+    public ModelAndView advanceSearch(HttpServletRequest req) {
     	
-    	ModelAndView model = new ModelAndView("searchresults");  
+    	ModelAndView model = new ModelAndView("searchresults"); 
+    	
+    	System.out.println("keyword: "+req.getParameter("keyword"));
+    	System.out.println("insightType: "+req.getParameter("insightType"));
+    	System.out.println("serverity: "+req.getParameter("serverity"));
+    	System.out.println("createdDate: "+req.getParameter("createdDate"));
+    	System.out.println("fromDate: "+req.getParameter("fromDate"));
+    	System.out.println("toDate: "+req.getParameter("toDate"));
+    	
         return model; 
     }    
     
