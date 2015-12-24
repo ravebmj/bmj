@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class InsightDTO implements Serializable{
 
 	private static final long serialVersionUID = 6820198101454453382L;
+	private Integer id;
 	private String title;
 	private String description;
 	
@@ -43,5 +44,14 @@ public class InsightDTO implements Serializable{
 	public void setProducts(String products) {
 		this.products = products;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 
 }

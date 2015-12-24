@@ -77,3 +77,25 @@ function formatProductResult(data) {
 		markup = data.text;
 	return markup;
 };
+
+function submitInsight(){
+	console.debug('Inside Submit Insight');
+	if(document.getElementById("id").value==0){
+		document.getElementById("frmInsight").action='createinsight.html';
+	}else{
+		document.getElementById("frmInsight").action='editinsight.html';
+	}
+	if(validate()){
+		document.getElementById("frmInsight").submit();
+	}else{
+		return false;
+	}
+	
+}
+
+/*
+ * Client Side Validation.
+ */
+function validate(){
+	return true;
+}

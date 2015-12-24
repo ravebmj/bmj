@@ -34,6 +34,7 @@ public class InsightController {
     public ModelAndView createInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto) throws Exception {
 		System.out.println("in the showCreateInsight");
 		InsightDTO insightDTO=new InsightDTO();
+		insightDTO.setId(0);// New Insight
        return new ModelAndView("createInsight","mInsightDTO",insightDTO);
     } 
 	
@@ -59,7 +60,8 @@ public class InsightController {
     public ModelAndView editInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
 		System.out.println("in the showViewInsight"+insightId);
-		
+		InsightDTO insightDTO=new InsightDTO();
+		insightDTO.setId(new Integer(insightId));// New Insight
        return new ModelAndView("viewInsight","dashboardDto",dashboardDto);
     }  
 	
