@@ -64,7 +64,8 @@
                         <div id="gbqfqw" class="gbqfqw " gh="sb">
                             <div id="gbqfaa"></div>
                             <div id="gbqfqwb" class="gbqfqwb" style="left: 0px; right: 19px;">
-                                <input id="gbqfq" class="gbqfif" name="q" type="text" autocomplete="off" value="" aria-label="Search" dir="ltr" spellcheck="false" aria-haspopup="true" aria-live="off" aria-owns="gs_sbt50" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; position: absolute; z-index: 6; left: 0px; background: url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D&quot;) transparent;"/>
+                                 <input id="gbqfq" class="gbqfif" name="keyword" type="text" autocomplete="off" value="" aria-label="Search" dir="ltr" spellcheck="false" aria-haspopup="true" aria-live="off" aria-owns="gs_sbt50" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; position: absolute; z-index: 6; left: 0px; background: url(&quot;data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw%3D%3D&quot;) transparent;"/>
+                               
                             </div>
                             <div id="gbqfab" onclick="show()" style="cursor:pointer;">
                                 <div class="aoo J-JN-I" tabindex="0" gh="sda" role="button" data-tooltip="Show search options" aria-label="Advanced search options">
@@ -75,7 +76,7 @@
                     </div>
                 </fieldset>
                 <div class="gb_R gb_Pd" id="gbqfbw">
-                    <button type="submit" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
+                    <button  onclick="quickAdvanceSearch('Test');" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
                     </button>
                 </div>
            
@@ -90,7 +91,7 @@
 			<div tabindex="1" class="wrapper-dropdown-1" id="dd" style="float:left;">
 			      
 			     
-			      <form:select path="searchCriteria.keyword">
+			      <form:select path="searchCriteria.insightType">
 			      		< <form:option value="0" label="Search all insights"/>
 						<form:options items="${searchCriteria.lstInsightTypesDto}" itemLabel="insightTypeName" itemValue="insightTypeName"/> 
 			      </form:select>
@@ -105,27 +106,37 @@
 						</ul> -->
 					</div>
 					<div tabindex="1" class="wrapper-dropdown-2" id="dd2" style="float:left;">
-						<span>Search all severities</span>
+						<!-- <span>Search all severities</span>
 						<ul class="dropdown">
 							<li><a href="#"><i class="icon-envelope icon-large"></i>Classic mail</a></li>
 							<li><a href="#"><i class="icon-truck icon-large"></i>UPS Delivery</a></li>
 							<li><a href="#"><i class="icon-plane icon-large"></i>Private jet</a></li>
-						</ul>
+						</ul> -->
+						<form:select path="searchCriteria.serverity">
+							 <form:option value="0" label="Search all severities"/>
+							 <form:options items="${searchCriteria.lstSeveritiesDto}" itemLabel="serverityName" itemValue="serverityName"/> 
+						</form:select>
 					</div>
 					<div tabindex="1" class="wrapper-dropdown-3" id="dd3" style="float:left;">
-						<span>Created Date</span>
+						<!-- <span>Created Date</span>
 						<ul class="dropdown">
 							<li><a href="#"><i class="icon-envelope icon-large"></i>Classic mail</a></li>
 							<li><a href="#"><i class="icon-truck icon-large"></i>UPS Delivery</a></li>
 							<li><a href="#"><i class="icon-plane icon-large"></i>Private jet</a></li>
-						</ul>
+						</ul> -->
+						<form:select path="searchCriteria.createdDate">
+							 <form:options items="${searchCriteria.lstDateCriteriaDto}" itemLabel="criteriaName" itemValue="criteriaName"/> 
+						</form:select>
+						
 					</div>
 
 					<div  style="float:left;">
-						 <input id=fromdt type=text value="From">
+						 <input id=fromdt type=text name="fromDate" value=""> 
+						 <%-- <form:input path="searchCriteria.fromDate"/> --%>
 					</div>
 					<div  style="float:left;">
-						<input id=todate type=text value="To">
+						<input id=todate type=text name="toDate" value=""> 
+						 <%-- <form:input path="searchCriteria.toDate"/> --%>
 					</div>
 			</div>
 		</div>
