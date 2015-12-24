@@ -19,7 +19,12 @@
 		<property name="modifiedUser" column="modified_user"/>
 		
 		<property name="modifiedDate" column="modified_date" type="date"/>
-	
+		
 	</class>
-
+	<query name="CodelistName.getCodelistName">
+       <![CDATA[
+		  	from CodeListName where name = :name
+		  	and applicationId = :applicationId
+        ]]>
+    </query>
 </hibernate-mapping>

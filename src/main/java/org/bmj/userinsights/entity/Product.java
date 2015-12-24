@@ -71,12 +71,12 @@ public class Product {
 		this.modifiedUser = modifiedUser;
 	}
 
-	public int getAplicationId() {
+	public int getApplicationId() {
 		return applicationId;
 	}
 
-	public void setAplicationId(int aplicationId) {
-		this.applicationId = aplicationId;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
 	}
 	
 	

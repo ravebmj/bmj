@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
     
 <hibernate-mapping>
-	<class name="org.bmj.userinsights.entity.InsightGeographies" table="insight_main_user_type">
+	<class name="org.bmj.userinsights.entity.InsightMainUserType" table="insight_main_user_type">
 		<id name="id" column="insight_main_user_type_id">
 			<generator class="native"/>
 		</id>
