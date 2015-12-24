@@ -46,7 +46,7 @@ public class InsightController {
 	@RequestMapping(value="/viewinsight",method=RequestMethod.POST)  
     public ModelAndView viewInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
-		System.out.println("in the showCreateInsight");
+		System.out.println("in the view Insight");
 		
        return new ModelAndView("viewInsight","dashboardDto",dashboardDto);
     }  
@@ -56,14 +56,21 @@ public class InsightController {
 	 * particular insight in 
 	 * view mode
 	 */
-	@RequestMapping(value="/editinsight",method=RequestMethod.POST)  
+	@RequestMapping(value="/editinsight",method=RequestMethod.GET)  
     public ModelAndView editInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
 		System.out.println("in the showViewInsight"+insightId);
 		InsightDTO insightDTO=new InsightDTO();
 		insightDTO.setId(new Integer(insightId));// New Insight
-       return new ModelAndView("viewInsight","dashboardDto",dashboardDto);
+        return new ModelAndView("editInsight","mInsightDTO",insightDTO);
     }  
+	
+	@RequestMapping(value="/saveinsight",method=RequestMethod.POST)  
+    public ModelAndView saveInsight(@ModelAttribute("mInsightDTO") InsightDTO insightDTO) throws Exception {
+		
+		System.out.println("---- Inside Save -----"+insightDTO.getId());
+        return new ModelAndView("editInsight","mInsightDTO",insightDTO);
+    }  	
 	
 	/**
 	 * Display auto complete list of product when user type product name.

@@ -34,8 +34,12 @@
 	</definition>	
 	<definition name="createInsight" extends="plain.definition">
 		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
-		<put-attribute name="title" value="Searchr Results" />
+		<put-attribute name="title" value="Create Insight" />
 	</definition>
+	<definition name="editInsight" extends="plain.definition">
+		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
+		<put-attribute name="title" value="Edit Insight" />
+	</definition>	
 	<definition name="viewInsight" extends="plain.definition">
 		<put-attribute name="body" value="/WEB-INF/views/viewinsight.jsp" />
 		<put-attribute name="title" value="View Insight" />

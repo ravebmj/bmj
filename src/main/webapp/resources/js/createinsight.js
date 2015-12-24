@@ -80,11 +80,7 @@ function formatProductResult(data) {
 
 function submitInsight(){
 	console.debug('Inside Submit Insight');
-	if(document.getElementById("id").value==0){
-		document.getElementById("frmInsight").action='createinsight.html';
-	}else{
-		document.getElementById("frmInsight").action='editinsight.html';
-	}
+	document.getElementById("frmInsight").action='saveinsight.html';
 	if(validate()){
 		document.getElementById("frmInsight").submit();
 	}else{
