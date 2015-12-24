@@ -43,14 +43,19 @@ function search(searchType, id){
  * This method will call search with basis of any of three
  * 1 field will contain value rest will be null
  */
-function quickAdvanceSearch(keyword, insightType, serverity, createdDate, fromDate, toDate){
+function quickAdvanceSearch(){
 	var form; // dynamic form that will call controller
     form = $('<form />', {
         action: "advanceSearch.html",
         method: 'post',
         style: 'display: none;'
     });
-    
+    var keyword = $("#gbqfq").val(); 
+    var insightType = $("#idInsightType").val(); 
+    var serverity = $("#idServerity").val();
+    var createdDate = $("#idCreatedDate").val();
+    var fromDate = $("#fromdt").val();
+    var toDate = $("#todate").val();
     //Form parameter insightId
     $("<input>").attr("type", "hidden").attr("name", "keyword").val(keyword).appendTo(form);//search keyword, text which is being searched
     $("<input>").attr("type", "hidden").attr("name", "insightType").val(insightType).appendTo(form);//insight 

@@ -76,7 +76,7 @@
                     </div>
                 </fieldset>
                 <div class="gb_R gb_Pd" id="gbqfbw">
-                    <button  onclick="quickAdvanceSearch('Test');" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
+                    <button  onclick="quickAdvanceSearch();" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
                     </button>
                 </div>
            
@@ -91,7 +91,7 @@
 			<div tabindex="1" class="wrapper-dropdown-1" id="dd" style="float:left;">
 			      
 			     
-			      <form:select path="searchCriteria.insightType">
+			      <form:select id="idInsightType" path="searchCriteria.insightType">
 			      		< <form:option value="0" label="Search all insights"/>
 						<form:options items="${searchCriteria.lstInsightTypesDto}" itemLabel="insightTypeName" itemValue="insightTypeName"/> 
 			      </form:select>
@@ -112,7 +112,7 @@
 							<li><a href="#"><i class="icon-truck icon-large"></i>UPS Delivery</a></li>
 							<li><a href="#"><i class="icon-plane icon-large"></i>Private jet</a></li>
 						</ul> -->
-						<form:select path="searchCriteria.serverity">
+						<form:select id="idServerity" path="searchCriteria.serverity">
 							 <form:option value="0" label="Search all severities"/>
 							 <form:options items="${searchCriteria.lstSeveritiesDto}" itemLabel="serverityName" itemValue="serverityName"/> 
 						</form:select>
@@ -124,7 +124,7 @@
 							<li><a href="#"><i class="icon-truck icon-large"></i>UPS Delivery</a></li>
 							<li><a href="#"><i class="icon-plane icon-large"></i>Private jet</a></li>
 						</ul> -->
-						<form:select path="searchCriteria.createdDate">
+						<form:select id="idCreatedDate" path="searchCriteria.createdDate">
 							 <form:options items="${searchCriteria.lstDateCriteriaDto}" itemLabel="criteriaName" itemValue="criteriaName"/> 
 						</form:select>
 						
