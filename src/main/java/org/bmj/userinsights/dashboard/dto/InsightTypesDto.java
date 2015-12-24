@@ -2,6 +2,8 @@ package org.bmj.userinsights.dashboard.dto;
 
 import java.io.Serializable;
 
+import org.bmj.userinsights.common.dto.SelectValuesDto;
+
 public class InsightTypesDto implements Serializable{
 
 	private static final long serialVersionUID = -2044322730825914074L;
