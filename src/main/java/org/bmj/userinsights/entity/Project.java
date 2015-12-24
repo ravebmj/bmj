@@ -2,18 +2,18 @@ package org.bmj.userinsights.entity;
 
 import java.util.Date;
 
-public class Product {
+public class Project {
 	
 	private int id;
 	private String name;
 	private String description;
 	private int applicationId;
-	private Date addedDate;
-	private Date modifiedDate;
 	private int addedUser;
+	private Date addedDate;
 	private int modifiedUser;
+	private Date modifiedDate;
 	
-	public Product(){}
+	public Project(){}
 
 	public int getId() {
 		return id;
@@ -31,28 +31,20 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDescription() {
+	public String getDescripttion() {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescripttion(String descripttion) {
+		this.description = descripttion;
 	}
 
-	public Date getAddedDate() {
-		return addedDate;
+	public int getApplicationId() {
+		return applicationId;
 	}
 
-	public void setAddedDate(Date addedDate) {
-		this.addedDate = addedDate;
-	}
-
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
 	}
 
 	public int getAddedUser() {
@@ -63,6 +55,14 @@ public class Product {
 		this.addedUser = addedUser;
 	}
 
+	public Date getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
 	public int getModifiedUser() {
 		return modifiedUser;
 	}
@@ -71,12 +71,12 @@ public class Product {
 		this.modifiedUser = modifiedUser;
 	}
 
-	public int getAplicationId() {
-		return applicationId;
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public void setAplicationId(int aplicationId) {
-		this.applicationId = aplicationId;
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	
 	
