@@ -3,7 +3,7 @@ package org.bmj.userinsights.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bmj.userinsights.common.dto.DecodedNamesDto;
+import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.entity.CodelistCodeDecode;
 import org.bmj.userinsights.entity.CodelistName;
 import org.bmj.userinsights.entity.Person;
@@ -28,9 +28,9 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 	}
 
 	@Override
-	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,
+	public List<SelectValuesDto> getSelectValuesDtoLst(String codelistName,
 			String applicationId) throws Exception {
-		List<DecodedNamesDto> DecodedNamesDtoLst = new ArrayList<DecodedNamesDto>();
+		List<SelectValuesDto> DecodedNamesDtoLst = new ArrayList<SelectValuesDto>();
 		CodelistName codelistNameObj = null;
 		
 		List returnVal = this.getHibernateTemplate()
@@ -48,7 +48,7 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 			if(lstCodelistCodeDecode!=null && lstCodelistCodeDecode.size()>0){
 				
 				for(CodelistCodeDecode codeDecode : lstCodelistCodeDecode){
-					DecodedNamesDto dtoObj = new DecodedNamesDto();
+					SelectValuesDto dtoObj = new SelectValuesDto();
 					dtoObj.setCodeDecodedCode(codeDecode.getCodeDecodeCode());
 					dtoObj.setCodeDecodedName(codeDecode.getCodeDecodeDecode());
 					DecodedNamesDtoLst.add(dtoObj);
