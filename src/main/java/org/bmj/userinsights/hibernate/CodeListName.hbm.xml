@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
     
 <hibernate-mapping>
-	<class name="org.bmj.userinsights.entity.CodelistName" table="codelist_name">
+	<class name="org.bmj.userinsights.entity.CodeListName" table="codelist_name">
 		<id name="codelistId" column="codelist_id">
 			<generator class="native"/>
 		</id>
@@ -17,9 +17,9 @@
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedDate" column="modified_date" type="date"/>		
 	</class>
-	<query name="CodelistName.getCodelistName">
+	<query name="CodeListName.getCodelistName">
        <![CDATA[
-		  	from CodeListName where name = :name
+		  	from CodeListName where codelistName = :codelistName
 		  	and applicationId = :applicationId
         ]]>
     </query>

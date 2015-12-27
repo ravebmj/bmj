@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dto.TagEditorJson;
+import org.bmj.userinsights.entity.InsightProduct;
+import org.bmj.userinsights.entity.Product;
 import org.bmj.userinsights.insight.dto.InsightDTO;
 import org.bmj.userinsights.insight.service.IInsightService;
 import org.json.JSONArray;
@@ -50,14 +52,26 @@ public class InsightController {
     public ModelAndView viewInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
 		System.out.println("in the view Insight");
+		
+		List<Product> lstProduct = new ArrayList<Product>();
+		
 		ModelAndView mav = new ModelAndView("viewInsight");			
 		List<InsightDTO> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
-		List<InsightTypesDto> insightTypesDtoList = insightService.getInsightTypes(insightId);
-		Map<Integer,InsightTypesDto> insightTypesmap = prepareInsightTypesMap(insightTypesDtoList);
-		InsightDTO insightDto = getInsightDtoObj(insightTypesmap);
+		InsightDTO insightDTO = insightDtoList.get(0);
+		//List<InsightTypesDto> insightTypesDtoList = insightService.getInsightTypes(insightId);
+		//Map<Integer,InsightTypesDto> insightTypesmap = prepareInsightTypesMap(insightTypesDtoList);
+		//InsightDTO insightDto = getInsightDtoObj(insightTypesmap);
 		
 		
-		mav.addObject("mInsightDTO", insightDtoList.get(0));
+		List<InsightProduct> lstInsightProduct = new ArrayList<InsightProduct>(insightDTO.getProductsSet());		
+		if(lstInsightProduct!=null && lstInsightProduct.size()>0){
+			for(InsightProduct insightProduct : lstInsightProduct){
+				lstProduct.add(insightProduct.getProduct());
+			}
+		}
+		
+		insightDTO.setProductsList(lstProduct);
+		mav.addObject("mInsightDTO", insightDTO);
 		
        return mav;
     }  

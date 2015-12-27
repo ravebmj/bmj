@@ -17,13 +17,45 @@
 	<legend>Description</legend>
 	<span>${mInsightDTO.description}</span>
 <div class="fl  view"><br/><span class="grey_highlight">Type:</span><span> User Insight</span><br/>
-<span class="grey_highlight">Found On:</span><span>Fri Dec 11 2015</span>&nbsp;&nbsp;<span class="grey_highlight">via</span>&nbsp;<span>Focused Groups</span></div></fieldset>
+<span class="grey_highlight">Found On:</span><span>${mInsightDTO.foundDate} </span>&nbsp;&nbsp;<span class="grey_highlight">via</span>&nbsp;<span>Focused Groups</span></div></fieldset>
 	<fieldset><legend>Projects</legend>
-<div class="view"><a href="#">Project 1</a>,  <a href="#">Project 2</a>,  <a href="#">Project 3</a>,  <a href="#">Project 4</a>. <a href="#"> Project 5</a>,  <a href="#">Project 6</a>, <a href="#"> Project 7</a>, <a href="#">Project 8</a></div></fieldset>
+<div class="view">
+
+<%-- <c:if test="${not empty mInsightDTO.productsList}">
+       
+    <c:forEach items="${mInsightDTO.productsList}" var="currQue" varStatus="queIndex">
+    	<a href="#" onclick="${currQue.id}">${currQue.name}</a>,  
+    </c:forEach>
+  </c:if> --%>
+
+<a href="#">Project 1</a>,  
+<a href="#">Project 2</a>,  
+<a href="#">Project 3</a>, 
+ <a href="#">Project 4</a>. 
+ <a href="#"> Project 5</a>,  
+ <a href="#">Project 6</a>, 
+ <a href="#"> Project 7</a>,
+  <a href="#">Project 8</a>
+
+
+
+</div></fieldset>
 	<fieldset><legend>Products</legend>
-	<div class="view"><a href="#">Product 1</a>,<a href="#"> Product 2</a>, <a href="#">Product 3</a>, <a href="#">Product 4</a>, <a href="#">Product 5</a></div>
-	<div class="margintop20">Strength: <img src="images/6.png">Users</div>
-	<div class="margintop10">Severity: <img src="images/flag-green.png">(Green)</div>
+	<div class="view">
+	
+	 <c:if test="${not empty mInsightDTO.productsList}">
+       
+    <c:forEach items="${mInsightDTO.productsList}" var="currQue" varStatus="queIndex">
+    	<a href="#" onclick="${currQue.id}">${currQue.name}</a>,  
+    </c:forEach>
+  </c:if>
+	
+	
+	
+	
+	</div>
+	<div class="margintop20">Strength: ${mInsightDTO.foundCount} Users</div>
+	<div class="margintop10">Severity: ${mInsightDTO.insightServerity} <img src="images/flag-green.png">(Green)</div>
 	<div class="margintop20">Applies to: Doctors Geographical Location: UK</div></fieldset>
 	<fieldset><legend>Tags</legend>
 		<div style="">Tag1, Tag2, Tag3, Tag4</div></fieldset>

@@ -28,8 +28,15 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				 insightDto.setTitle(insightDetail.getTitle());
 				 insightDto.setDescription(insightDetail.getDescription());
 				 insightDto.setProducts(null);
-				 insightDto.setProduct(null);
+				 insightDto.setProductsList(null);
 				 insightDto.setAddedDate(insightDetail.getAddedDate());
+				 insightDto.setFoundDate(insightDetail.getFoundDate());
+				 insightDto.setFoundCount(insightDetail.getFoundCount());
+				 insightDto.setInsightServerity(insightDetail.getInsightServerity());
+				 insightDto.setProductsSet(insightDetail.getProducts());
+				 
+				 
+				 
 				 
 				 insightDtoList.add(insightDto);
 			 }

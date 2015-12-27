@@ -3,6 +3,11 @@ package org.bmj.userinsights.insight.dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import org.bmj.userinsights.entity.InsightProduct;
+import org.bmj.userinsights.entity.Product;
 
 public class InsightDTO implements Serializable{
 
@@ -11,14 +16,19 @@ public class InsightDTO implements Serializable{
 	private String title;
 	private String description;
 	private String insightType;
-	
-	private ArrayList product;
+	private Date foundDate;
+	private Integer foundCount;
+	private Integer insightServerity;
+		
+	private List<Product> productsList;
 	private String products;
 	
 	private int addedUser;
 	private Date addedDate;
 	private int modifiedUser;
 	private Date modifiedDate;
+	
+	private Set<InsightProduct> productsSet;
 
 	public String getTitle() {
 		return title;
@@ -36,13 +46,7 @@ public class InsightDTO implements Serializable{
 		this.description = description;
 	}
 
-	public ArrayList getProduct() {
-		return product;
-	}
-
-	public void setProduct(ArrayList product) {
-		this.product = product;
-	}
+	
 
 	public String getProducts() {
 		return products;
@@ -98,6 +102,47 @@ public class InsightDTO implements Serializable{
 
 	public void setInsightType(String insightType) {
 		this.insightType = insightType;
+	}
+
+	public Set<InsightProduct> getProductsSet() {
+		return productsSet;
+	}
+
+	public void setProductsSet(Set<InsightProduct> productsSet) {
+		this.productsSet = productsSet;
+	}
+
+	public Date getFoundDate() {
+		return foundDate;
+	}
+
+	public void setFoundDate(Date foundDate) {
+		this.foundDate = foundDate;
+	}
+
+	public Integer getFoundCount() {
+		return foundCount;
+	}
+
+	public void setFoundCount(Integer foundCount) {
+		this.foundCount = foundCount;
+	}
+
+	public Integer getInsightServerity() {
+		return insightServerity;
+	}
+
+	public void setInsightServerity(Integer insightServerity) {
+		this.insightServerity = insightServerity;
+	}
+
+	
+	public List<Product> getProductsList() {
+		return productsList;
+	}
+
+	public void setProductsList(List<Product> productsList) {
+		this.productsList = productsList;
 	}
 
 

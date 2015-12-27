@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
+import org.bmj.userinsights.entity.InsightDetail;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
@@ -61,6 +62,21 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
     	lstRecentInsightsDto.add(recent1);
     	lstRecentInsightsDto.add(recent2);
     	lstRecentInsightsDto.add(recent3);
+    	
+    	StringBuffer query = new StringBuffer();
+		query.append("select insd ");
+		query.append(" from InsightDetail insd ");
+		
+    	
+    	List<InsightDetail> insightDetailList = (List<InsightDetail>) this.getHibernateTemplate().find(query.toString());
+    	System.out.println("--------------insightDetailList size ------------------"+insightDetailList.size());
+    	
+    	
+    	
+    	
+    	
+    	
+    	
 		return lstRecentInsightsDto;
 	}
 	
