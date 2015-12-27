@@ -1,93 +1,77 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CodeListName {
+public class CodelistName implements Serializable{
 
-	private int id;
-	private String name;
-	private String description; 
-	private int applicationId;
-	private int codeListStatus;
-	private int addedUser;
+	
+	private static final long serialVersionUID = -2417410023450197692L;
+
+	private Integer codelistId;
+	private String codelistName;
+	private String codelistDescription;
+	private Integer applicationId;
+	private Integer codelistStatus;
+	private Integer addedUser;
 	private Date addedDate;
-	private int modifiedUser;
+	private Integer modifiedUser;
 	private Date modifiedDate;
 	
-	public CodeListName(){}
-
-	public int getId() {
-		return id;
+	
+	
+	public Integer getCodelistId() {
+		return codelistId;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setCodelistId(Integer codelistId) {
+		this.codelistId = codelistId;
 	}
-
-	public String getName() {
-		return name;
+	public String getCodelistName() {
+		return codelistName;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setCodelistName(String codelistName) {
+		this.codelistName = codelistName;
 	}
-
-	public String getDescription() {
-		return description;
+	public String getCodelistDescription() {
+		return codelistDescription;
 	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCodelistDescription(String codelistDescription) {
+		this.codelistDescription = codelistDescription;
 	}
-
-	public int getApplicationId() {
+	public Integer getApplicationId() {
 		return applicationId;
 	}
-
-	public void setApplicationId(int applicationId) {
+	public void setApplicationId(Integer applicationId) {
 		this.applicationId = applicationId;
 	}
-
-	public int getCodeListStatus() {
-		return codeListStatus;
+	public Integer getCodelistStatus() {
+		return codelistStatus;
 	}
-
-	public void setCodeListStatus(int codeListStatus) {
-		this.codeListStatus = codeListStatus;
+	public void setCodelistStatus(Integer codelistStatus) {
+		this.codelistStatus = codelistStatus;
 	}
-
-	public int getAddedUser() {
+	public Integer getAddedUser() {
 		return addedUser;
 	}
-
-	public void setAddedUser(int addedUser) {
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
-
 	public Date getAddedDate() {
 		return addedDate;
 	}
-
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
-
-	public int getModifiedUser() {
+	public Integer getModifiedUser() {
 		return modifiedUser;
 	}
-
-	public void setModifiedUser(int modifiedUser) {
+	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
-
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
-
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	
-	
-	
 }
