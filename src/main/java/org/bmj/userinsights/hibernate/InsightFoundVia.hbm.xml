@@ -5,7 +5,7 @@
     
 <hibernate-mapping>
 	<class name="org.bmj.userinsights.entity.InsightFoundVia" table="insight_found_via">
-		<id name="id" column="insight_found_via">
+		<id name="id" column="insight_found_via_id">
 			<generator class="native"/>
 		</id>
 		<property name="foundViaValue" column="found_via_other_value"/>

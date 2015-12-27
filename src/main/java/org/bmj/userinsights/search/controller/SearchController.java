@@ -62,6 +62,7 @@ public class SearchController {
     	System.out.println("createdDate: "+req.getParameter("createdDate"));
     	System.out.println("fromDate: "+req.getParameter("fromDate"));
     	System.out.println("toDate: "+req.getParameter("toDate"));  	
+    	searchService.searchProduct();
 
         return model; 
     }    

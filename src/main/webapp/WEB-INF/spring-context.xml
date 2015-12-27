@@ -186,6 +186,10 @@
 
 		<property name="mappingResources">
 			<list>
+			    <value>org/bmj/userinsights/hibernate/AdminUser.hbm.xml</value>
+			    <value>org/bmj/userinsights/hibernate/ApplicationUser.hbm.xml</value>
+			    <value>org/bmj/userinsights/hibernate/CodelistCodeDecode.hbm.xml</value>
+			    <value>org/bmj/userinsights/hibernate/CodeListName.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/Person.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/Tag.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/Project.hbm.xml</value>

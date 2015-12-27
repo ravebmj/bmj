@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class InsightProject  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3554028077739326892L;
 	private Integer id;
 	private InsightDetail insightDetail;
 	private Project project;
