@@ -6,7 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.bmj.userinsights.entity.InsightFoundVia;
+import org.bmj.userinsights.entity.InsightGeographies;
+import org.bmj.userinsights.entity.InsightMainUserType;
 import org.bmj.userinsights.entity.InsightProduct;
+import org.bmj.userinsights.entity.InsightProject;
+import org.bmj.userinsights.entity.InsightTag;
 import org.bmj.userinsights.entity.Product;
 
 public class InsightDTO implements Serializable{
@@ -19,8 +24,14 @@ public class InsightDTO implements Serializable{
 	private Date foundDate;
 	private Integer foundCount;
 	private Integer insightServerity;
+	private Integer insightApplicationID;
 		
 	private List<Product> productsList;
+	private Set<InsightProject> projects;
+	private Set<InsightTag> tags;
+	private Set<InsightFoundVia> foundVias;
+	private Set<InsightMainUserType> mainUserTypes;
+	private Set<InsightGeographies> geographies;
 	private String products;
 	
 	private int addedUser;
@@ -143,6 +154,54 @@ public class InsightDTO implements Serializable{
 
 	public void setProductsList(List<Product> productsList) {
 		this.productsList = productsList;
+	}
+
+	public Set<InsightProject> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<InsightProject> projects) {
+		this.projects = projects;
+	}
+
+	public Set<InsightTag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<InsightTag> tags) {
+		this.tags = tags;
+	}
+
+	public Set<InsightFoundVia> getFoundVias() {
+		return foundVias;
+	}
+
+	public void setFoundVias(Set<InsightFoundVia> foundVias) {
+		this.foundVias = foundVias;
+	}
+
+	public Set<InsightMainUserType> getMainUserTypes() {
+		return mainUserTypes;
+	}
+
+	public void setMainUserTypes(Set<InsightMainUserType> mainUserTypes) {
+		this.mainUserTypes = mainUserTypes;
+	}
+
+	public Set<InsightGeographies> getGeographies() {
+		return geographies;
+	}
+
+	public void setGeographies(Set<InsightGeographies> geographies) {
+		this.geographies = geographies;
+	}
+
+	public Integer getInsightApplicationID() {
+		return insightApplicationID;
+	}
+
+	public void setInsightApplicationID(Integer insightApplicationID) {
+		this.insightApplicationID = insightApplicationID;
 	}
 
 

@@ -1,6 +1,10 @@
 package org.bmj.userinsights.dashboard.dto;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+
+import org.bmj.userinsights.entity.InsightProject;
 
 
 public class RecentInsightsDto implements Serializable{
@@ -13,7 +17,7 @@ public class RecentInsightsDto implements Serializable{
 	private String projectName;
 	private String type;
 	private String lastEdited;
-	
+	private List<InsightProject> projects;
 	
 	
 	
@@ -48,6 +52,12 @@ public class RecentInsightsDto implements Serializable{
 	}
 	public void setType(String type) {
 		this.type = type;
-	} 
-
+	}
+	public List<InsightProject> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<InsightProject> projects) {
+		this.projects = projects;
+	}
+	
 }

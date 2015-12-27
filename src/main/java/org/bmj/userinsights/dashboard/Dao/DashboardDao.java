@@ -6,6 +6,7 @@ import java.util.List;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.entity.InsightDetail;
+import org.bmj.userinsights.entity.InsightProject;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
@@ -38,7 +39,7 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
 	public List<RecentInsightsDto> getRecentlyAddedInsights() throws Exception {
 		List<RecentInsightsDto> lstRecentInsightsDto = new ArrayList<RecentInsightsDto>();
     	
-    	RecentInsightsDto recent1 = new RecentInsightsDto();    	
+    	/*RecentInsightsDto recent1 = new RecentInsightsDto();    	
     	recent1.setInsightId(1);
     	recent1.setInsightName("Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...");
     	recent1.setProjectName("BMJ print design");
@@ -61,17 +62,27 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
     	
     	lstRecentInsightsDto.add(recent1);
     	lstRecentInsightsDto.add(recent2);
-    	lstRecentInsightsDto.add(recent3);
+    	lstRecentInsightsDto.add(recent3);*/
     	
     	StringBuffer query = new StringBuffer();
 		query.append("select insd ");
 		query.append(" from InsightDetail insd ");
+		query.append(" order by insd.modifiedDate desc ");
 		
     	
     	List<InsightDetail> insightDetailList = (List<InsightDetail>) this.getHibernateTemplate().find(query.toString());
     	System.out.println("--------------insightDetailList size ------------------"+insightDetailList.size());
     	
-    	
+    	if(insightDetailList!=null && insightDetailList.size()>0){
+    		
+    		 for(InsightDetail insightDetail : insightDetailList){    			
+    			 RecentInsightsDto recentInsightsDto = new RecentInsightsDto();
+    			 recentInsightsDto.setInsightId(insightDetail.getId());
+    			 recentInsightsDto.setInsightName(insightDetail.getTitle());    			 
+    			 recentInsightsDto.setProjects(new ArrayList<InsightProject>(insightDetail.getProjects()));
+    			 lstRecentInsightsDto.add(recentInsightsDto);
+    		 }
+    	}
     	
     	
     	

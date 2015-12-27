@@ -43,8 +43,12 @@
 	            </td>
 	            <td>  
 	                <div class="row  fl"> 
-	                <div class="table-row fl">     	
-	               <a  href="#" onclick="search('hai','hello')">  <c:out value="${currQue.projectName}"/></a><br/>
+	                <div class="table-row fl">
+	                 <c:if test="${not empty currQue.projects}">       
+    					<c:forEach items="${currQue.projects}" var="currPro" varStatus="proIndex">     	
+	               <a  href="#" onclick="${currPro.project.id}">  <c:out value="${currPro.project.name}"/>,</a><br/>
+	               </c:forEach>
+	               </c:if>
 	                </div>
 	                </div>
 	             </td>

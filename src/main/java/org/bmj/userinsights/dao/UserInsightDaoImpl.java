@@ -28,14 +28,14 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 	}
 
 	@Override
-	public List<SelectValuesDto> getSelectValuesDtoLst(String codelistName,
+	public List<SelectValuesDto> getSelectValuesDtoLst(String name,
 			String applicationId) throws Exception {
 		List<SelectValuesDto> DecodedNamesDtoLst = new ArrayList<SelectValuesDto>();
-		/*CodeListName codelistNameObj = null;
+		CodeListName codelistNameObj = null;
 		
 		List returnVal = this.getHibernateTemplate()
-				.findByNamedQueryAndNamedParam("CodeListName.getCodelistName",
-						new String[]{"codelistName","applicationId"},new Object[]{codelistName,Integer.valueOf(applicationId)});
+				.findByNamedQueryAndNamedParam("CodelistName.getCodelistName",
+						new String[]{"name","applicationId"},new Object[]{name,Integer.valueOf(applicationId)});
 		
 		if(returnVal!=null && returnVal.size()>0){
 			codelistNameObj = (CodeListName) returnVal.get(0);
@@ -54,7 +54,7 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 					DecodedNamesDtoLst.add(dtoObj);
 				}
 			}
-		}*/
+		}
 		
 		
 		return DecodedNamesDtoLst;

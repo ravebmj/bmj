@@ -19,7 +19,6 @@
 	</class>
 	<query name="CodelistName.getCodelistName">
        <![CDATA[
-		  	
 		  	from CodeListName where codelistName = :name
 		  	and applicationId = :applicationId
         ]]>
