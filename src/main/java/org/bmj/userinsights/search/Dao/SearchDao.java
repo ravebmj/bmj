@@ -13,16 +13,20 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 		   System.out.println("Searching for products...");
 		    try {
 		    	list = (List<InsightDetail>)this.getHibernateTemplate()
-						.find("SELECT ids FROM InsightDetail ids");        
+						.find("select distinct id from "+
+                              "InsightDetail id LEFT JOIN id.products as ip LEFT JOIN id.projects as ipj LEFT JOIN id.tags as it INNER JOIN ip.product as p where (id.title like '%insight1%') OR (p.name like '%journal%')");        
 		       
-		        for(InsightDetail employee : list) {
+		       /* for(InsightDetail employee : list) {
 		            System.out.println("Emaployee Name: " + employee.getTitle());
 		            Set<InsightProduct> mobileSet = employee.getProducts();
 		            System.out.println("Mobile Numbers: ");
 		            for(InsightProduct mobile : mobileSet) {
 		                System.out.println(mobile.getProduct().getName());
 		            }
-		        }
+		        }*/
+		    	if(null != list){
+		    		System.out.println(list.size());
+		    	}
 		    } catch(Exception e) {
 		        e.printStackTrace();
 		    } finally {		       
