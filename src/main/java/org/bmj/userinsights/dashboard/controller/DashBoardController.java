@@ -12,6 +12,7 @@ import org.bmj.userinsights.dashboard.dto.DateCriteriaDto;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
 import org.bmj.userinsights.dashboard.dto.SeveritiesDto;
+import org.bmj.userinsights.dashboard.dto.StrongestEvidenceInsightDTO;
 import org.bmj.userinsights.dashboard.service.IDashboardService;
 import org.bmj.userinsights.search.dto.SearchCriteria;
 import org.bmj.userinsights.service.IUserInsightService;
@@ -55,6 +56,7 @@ public class DashBoardController {
     	List<SeveritiesDto> lstSeveritiesDto = null;
     	List<DateCriteriaDto> lstDateCriteriaDto = null;
     	List<RecentInsightsDto> lstRecentInsightsDto = null;
+    	List<StrongestEvidenceInsightDTO> lstSrongestEvidenceInsightDTO = null;
     	System.out.println("in the showDashboard");    	
     	DashboardDTO dashboardDto = new DashboardDTO();
     	ModelAndView mav = new ModelAndView("dashboard");    	
@@ -63,7 +65,9 @@ public class DashBoardController {
 			lstInsightTypesDto = getInsightTypesCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);// populate the possible values for the insight types dropdown in Advanced Search section
 			lstSeveritiesDto = getSeveritiesCodeListDecodedNames(InsightsConstants.SEVERITY_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
 			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();			
-			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();			
+			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();
+			lstSrongestEvidenceInsightDTO = dashboardService.getStrongestEvidenceInsights();
+			
 			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto,lstSeveritiesDto,lstDateCriteriaDto);
 			
 		} catch (Exception e) {
@@ -73,6 +77,7 @@ public class DashBoardController {
     	
     	dashboardDto.setInsightTypesDtoLst(lstInsightTypesDto);
     	dashboardDto.setRecentInsightsDtoLst(lstRecentInsightsDto);
+    	dashboardDto.setStrongestEvidenceInsightDtoLst(lstSrongestEvidenceInsightDTO);
     	
         mav.addObject("dashboardDto", dashboardDto);  
         mav.addObject("searchCriteria", searchCriteria);

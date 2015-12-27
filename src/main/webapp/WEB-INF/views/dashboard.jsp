@@ -77,78 +77,81 @@
    </div>
    
    
-   <div id="main-container fl">			
-	
-	<div class="row-header fl">
-			<div class="header-title">Strongest evidence against insights</div>
-		</div>
-		<div class="row-start fl">
+   <div id="main-container fl">	
+   
+   
+   
+   
+   <div class="header-title">Strongest evidence against insights</div>
+		
+    <table>
+   
+    <tr>
+    	
+        <th><div class="row-start fl">
 			<div class="table-title fl">Insight</div>
-		</div>
-		<div class="row  fl">
+		</div></th>
+        <th><div class="row  fl">
 			<div class="table-title fl">Project</div>
-		</div>
-		<div class="row  fl">
+		</div></th>
+        <th><div class="row  fl">
 			<div class="table-title fl">&nbsp;</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-title fl">Last Edited</div>
-		</div>
-		
-		
-		
-		
-		<div class="row-start-1 fl">
-			<div class="table-title-row fl">Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">BMJ print design</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">&nbsp;</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row-end fl">05-Jan-2015</div>
-		</div>
-	<div class="row-start-1 fl">
-			<div class="table-title-row fl">Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">BMJ print design</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">&nbsp;</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row-end fl">05-Jan-2015</div>
-		</div>
-		<div class="row-start-1 fl">
-			<div class="table-title-row fl">Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">BMJ print design</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">&nbsp;</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row-end fl">05-Jan-2015</div>
-		</div>
-
-		<div class="row-start-1 fl">
-			<div class="table-title-row fl">Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">BMJ print design</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row fl">&nbsp;</div>
-		</div>
-		<div class="row  fl">
-			<div class="table-row-end fl">05-Jan-2015</div>
-		</div>
-	
-	<div class="viewall fr"><a href="#">view all</a></div>
+		</div></th> 
+         <th><div class="row  fl">
+			<div class="table-title fl">Users</div>
+		</div></th>         
+    </tr>
+      <c:if test="${not empty dashboardDto.strongestEvidenceInsightDtoLst}">
+       
+    <c:forEach items="${dashboardDto.strongestEvidenceInsightDtoLst}" var="evidQue" varStatus="queIndex">
+        
+	        <tr>	       			       		
+	            <td>
+	              <div class="row-start-1 fl">
+					<div class="table-title-row fl">
+	               <a  href="#" onclick="viewInsight(${evidQue.insightId})"> <c:out value="${evidQue.insightName}"/></a><br/>
+	              	</div>
+	              </div>  
+	            </td>
+	            <td>  
+	                <div class="row  fl"> 
+	                <div class="table-row fl">
+	                
+	                 <c:if test="${not empty evidQue.projects}">       
+    					<c:forEach items="${evidQue.projects}" var="evidPro" varStatus="proIndex">     	
+	              			 <a  href="#" onclick="${evidPro.project.id}">  <c:out value="${evidPro.project.name}"/>,</a><br/>
+	               		</c:forEach>
+	               </c:if>
+	               
+	               
+	                </div>
+	                </div>
+	             </td>
+	             <td> 
+	               <div class="row  fl">
+					<div class="table-row-grey fl">         	
+	                <c:out value=" "/><br/>
+	                </div>
+	                </div>
+	             </td>
+	             <td> 
+	               <div class="row  fl">
+					<div class="table-row-end fl">         	
+	                <c:out value="${evidQue.foundCount} Users"/><br/>
+	                </div>
+	                </div>
+	             </td>
+	            
+	        </tr>
+       		
+    </c:forEach>
+   	 </c:if>
+   	 
+    </table>
+    <div class="viewall-top fr"><a href="#" onclick="search()">view all</a></div>
+   
+   
+   
 	</div>
    
    </div> 

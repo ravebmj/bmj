@@ -12,6 +12,7 @@ public class DashboardDTO implements Serializable{
 	private String searchAllInsight;
 	private List<InsightTypesDto> insightTypesDtoLst;
 	private List<RecentInsightsDto> recentInsightsDtoLst;
+	private List<StrongestEvidenceInsightDTO> strongestEvidenceInsightDtoLst;
 
 	public String getSearchAllInsight() {
 		return searchAllInsight;
@@ -45,6 +46,15 @@ public class DashboardDTO implements Serializable{
 
 	public void setInsightTypesDtoLst(List<InsightTypesDto> insightTypesDtoLst) {
 		this.insightTypesDtoLst = insightTypesDtoLst;
+	}
+
+	public List<StrongestEvidenceInsightDTO> getStrongestEvidenceInsightDtoLst() {
+		return strongestEvidenceInsightDtoLst;
+	}
+
+	public void setStrongestEvidenceInsightDtoLst(
+			List<StrongestEvidenceInsightDTO> strongestEvidenceInsightDtoLst) {
+		this.strongestEvidenceInsightDtoLst = strongestEvidenceInsightDtoLst;
 	}
 
 }

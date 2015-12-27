@@ -6,6 +6,7 @@ import org.bmj.userinsights.dao.IUserInsightDao;
 import org.bmj.userinsights.dashboard.Dao.IDashboardDao;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
+import org.bmj.userinsights.dashboard.dto.StrongestEvidenceInsightDTO;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
 
@@ -23,7 +24,14 @@ public class DashboardService implements IDashboardService{
 		
 		return getDaoRef().getRecentlyAddedInsights();
 	}
+
 	
+	@Override
+	public List<StrongestEvidenceInsightDTO> getStrongestEvidenceInsights()
+			throws Exception {
+		
+		return getDaoRef().getStrongestEvidenceInsights();
+	}
 	
 	/**
 	 * get reference to GCSDao implementation.
@@ -35,6 +43,8 @@ public class DashboardService implements IDashboardService{
 		ctx = AppContext.getApplicationContext();
 		return (IDashboardDao)ctx.getBean("refDashboardDaoImpl");
 	}
+
+	
 
 	
 
