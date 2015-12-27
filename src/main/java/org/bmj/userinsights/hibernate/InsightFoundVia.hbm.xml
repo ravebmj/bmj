@@ -11,10 +11,10 @@
 		<property name="foundViaValue" column="found_via_other_value"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
-	    <many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="select">
+	    <many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="join">
             <column name="insight_id" not-null="true" />
         </many-to-one>
-         <many-to-one name="foundVia" class="org.bmj.userinsights.entity.FoundVia" fetch="select">
+         <many-to-one name="foundVia" class="org.bmj.userinsights.entity.FoundVia" fetch="join">
             <column name="found_via_id" not-null="true" />
         </many-to-one>
 	</class>
