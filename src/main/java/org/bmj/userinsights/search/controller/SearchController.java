@@ -68,7 +68,7 @@ public class SearchController {
     	System.out.println("fromDate: "+req.getParameter("fromDate"));
     	System.out.println("toDate: "+req.getParameter("toDate"));  	
     	
-    	searchService.searchProduct();
+    	//searchService.searchProduct();
 
     	String fromdate = req.getParameter("fromDate");
     	String todate = req.getParameter("toDate");
