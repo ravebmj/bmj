@@ -64,7 +64,6 @@
 		</property>
 	</bean>
 	
-	
 	<bean id="dashboardServiceRef" class="org.bmj.userinsights.dashboard.service.DashboardService"></bean>
 	<bean id="refDashboardDao" class="org.bmj.userinsights.dashboard.Dao.DashboardDao">
 		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
@@ -195,6 +194,9 @@
 				<value>org/bmj/userinsights/hibernate/Tag.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/Project.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/Product.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/FoundVia.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/MainUserType.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/Geographies.hbm.xml</value>
 				
 				<value>org/bmj/userinsights/hibernate/InsightWebLink.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/InsightTag.hbm.xml</value>
@@ -207,6 +209,7 @@
 				<value>org/bmj/userinsights/hibernate/InsightFoundVia.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/InsightDetails.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/InsightConfig.hbm.xml</value>
+				
 
 				
 			</list>

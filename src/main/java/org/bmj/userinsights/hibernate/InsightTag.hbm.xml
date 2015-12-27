@@ -8,10 +8,14 @@
 		<id name="id" column="insight_tag_id">
 			<generator class="native"/>
 		</id>
-		<property name="insightId" column="insight_id"/>
-		<property name="tagId" column="tag_id"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
+		<many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="select">
+            <column name="insight_id" not-null="true" />
+        </many-to-one>
+         <many-to-one name="tag" class="org.bmj.userinsights.entity.Tag" fetch="select">
+            <column name="tag_id" not-null="true" />
+        </many-to-one>
 	
 	</class>
 

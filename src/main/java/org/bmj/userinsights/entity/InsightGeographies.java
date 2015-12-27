@@ -1,65 +1,104 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class InsightGeographies {
+public class InsightGeographies  implements Serializable{
 	
-	private int id;
-	private int insightId;
-	private int geographiesId;
+	private Integer id;
+	private InsightDetail insightDetail;
+	private Geographies geographies;
 	private String insightGeographicValue;
-	private int addedUser;
+	private Integer addedUser;
 	private Date addedDate;
 
 	public InsightGeographies(){}
 
-	public int getId() {
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getInsightId() {
-		return insightId;
+	/**
+	 * @return the insightDetail
+	 */
+	public InsightDetail getInsightDetail() {
+		return insightDetail;
 	}
 
-	public void setInsightId(int insightId) {
-		this.insightId = insightId;
+	/**
+	 * @param insightDetail the insightDetail to set
+	 */
+	public void setInsightDetail(InsightDetail insightDetail) {
+		this.insightDetail = insightDetail;
 	}
 
-	public int getGeographiesId() {
-		return geographiesId;
+	/**
+	 * @return the geographies
+	 */
+	public Geographies getGeographies() {
+		return geographies;
 	}
 
-	public void setGeographiesId(int geographiesId) {
-		this.geographiesId = geographiesId;
+	/**
+	 * @param geographies the geographies to set
+	 */
+	public void setGeographies(Geographies geographies) {
+		this.geographies = geographies;
 	}
 
+	/**
+	 * @return the insightGeographicValue
+	 */
 	public String getInsightGeographicValue() {
 		return insightGeographicValue;
 	}
 
+	/**
+	 * @param insightGeographicValue the insightGeographicValue to set
+	 */
 	public void setInsightGeographicValue(String insightGeographicValue) {
 		this.insightGeographicValue = insightGeographicValue;
 	}
 
-	public int getAddedUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public Integer getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddedUser(int addedUser) {
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
 
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
 
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
+
+	
 	
 	
 }

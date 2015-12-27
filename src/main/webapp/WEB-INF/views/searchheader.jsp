@@ -75,7 +75,7 @@
                     </div>
                 </fieldset>
                 <div class="gb_R gb_Pd" id="gbqfbw">
-                    <button type="submit" class="gbqfb" aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
+                    <button type="submit" class="gbqfb" onclick="quickAdvanceSearch()"  aria-label="Search Northgate Information Solutions Ltd Mail" name="" id="gbqfb"><span class="gbqfi gb_Lb"></span>
                     </button>
                 </div>
            

@@ -1,65 +1,104 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class InsightFoundVia {
+public class InsightFoundVia  implements Serializable{
 	
-	private int id;
-	private int insightId;
-	private int foundViaId;
+	private Integer id;
+	private InsightDetail insightDetail;
+	private FoundVia foundVia;;
 	private String foundViaValue;
-	private int addedUser;
+	private Integer addedUser;
 	private Date addedDate;
 	
 	public InsightFoundVia(){}
 
-	public int getId() {
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getInsightId() {
-		return insightId;
+	/**
+	 * @return the insightDetail
+	 */
+	public InsightDetail getInsightDetail() {
+		return insightDetail;
 	}
 
-	public void setInsightId(int insightId) {
-		this.insightId = insightId;
+	/**
+	 * @param insightDetail the insightDetail to set
+	 */
+	public void setInsightDetail(InsightDetail insightDetail) {
+		this.insightDetail = insightDetail;
 	}
 
-	public int getFoundViaId() {
-		return foundViaId;
+	/**
+	 * @return the foundVia
+	 */
+	public FoundVia getFoundVia() {
+		return foundVia;
 	}
 
-	public void setFoundViaId(int foundViaId) {
-		this.foundViaId = foundViaId;
+	/**
+	 * @param foundVia the foundVia to set
+	 */
+	public void setFoundVia(FoundVia foundVia) {
+		this.foundVia = foundVia;
 	}
 
+	/**
+	 * @return the foundViaValue
+	 */
 	public String getFoundViaValue() {
 		return foundViaValue;
 	}
 
+	/**
+	 * @param foundViaValue the foundViaValue to set
+	 */
 	public void setFoundViaValue(String foundViaValue) {
 		this.foundViaValue = foundViaValue;
 	}
 
-	public int getAddedUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public Integer getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddedUser(int addedUser) {
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
 
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
 
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
+
+	
 	
 	
 

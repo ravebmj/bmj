@@ -53,7 +53,8 @@ public class SearchController {
      */
     @RequestMapping(value= "/advanceSearch", method=RequestMethod.POST)  
     public ModelAndView advanceSearch(HttpServletRequest request) {
-    	
+    	System.out.println("Parameter:"+request.getParameter("keyword"));
+    	searchService.searchProduct();
     	ModelAndView model = new ModelAndView("searchresults");  
         return model; 
     }    

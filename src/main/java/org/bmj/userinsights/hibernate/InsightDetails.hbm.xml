@@ -23,6 +23,12 @@
 		
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedDate" column="modified_date" type="date"/>
+		<set name="products" table="insight_product" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightProduct" />
+        </set>
 	
 	</class>
 	

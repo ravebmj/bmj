@@ -1,84 +1,134 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product {
+public class Product  implements Serializable{
 	
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
-	private int applicationId;
+	private Integer applicationId;
 	private Date addedDate;
 	private Date modifiedDate;
-	private int addedUser;
-	private int modifiedUser;
+	private Integer addedUser;
+	private Integer modifiedUser;
 	
 	public Product(){}
 
-	public int getId() {
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+	/**
+	 * @param description the description to set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	/**
+	 * @return the applicationId
+	 */
+	public Integer getApplicationId() {
+		return applicationId;
+	}
+
+	/**
+	 * @param applicationId the applicationId to set
+	 */
+	public void setApplicationId(Integer applicationId) {
+		this.applicationId = applicationId;
+	}
+
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
 
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
 
+	/**
+	 * @return the modifiedDate
+	 */
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
+	/**
+	 * @param modifiedDate the modifiedDate to set
+	 */
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 
-	public int getAddedUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public Integer getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddedUser(int addedUser) {
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
 
-	public int getModifiedUser() {
+	/**
+	 * @return the modifiedUser
+	 */
+	public Integer getModifiedUser() {
 		return modifiedUser;
 	}
 
-	public void setModifiedUser(int modifiedUser) {
+	/**
+	 * @param modifiedUser the modifiedUser to set
+	 */
+	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
 
-	public int getAplicationId() {
-		return applicationId;
-	}
-
-	public void setAplicationId(int aplicationId) {
-		this.applicationId = aplicationId;
-	}
-	
+		
 	
 
 }
