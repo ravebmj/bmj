@@ -6,7 +6,6 @@ import java.util.List;
 import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.entity.CodeListName;
 import org.bmj.userinsights.entity.CodelistCodeDecode;
-
 import org.bmj.userinsights.entity.Person;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -45,7 +44,7 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 		if(codelistNameObj!=null){
 			List<CodelistCodeDecode> lstCodelistCodeDecode = (List<CodelistCodeDecode>) this.getHibernateTemplate()
 					.findByNamedQueryAndNamedParam("CodelistCodeDecode.getCodelistCodeDecode",
-							new String[]{"codelistId"},new Object[]{codelistNameObj.getId()});	
+							new String[]{"codelistId"},new Object[]{codelistNameObj.getCodelistId()});	
 			if(lstCodelistCodeDecode!=null && lstCodelistCodeDecode.size()>0){
 				
 				for(CodelistCodeDecode codeDecode : lstCodelistCodeDecode){

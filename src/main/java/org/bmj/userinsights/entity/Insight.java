@@ -1,93 +1,168 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Insight {
+public class Insight  implements Serializable{
 	
-	int id;
-	String title;
-	String description;
-	int type;
-	Date insightFoundDate;
-	public int getId() {
+	private Integer id;
+	private String title;
+	private String description;
+	private Integer type;
+	private Date insightFoundDate;
+	private Integer insightFoundCount;
+	private Integer sevirity;
+	private Integer insightApplicationID;
+	private Integer addedUser;
+	private Date addedDate;
+	private Integer modifiedUser;
+	private Date modifiedDate;
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
+	/**
+	 * @return the title
+	 */
 	public String getTitle() {
 		return title;
 	}
+	/**
+	 * @param title the title to set
+	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
+	/**
+	 * @param description the description to set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getType() {
+	/**
+	 * @return the type
+	 */
+	public Integer getType() {
 		return type;
 	}
-	public void setType(int type) {
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(Integer type) {
 		this.type = type;
 	}
+	/**
+	 * @return the insightFoundDate
+	 */
 	public Date getInsightFoundDate() {
 		return insightFoundDate;
 	}
+	/**
+	 * @param insightFoundDate the insightFoundDate to set
+	 */
 	public void setInsightFoundDate(Date insightFoundDate) {
 		this.insightFoundDate = insightFoundDate;
 	}
-	public int getInsightFoundCount() {
+	/**
+	 * @return the insightFoundCount
+	 */
+	public Integer getInsightFoundCount() {
 		return insightFoundCount;
 	}
-	public void setInsightFoundCount(int insightFoundCount) {
+	/**
+	 * @param insightFoundCount the insightFoundCount to set
+	 */
+	public void setInsightFoundCount(Integer insightFoundCount) {
 		this.insightFoundCount = insightFoundCount;
 	}
-	public int getSevirity() {
+	/**
+	 * @return the sevirity
+	 */
+	public Integer getSevirity() {
 		return sevirity;
 	}
-	public void setSevirity(int sevirity) {
+	/**
+	 * @param sevirity the sevirity to set
+	 */
+	public void setSevirity(Integer sevirity) {
 		this.sevirity = sevirity;
 	}
-	public int getInsightApplicationID() {
+	/**
+	 * @return the insightApplicationID
+	 */
+	public Integer getInsightApplicationID() {
 		return insightApplicationID;
 	}
-	public void setInsightApplicationID(int insightApplicationID) {
+	/**
+	 * @param insightApplicationID the insightApplicationID to set
+	 */
+	public void setInsightApplicationID(Integer insightApplicationID) {
 		this.insightApplicationID = insightApplicationID;
 	}
-	public int getAddedUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public Integer getAddedUser() {
 		return addedUser;
 	}
-	public void setAddedUser(int addedUser) {
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
-	public int getModifiedUser() {
+	/**
+	 * @return the modifiedUser
+	 */
+	public Integer getModifiedUser() {
 		return modifiedUser;
 	}
-	public void setModifiedUser(int modifiedUser) {
+	/**
+	 * @param modifiedUser the modifiedUser to set
+	 */
+	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
+	/**
+	 * @return the modifiedDate
+	 */
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
+	/**
+	 * @param modifiedDate the modifiedDate to set
+	 */
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	int insightFoundCount;
-	int sevirity;
-	int insightApplicationID;
-	int addedUser;
-	Date addedDate;
-	int modifiedUser;
-	Date modifiedDate;
+	
+	
 	
 
 }

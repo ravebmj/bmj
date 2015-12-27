@@ -18,6 +18,7 @@ import org.bmj.userinsights.dashboard.dto.DashboardDTO;
 import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.search.service.ISearchService;
 import org.bmj.userinsights.search.service.SearchService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -71,6 +72,7 @@ public class SearchController {
     	System.out.println("fromDate: "+req.getParameter("fromDate"));
     	System.out.println("toDate: "+req.getParameter("toDate"));
     	
+
     	String fromdate = req.getParameter("fromDate");
     	String todate = req.getParameter("toDate");
     	
@@ -102,7 +104,7 @@ public class SearchController {
     @RequestMapping(value= "/dashBoardSearch", method=RequestMethod.POST)  
     public ModelAndView dashBoardSearch(HttpServletRequest request) {
     	
-    	ModelAndView model = new ModelAndView("searchresults"); 
+    	ModelAndView model = new ModelAndView("searchresults");  
     	
         return model; 
     }

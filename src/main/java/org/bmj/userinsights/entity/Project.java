@@ -1,83 +1,135 @@
 package org.bmj.userinsights.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Project {
+public class Project  implements Serializable{
 	
-	private int id;
+	private Integer id;
 	private String name;
 	private String description;
-	private int applicationId;
-	private int addedUser;
+	private Integer applicationId;
+	private Integer addedUser;
 	private Date addedDate;
-	private int modifiedUser;
+	private Integer modifiedUser;
 	private Date modifiedDate;
 	
 	public Project(){}
 
-	public int getId() {
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return the description
+	 */
 	public String getDescription() {
 		return description;
 	}
 
+
+	/**
+	 * @param description the description to set
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public int getApplicationId() {
+	/**
+	 * @return the applicationId
+	 */
+	public Integer getApplicationId() {
 		return applicationId;
 	}
 
-	public void setApplicationId(int applicationId) {
+	/**
+	 * @param applicationId the applicationId to set
+	 */
+	public void setApplicationId(Integer applicationId) {
 		this.applicationId = applicationId;
 	}
 
-	public int getAddedUser() {
+	/**
+	 * @return the addedUser
+	 */
+	public Integer getAddedUser() {
 		return addedUser;
 	}
 
-	public void setAddedUser(int addedUser) {
+	/**
+	 * @param addedUser the addedUser to set
+	 */
+	public void setAddedUser(Integer addedUser) {
 		this.addedUser = addedUser;
 	}
 
+	/**
+	 * @return the addedDate
+	 */
 	public Date getAddedDate() {
 		return addedDate;
 	}
 
+	/**
+	 * @param addedDate the addedDate to set
+	 */
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
 
-	public int getModifiedUser() {
+	/**
+	 * @return the modifiedUser
+	 */
+	public Integer getModifiedUser() {
 		return modifiedUser;
 	}
 
-	public void setModifiedUser(int modifiedUser) {
+	/**
+	 * @param modifiedUser the modifiedUser to set
+	 */
+	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
 
+	/**
+	 * @return the modifiedDate
+	 */
 	public Date getModifiedDate() {
 		return modifiedDate;
 	}
 
+	/**
+	 * @param modifiedDate the modifiedDate to set
+	 */
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
+	
 	
 	
 

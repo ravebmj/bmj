@@ -62,8 +62,7 @@ function quickAdvanceSearch(){
     $("<input>").attr("type", "hidden").attr("name", "serverity").val(serverity).appendTo(form);//serverity
     $("<input>").attr("type", "hidden").attr("name", "createdDate").val(createdDate).appendTo(form);//created date
     $("<input>").attr("type", "hidden").attr("name", "fromDate").val(fromDate).appendTo(form);//from date
-    $("<input>").attr("type", "hidden").attr("name", "toDate").val(toDate).appendTo(form);//to date
-    
+    $("<input>").attr("type", "hidden").attr("name", "toDate").val(toDate).appendTo(form);//to date    
     //Form submit
     form.appendTo('body').submit();
 }

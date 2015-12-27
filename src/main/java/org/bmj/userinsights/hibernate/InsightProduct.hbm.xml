@@ -7,12 +7,15 @@
 	<class name="org.bmj.userinsights.entity.InsightProduct" table="insight_product">
 		<id name="id" column="insight_product_id">
 			<generator class="native"/>
-		</id>
-		<property name="insightId" column="insight_id"/>
-		<property name="productId" column="product_id"/>
+		</id>		
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
-	
+	    <many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="join">
+            <column name="insight_id" not-null="true" />
+        </many-to-one>
+         <many-to-one name="product" class="org.bmj.userinsights.entity.Product" fetch="join">
+            <column name="product_id" not-null="true" />
+        </many-to-one>
 	</class>
 	
 </hibernate-mapping>

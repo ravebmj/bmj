@@ -3,11 +3,14 @@ package org.bmj.userinsights.search.service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.bmj.userinsights.search.Dao.ISearchDao;
 import org.bmj.userinsights.search.dto.SearchResultDetailDto;
 import org.bmj.userinsights.search.dto.SearchResultDto;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class SearchService implements ISearchService {
-
+	@Autowired
+	private ISearchDao searchDao;
 	@Override
 	public SearchResultDto getAllInsight() {
 		SearchResultDto dto = new SearchResultDto();
@@ -30,5 +33,9 @@ public class SearchService implements ISearchService {
 		
 		return dto;
 
+	}
+	
+	public void searchProduct(){
+		searchDao.searchProduct();
 	}
 }

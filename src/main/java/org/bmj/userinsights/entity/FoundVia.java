@@ -3,7 +3,7 @@ package org.bmj.userinsights.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Product  implements Serializable{
+public class FoundVia  implements Serializable{
 	
 	private Integer id;
 	private String name;
@@ -14,7 +14,7 @@ public class Product  implements Serializable{
 	private Integer addedUser;
 	private Integer modifiedUser;
 	
-	public Product(){}
+	public FoundVia(){}
 
 	/**
 	 * @return the id
@@ -127,5 +127,9 @@ public class Product  implements Serializable{
 	public void setModifiedUser(Integer modifiedUser) {
 		this.modifiedUser = modifiedUser;
 	}
+
+	
+	
+	
 
 }

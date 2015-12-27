@@ -6,6 +6,6 @@ import org.bmj.userinsights.search.dto.SearchResultDto;
 public interface ISearchService {
 	
 	SearchResultDto getAllInsight();
-
+	public void searchProduct();
 
 }
