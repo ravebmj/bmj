@@ -4,22 +4,23 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
     
 <hibernate-mapping>
-	<class name="org.bmj.userinsights.entity.CodeListName" table="codelist_name">
-		<id name="id" column="codelist_id">
+	<class name="org.bmj.userinsights.entity.CodelistName" table="codelist_name">
+		<id name="codelistId" column="codelist_id">
 			<generator class="native"/>
 		</id>
-		<property name="name" column="codelist_name"/>
-		<property name="description" column="codelist_description"/>
+		<property name="codelistName" column="codelist_name"/>
+		<property name="codelistDescription" column="codelist_description"/>
 		<property name="applicationId" column="codelist_application_id"/>
-		
-		<property name="codeListStatus" column="codelist_status"/>
-				
+		<property name="codelistStatus" column="codelist_status"/>
 		<property name="addedUser" column="added_user"/>
-		<property name="addedDate" column="added_date" type="date"/>
+		<property name="addedDate" column="added_date"/>
 		<property name="modifiedUser" column="modified_user"/>
-		
-		<property name="modifiedDate" column="modified_date" type="date"/>
-	
+		<property name="modifiedDate" column="modified_date"/>
 	</class>
-
+ 	<query name="CodelistName.getCodelistName">
+        <![CDATA[
+    	from CodelistName where codelistName = :codelistName
+    	and applicationId = :applicationId
+        ]]>
+    </query>
 </hibernate-mapping>
