@@ -14,7 +14,17 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 		    try {
 		    	list = (List<InsightDetail>)this.getHibernateTemplate()
 						.find("select distinct id from "+
-                              "InsightDetail id LEFT JOIN id.products as ip LEFT JOIN id.projects as ipj LEFT JOIN id.tags as it INNER JOIN ip.product as p where (id.title like '%insight1%') OR (p.name like '%journal%')");        
+                              "InsightDetail id LEFT JOIN id.products as ip " +
+                              "LEFT JOIN id.projects as ipj " +
+                              "LEFT JOIN id.tags as it " +
+                              "INNER JOIN ip.product as prod INNER JOIN ipj.project as proj INNER JOIN it.tag as tag " +
+                              "where ((id.title like '%insight1%') OR (id.description like '%insight1%') " +
+                              "OR (prod.name like '%journal%') OR (proj.name like '%journal%') OR (tag.name like '%journal%')) " +
+                              "AND id.insightApplicationID = 1 " +
+                              //Below are the conditional additions.
+                              "AND id.type = 1 AND id.insightServerity = 1 " +
+                              "AND (id.addedDate BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2014-02-28' AS DATE)) " +
+                              "AND (id.modifiedDate BETWEEN CAST('2014-02-01' AS DATE) AND CAST('2014-02-28' AS DATE))");        
 		       
 		       /* for(InsightDetail employee : list) {
 		            System.out.println("Emaployee Name: " + employee.getTitle());
