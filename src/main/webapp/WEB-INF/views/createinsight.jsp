@@ -5,7 +5,7 @@
 <script src="resources/js/select2.js"></script>
 <script src="resources/js/createinsight.js"></script>
 <link rel="stylesheet" href="resources/css/select2.css" />
-<form:form method="POST" modelAttribute="mInsightDTO" action="">
+<form:form method="POST" id="frmInsight" modelAttribute="mInsightDTO" action="" >
 <div id="main-container fl createview">
 	<h2 class="h2_25">Create New Insight</h2>
 	<div class="row-inside">
@@ -140,9 +140,10 @@
 
 				</div>
 			</div>
-
+					<input type="button" value="save" onclick="submitInsight();"/>
 		</div>
 	</div>
 </div>
+		<form:hidden path="id" />
 	
 </form:form>

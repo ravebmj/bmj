@@ -3,9 +3,10 @@ package org.bmj.userinsights.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bmj.userinsights.common.dto.DecodedNamesDto;
+import org.bmj.userinsights.common.dto.SelectValuesDto;
+import org.bmj.userinsights.entity.CodeListName;
 import org.bmj.userinsights.entity.CodelistCodeDecode;
-import org.bmj.userinsights.entity.CodelistName;
+
 import org.bmj.userinsights.entity.Person;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -28,27 +29,27 @@ public class UserInsightDaoImpl extends HibernateDaoSupport  implements IUserIns
 	}
 
 	@Override
-	public List<DecodedNamesDto> getCodeListDecodedNames(String codelistName,
+	public List<SelectValuesDto> getSelectValuesDtoLst(String name,
 			String applicationId) throws Exception {
-		List<DecodedNamesDto> DecodedNamesDtoLst = new ArrayList<DecodedNamesDto>();
-		CodelistName codelistNameObj = null;
+		List<SelectValuesDto> DecodedNamesDtoLst = new ArrayList<SelectValuesDto>();
+		CodeListName codelistNameObj = null;
 		
 		List returnVal = this.getHibernateTemplate()
 				.findByNamedQueryAndNamedParam("CodelistName.getCodelistName",
-						new String[]{"codelistName","applicationId"},new Object[]{codelistName,Integer.valueOf(applicationId)});
+						new String[]{"name","applicationId"},new Object[]{name,Integer.valueOf(applicationId)});
 		
 		if(returnVal!=null && returnVal.size()>0){
-			codelistNameObj = (CodelistName) returnVal.get(0);
+			codelistNameObj = (CodeListName) returnVal.get(0);
 		}
 		
 		if(codelistNameObj!=null){
 			List<CodelistCodeDecode> lstCodelistCodeDecode = (List<CodelistCodeDecode>) this.getHibernateTemplate()
 					.findByNamedQueryAndNamedParam("CodelistCodeDecode.getCodelistCodeDecode",
-							new String[]{"codelistId"},new Object[]{codelistNameObj.getCodelistId()});	
+							new String[]{"codelistId"},new Object[]{codelistNameObj.getId()});	
 			if(lstCodelistCodeDecode!=null && lstCodelistCodeDecode.size()>0){
 				
 				for(CodelistCodeDecode codeDecode : lstCodelistCodeDecode){
-					DecodedNamesDto dtoObj = new DecodedNamesDto();
+					SelectValuesDto dtoObj = new SelectValuesDto();
 					dtoObj.setCodeDecodedCode(codeDecode.getCodeDecodeCode());
 					dtoObj.setCodeDecodedName(codeDecode.getCodeDecodeDecode());
 					DecodedNamesDtoLst.add(dtoObj);

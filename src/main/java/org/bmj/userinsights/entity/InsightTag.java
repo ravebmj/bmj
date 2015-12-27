@@ -83,8 +83,6 @@ public class InsightTag  implements Serializable{
 		this.addedDate = addedDate;
 	}
 
-		
-	
 	
 
 }

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.InsightsConstants;
-import org.bmj.userinsights.common.dto.DecodedNamesDto;
+import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
+import org.bmj.userinsights.dashboard.dto.DateCriteriaDto;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
+import org.bmj.userinsights.dashboard.dto.SeveritiesDto;
 import org.bmj.userinsights.dashboard.service.IDashboardService;
 import org.bmj.userinsights.search.dto.SearchCriteria;
 import org.bmj.userinsights.service.IUserInsightService;
@@ -49,17 +52,21 @@ public class DashBoardController {
     @RequestMapping("/dashboard")  
     public ModelAndView showDashboard() {
     	List<InsightTypesDto> lstInsightTypesDto = null;
+    	List<SeveritiesDto> lstSeveritiesDto = null;
+    	List<DateCriteriaDto> lstDateCriteriaDto = null;
     	List<RecentInsightsDto> lstRecentInsightsDto = null;
     	System.out.println("in the showDashboard");    	
     	DashboardDTO dashboardDto = new DashboardDTO();
     	ModelAndView mav = new ModelAndView("dashboard");    	
     	SearchCriteria searchCriteria=null;
 		try {
-			lstInsightTypesDto = getCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
+			lstInsightTypesDto = getInsightTypesCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
+			lstSeveritiesDto = getSeveritiesCodeListDecodedNames(InsightsConstants.SEVERITY_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
+			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();
 			//lstSearchAllInsightsDto = dashboardService.getSearchAllInsightsDtoLst();// populate the possible values for the SearchAllInsights dropdown in Advanced Search section
-			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();
+			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();			
+			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto,lstSeveritiesDto,lstDateCriteriaDto);
 			
-			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,12 +83,12 @@ public class DashBoardController {
     } 
     
     
-    private List<InsightTypesDto> getCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
-    	List<DecodedNamesDto> decodedNamesDtoLst = userInsightService.getCodeListDecodedNames(codelistName,applicationId);
+    private List<InsightTypesDto> getInsightTypesCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
+    	List<SelectValuesDto> decodedNamesDtoLst = userInsightService.getSelectValuesDtoLst(codelistName,applicationId);
     	List<InsightTypesDto> lstInsighsTypes = new ArrayList<InsightTypesDto>();
     	if(decodedNamesDtoLst!=null && decodedNamesDtoLst.size()>0){
-    		for(DecodedNamesDto decodedObj:decodedNamesDtoLst){
-    			InsightTypesDto insightTypesDto = new InsightTypesDto();
+    		for(SelectValuesDto decodedObj:decodedNamesDtoLst){
+    			InsightTypesDto insightTypesDto = new InsightTypesDto();    			
     			insightTypesDto.setInsightTypeId(decodedObj.getCodeDecodedCode());
     			insightTypesDto.setInsightTypeName(decodedObj.getCodeDecodedName());
     			lstInsighsTypes.add(insightTypesDto);
@@ -90,6 +97,23 @@ public class DashBoardController {
     	
     	
     	return lstInsighsTypes;
+    	
+    }
+    
+    private List<SeveritiesDto> getSeveritiesCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
+    	List<SelectValuesDto> decodedNamesDtoLst = userInsightService.getSelectValuesDtoLst(codelistName,applicationId);
+    	List<SeveritiesDto> lstSeverities = new ArrayList<SeveritiesDto>();
+    	if(decodedNamesDtoLst!=null && decodedNamesDtoLst.size()>0){
+    		for(SelectValuesDto decodedObj:decodedNamesDtoLst){
+    			SeveritiesDto severitiesDto = new SeveritiesDto();
+    			severitiesDto.setServerityId(decodedObj.getCodeDecodedCode());
+    			severitiesDto.setServerityName(decodedObj.getCodeDecodedName());
+    			lstSeverities.add(severitiesDto);
+    		}
+    	}
+    	
+    	
+    	return lstSeverities;
     	
     }
    

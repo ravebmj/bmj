@@ -22,6 +22,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.converters.BigDecimalConverter;
+import org.apache.commons.beanutils.converters.SqlDateConverter;
 import org.apache.log4j.Logger;
 
 // this is a test commit for Atif
@@ -112,6 +116,23 @@ public class CommonUtils {
 		return (dateFormat.format(date));
 	}
 
-	
+	/**
+     * Out of the box, BeanUtils.copyProperties doesnt handle NULL java.sql.Date fields and throws a
+     * conversion error. This utility method registers the correct convertor to handle this. This is
+     * done locally for this class to avoid any impact on other classes that might rely on the standard
+     * behaviour.
+     *
+     * @param dest
+     * @param orig
+     * @throws IllegalAccessException
+     * @throws java.lang.reflect.InvocationTargetException
+     *
+     */
+    public static void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {
+        BeanUtilsBean bub = new BeanUtilsBean();
+        bub.getConvertUtils().register(new SqlDateConverter(null), java.sql.Date.class);
+        bub.getConvertUtils().register(new BigDecimalConverter(new BigDecimal("0")), java.math.BigDecimal.class);
+        bub.copyProperties(dest, orig);
+    }
 
 }

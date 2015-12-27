@@ -128,7 +128,4 @@ public class Product  implements Serializable{
 		this.modifiedUser = modifiedUser;
 	}
 
-		
-	
-
 }

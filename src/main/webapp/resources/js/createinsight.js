@@ -77,3 +77,21 @@ function formatProductResult(data) {
 		markup = data.text;
 	return markup;
 };
+
+function submitInsight(){
+	console.debug('Inside Submit Insight');
+	document.getElementById("frmInsight").action='saveinsight.html';
+	if(validate()){
+		document.getElementById("frmInsight").submit();
+	}else{
+		return false;
+	}
+	
+}
+
+/*
+ * Client Side Validation.
+ */
+function validate(){
+	return true;
+}
