@@ -5,6 +5,10 @@ import java.util.Date;
 
 public class InsightFoundVia  implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6542883351175376287L;
 	private Integer id;
 	private InsightDetail insightDetail;
 	private FoundVia foundVia;;

@@ -10,7 +10,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 	public void searchProduct(){
 		 List<InsightDetail> list = null;
-		   
+		   System.out.println("Searching for products...");
 		    try {
 		    	list = (List<InsightDetail>)this.getHibernateTemplate()
 						.find("SELECT ids FROM InsightDetail ids");        

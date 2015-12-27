@@ -17,10 +17,13 @@
 		<property name="modifiedUser" column="modified_user"/>
 		<property name="modifiedDate" column="modified_date" type="date"/>		
 	</class>
-	<query name="CodelistName.getCodelistName">
+	<query name="CodeListName.getCodelistName">
        <![CDATA[
-		  	
+<<<<<<< HEAD
+		  	from CodeListName where codelistName = :codelistName
+=======
 		  	from CodeListName where codelistName = :name
+>>>>>>> 414f7d591ca38291d98d48379378b92fe45221c5
 		  	and applicationId = :applicationId
         ]]>
     </query>

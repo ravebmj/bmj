@@ -6,6 +6,10 @@ import java.util.Set;
 
 public class InsightDetail  implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5119035759859846280L;
 	private Integer id;
 	private String title;
 	private String description;
@@ -19,6 +23,12 @@ public class InsightDetail  implements Serializable{
 	private Integer modifiedUser;
 	private Date modifiedDate;
 	private Set<InsightProduct> products;
+	private Set<InsightProject> projects;
+	private Set<InsightTag> tags;
+	private Set<InsightFoundVia> foundVias;
+	private Set<InsightMainUserType> mainUserTypes;
+	private Set<InsightGeographies> geographies;
+	
 	
 	public InsightDetail(){}
 
@@ -202,6 +212,76 @@ public class InsightDetail  implements Serializable{
 	 */
 	public void setProducts(Set<InsightProduct> products) {
 		this.products = products;
+	}
+
+	/**
+	 * @return the projects
+	 */
+	public Set<InsightProject> getProjects() {
+		return projects;
+	}
+
+	/**
+	 * @param projects the projects to set
+	 */
+	public void setProjects(Set<InsightProject> projects) {
+		this.projects = projects;
+	}
+
+	/**
+	 * @return the tags
+	 */
+	public Set<InsightTag> getTags() {
+		return tags;
+	}
+
+	/**
+	 * @param tags the tags to set
+	 */
+	public void setTags(Set<InsightTag> tags) {
+		this.tags = tags;
+	}
+
+	/**
+	 * @return the foundVias
+	 */
+	public Set<InsightFoundVia> getFoundVias() {
+		return foundVias;
+	}
+
+	/**
+	 * @param foundVias the foundVias to set
+	 */
+	public void setFoundVias(Set<InsightFoundVia> foundVias) {
+		this.foundVias = foundVias;
+	}
+
+	/**
+	 * @return the mainUserTypes
+	 */
+	public Set<InsightMainUserType> getMainUserTypes() {
+		return mainUserTypes;
+	}
+
+	/**
+	 * @param mainUserTypes the mainUserTypes to set
+	 */
+	public void setMainUserTypes(Set<InsightMainUserType> mainUserTypes) {
+		this.mainUserTypes = mainUserTypes;
+	}
+
+	/**
+	 * @return the geographies
+	 */
+	public Set<InsightGeographies> getGeographies() {
+		return geographies;
+	}
+
+	/**
+	 * @param geographies the geographies to set
+	 */
+	public void setGeographies(Set<InsightGeographies> geographies) {
+		this.geographies = geographies;
 	}
 
 	

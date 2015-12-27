@@ -10,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
-
-
-
-
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
 import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.search.service.ISearchService;
@@ -70,8 +66,9 @@ public class SearchController {
     	System.out.println("serverity: "+req.getParameter("serverity"));
     	System.out.println("createdDate: "+req.getParameter("createdDate"));
     	System.out.println("fromDate: "+req.getParameter("fromDate"));
-    	System.out.println("toDate: "+req.getParameter("toDate"));
+    	System.out.println("toDate: "+req.getParameter("toDate"));  	
     	
+    	searchService.searchProduct();
 
     	String fromdate = req.getParameter("fromDate");
     	String todate = req.getParameter("toDate");

@@ -29,6 +29,36 @@
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightProduct" />
         </set>
+        <set name="projects" table="insight_project" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightProject" />
+        </set>
+        <set name="tags" table="insight_tag" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightTag" />
+        </set>
+        <set name="foundVias" table="insight_found_via" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightFoundVia" />
+        </set>
+        <set name="mainUserTypes" table="insight_main_user_type" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightMainUserType" />
+        </set>
+        <set name="geographies" table="insight_geographies" inverse="true" lazy="false" fetch="join" >
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightGeographies" />
+        </set>
 	
 	</class>
 	<query name="InsightDetail.getInsightDetailsById">
