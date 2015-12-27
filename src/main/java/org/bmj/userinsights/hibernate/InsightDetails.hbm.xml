@@ -25,7 +25,12 @@
 		<property name="modifiedDate" column="modified_date" type="date"/>
 	
 	</class>
+	<query name="InsightDetail.getInsightDetailsById">
+	<![CDATA[
+		from InsightDetail where id = :id
+		]]>
 	
+	</query>
 
 
 </hibernate-mapping>

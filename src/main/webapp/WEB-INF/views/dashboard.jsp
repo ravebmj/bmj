@@ -33,9 +33,7 @@
        
     <c:forEach items="${dashboardDto.recentInsightsDtoLst}" var="currQue" varStatus="queIndex">
         
-	        <tr>	       		
-	       		 <%-- <form:hidden path="recentInsightsDtoLst[${queIndex.index}].insightId"/> --%> 
-	       		 <input id="${currQue.insightId}" type="hidden" name="${currQue.insightId}"  value="${currQue.insightId}"/> 
+	        <tr>	       			       		
 	            <td>
 	              <div class="row-start-1 fl">
 					<div class="table-title-row fl">
@@ -46,7 +44,7 @@
 	            <td>  
 	                <div class="row  fl"> 
 	                <div class="table-row fl">     	
-	                <c:out value="${currQue.projectName}"/><br/>
+	               <a  href="#" onclick="search('hai','hello')">  <c:out value="${currQue.projectName}"/></a><br/>
 	                </div>
 	                </div>
 	             </td>
@@ -69,17 +67,13 @@
        		
     </c:forEach>
    	 </c:if>
+   	 
     </table>
-    <div class="viewall-top fr"><a href="#">view all</a></div>
+    <div class="viewall-top fr"><a href="#" onclick="search()">view all</a></div>
    </div>
-   </div> 
-
-
-
-
-
-<div id="wrapper">
-	<div id="main-container fl">			
+   
+   
+   <div id="main-container fl">			
 	
 	<div class="row-header fl">
 			<div class="header-title">Strongest evidence against insights</div>
@@ -96,6 +90,10 @@
 		<div class="row  fl">
 			<div class="table-title fl">Last Edited</div>
 		</div>
+		
+		
+		
+		
 		<div class="row-start-1 fl">
 			<div class="table-title-row fl">Nobody reads the BMJ cover to cover Nobody reads the BMJ cover to cover...</div>
 		</div>
@@ -148,4 +146,7 @@
 	
 	<div class="viewall fr"><a href="#">view all</a></div>
 	</div>
-</div>
+   
+   </div> 
+
+

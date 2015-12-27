@@ -131,11 +131,11 @@
 					</div>
 
 					<div  style="float:left;">
-						 <input id=fromdt type=text name="fromDate" value=""> 
+						 <input id=fromdt type=text name="fromDate" value="From"> 
 						 <%-- <form:input path="searchCriteria.fromDate"/> --%>
 					</div>
 					<div  style="float:left;">
-						<input id=todate type=text name="toDate" value=""> 
+						<input id=todate type=text name="toDate" value="To"> 
 						 <%-- <form:input path="searchCriteria.toDate"/> --%>
 					</div>
 			</div>

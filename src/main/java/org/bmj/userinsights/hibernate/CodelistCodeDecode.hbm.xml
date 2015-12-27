@@ -23,4 +23,12 @@
     	from CodelistCodeDecode where codelistId = :codelistId    	
         ]]>
     </query>
+    <query name="CodelistCodeDecode.getInsightTypesById">
+        <![CDATA[
+    	select ccd from CodelistCodeDecode ccd,CodeListName cn,InsightDetail ind
+    	where ind.id = :id
+    	AND ind.type = cn.id AND ccd.codelistId = cn.id
+        ]]>
+    </query>
+    
 </hibernate-mapping>

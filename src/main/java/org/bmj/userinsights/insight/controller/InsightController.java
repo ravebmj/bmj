@@ -1,13 +1,16 @@
 package org.bmj.userinsights.insight.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
+import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dto.TagEditorJson;
 import org.bmj.userinsights.insight.dto.InsightDTO;
 import org.bmj.userinsights.insight.service.IInsightService;
@@ -47,8 +50,16 @@ public class InsightController {
     public ModelAndView viewInsight(@ModelAttribute("dashboardDto") DashboardDTO dashboardDto, @RequestParam("insightId") String insightId) throws Exception {
 		
 		System.out.println("in the view Insight");
+		ModelAndView mav = new ModelAndView("viewInsight");			
+		List<InsightDTO> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
+		List<InsightTypesDto> insightTypesDtoList = insightService.getInsightTypes(insightId);
+		Map<Integer,InsightTypesDto> insightTypesmap = prepareInsightTypesMap(insightTypesDtoList);
+		InsightDTO insightDto = getInsightDtoObj(insightTypesmap);
 		
-       return new ModelAndView("viewInsight","dashboardDto",dashboardDto);
+		
+		mav.addObject("mInsightDTO", insightDtoList.get(0));
+		
+       return mav;
     }  
 	
 	/*
@@ -114,5 +125,24 @@ public class InsightController {
 		
 		return products;
 	}
-
+	
+	
+	private Map<Integer,InsightTypesDto> prepareInsightTypesMap(List<InsightTypesDto> insightTypesDtoList){
+		Map<Integer,InsightTypesDto> insightTypesMap = null;
+		insightTypesMap = new HashMap<Integer,InsightTypesDto>();
+		
+		
+		return insightTypesMap;
+		
+	}
+	
+	private InsightDTO getInsightDtoObj(Map<Integer,InsightTypesDto> insightTypesmap){
+		InsightDTO insightDTO = null;
+		if(insightTypesmap!=null){
+			
+		}
+		
+		return insightDTO;
+	}
+      
 }

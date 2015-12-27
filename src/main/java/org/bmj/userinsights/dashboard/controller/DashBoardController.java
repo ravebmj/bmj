@@ -60,10 +60,9 @@ public class DashBoardController {
     	ModelAndView mav = new ModelAndView("dashboard");    	
     	SearchCriteria searchCriteria=null;
 		try {
-			lstInsightTypesDto = getInsightTypesCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
+			lstInsightTypesDto = getInsightTypesCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);// populate the possible values for the insight types dropdown in Advanced Search section
 			lstSeveritiesDto = getSeveritiesCodeListDecodedNames(InsightsConstants.SEVERITY_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
-			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();
-			//lstSearchAllInsightsDto = dashboardService.getSearchAllInsightsDtoLst();// populate the possible values for the SearchAllInsights dropdown in Advanced Search section
+			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();			
 			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();			
 			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto,lstSeveritiesDto,lstDateCriteriaDto);
 			
