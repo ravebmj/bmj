@@ -3,7 +3,7 @@ package org.bmj.userinsights.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class CodelistName implements Serializable{
+public class CodeListName implements Serializable{
 
 
 	private static final long serialVersionUID = -2417410023450197692L;
