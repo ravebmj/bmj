@@ -4,17 +4,23 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 
 
 
+
+
+
+
 import org.bmj.userinsights.dashboard.dto.DashboardDTO;
+import org.bmj.userinsights.insight.dto.InsightDTO;
+import org.bmj.userinsights.search.dto.SearchResultDetailDto;
 import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.search.service.ISearchService;
 import org.bmj.userinsights.search.service.SearchService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,15 +64,35 @@ public class SearchController {
      */
     @RequestMapping(value= "/advanceSearch", method=RequestMethod.POST)  
     public ModelAndView advanceSearch(HttpServletRequest req) {
-    	
+    	List<SearchResultDetailDto> lstSearchResultDetailDto = null;
     	ModelAndView model = new ModelAndView("searchresults"); 
     	
+    	SearchResultDto searchDto = new SearchResultDto();
     	System.out.println("keyword: "+req.getParameter("keyword"));
     	System.out.println("insightType: "+req.getParameter("insightType"));
     	System.out.println("serverity: "+req.getParameter("serverity"));
     	System.out.println("createdDate: "+req.getParameter("createdDate"));
     	System.out.println("fromDate: "+req.getParameter("fromDate"));
-    	System.out.println("toDate: "+req.getParameter("toDate"));  	
+    	System.out.println("toDate: "+req.getParameter("toDate")); 
+    	
+    	String keyword = req.getParameter("keyword");
+    	String insightType = req.getParameter("insightType");
+    	String serverity = req.getParameter("serverity");
+    	String dateRangeOpt = req.getParameter("createdDate");
+    	String fromDate = req.getParameter("fromDate");
+    	String toDate = req.getParameter("toDate"); 
+    	
+    	
+    	try {
+    		lstSearchResultDetailDto = searchService.getSearchResults(keyword,insightType,serverity,dateRangeOpt,fromDate,toDate);
+    		searchDto.setSearchResult(lstSearchResultDetailDto);
+    		model.addObject("searchDto", searchDto);
+    		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	
     	//searchService.searchProduct();
 

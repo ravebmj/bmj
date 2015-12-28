@@ -163,12 +163,33 @@ $(document).ready( function () {
  <tbody>
  	<c:forEach items="${searchDto.searchResult}" var="insight">
 	  <tr>
-	    <td><input type="checkbox" id="${insight.projectName}" class="tailsCheckBox"></td> <td><a id="${insight.title}" class="insightTitle">${insight.title}</a></td>
+	    <td><input type="checkbox" id="${insight.projectName}" class="tailsCheckBox"></td> <td><a id="${insight.insightId}" class="insightTitle">${insight.title}</a></td>
 	    <td>${insight.type}</td>   
-	    <td>${insight.product}</td>
-	    <td>${insight.projectName}</td>   
-	    <td>${insight.user}</td>
-	    <td>${insight.tags}</td>   
+	    <td>
+	    
+	     <c:if test="${not empty insight.products}">       
+    		<c:forEach items="${insight.products}" var="currPro" varStatus="proIndex"> 
+	   		 	<a id="${currPro.product.id}" class="insightTitle">${currPro.product.name}</a>,
+	      </c:forEach>
+	      </c:if>	    
+	    
+	    </td>
+	    <td>
+	     <c:if test="${not empty insight.projects}">       
+    		<c:forEach items="${insight.projects}" var="currPro" varStatus="proIndex"> 
+	   		 	<a id="${currPro.project.id}" class="insightTitle">${currPro.project.name}</a>,
+	      </c:forEach>
+	      </c:if>
+	      </td> 
+	    <td>${insight.foundCount}</td>
+	    <td>
+	    
+	     <c:if test="${not empty insight.tags}">       
+    		<c:forEach items="${insight.tags}" var="currPro" varStatus="proIndex"> 
+	   		 	<a id="${currPro.tag.id}" class="insightTitle">${currPro.tag.name}</a>,
+	      </c:forEach>
+	      </c:if>
+	    </td>   
 	    <td>${insight.lastEditedDate}</td>
 	  </tr>
 	</c:forEach>
