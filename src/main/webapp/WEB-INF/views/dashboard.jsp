@@ -46,7 +46,7 @@
 	                <div class="table-row fl">
 	                 <c:if test="${not empty currQue.projects}">       
     					<c:forEach items="${currQue.projects}" var="currPro" varStatus="proIndex">     	
-	               <a  href="#" onclick="${currPro.project.id}">  <c:out value="${currPro.project.name}"/>,</a><br/>
+	               <a  href="#" onclick="projectSearch(${currPro.project.id})">  <c:out value="${currPro.project.name}"/>,</a><br/>
 	               </c:forEach>
 	               </c:if>
 	                </div>
@@ -73,7 +73,7 @@
    	 </c:if>
    	 
     </table>
-    <div class="viewall-top fr"><a href="#" onclick="search()">view all</a></div>
+    <div class="viewall-top fr"><a href="#" onclick="projectSearch('recent')">view all</a></div>
    </div>
    
    
@@ -119,7 +119,7 @@
 	                
 	                 <c:if test="${not empty evidQue.projects}">       
     					<c:forEach items="${evidQue.projects}" var="evidPro" varStatus="proIndex">     	
-	              			 <a  href="#" onclick="${evidPro.project.id}">  <c:out value="${evidPro.project.name}"/>,</a><br/>
+	              			 <a  href="#" onclick="projectSearch(${evidPro.project.id})">  <c:out value="${evidPro.project.name}"/>,</a><br/>
 	               		</c:forEach>
 	               </c:if>
 	               
@@ -148,7 +148,7 @@
    	 </c:if>
    	 
     </table>
-    <div class="viewall-top fr"><a href="#" onclick="search()">view all</a></div>
+    <div class="viewall-top fr"><a href="#" onclick="projectSearch('evidence')">view all</a></div>
    
    
    

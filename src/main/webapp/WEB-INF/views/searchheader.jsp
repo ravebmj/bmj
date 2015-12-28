@@ -96,7 +96,7 @@
 			      
 			     
 			      <form:select id="idInsightType" path="searchCriteria.insightType">
-			      		< <form:option value="0" label="Search all insights"/>
+			      		 <form:option value="0" label="Search all insights"/>
 						<form:options items="${searchCriteria.lstInsightTypesDto}" itemLabel="insightTypeName" itemValue="insightTypeName"/> 
 			      </form:select>
 					  
@@ -144,10 +144,8 @@
 					</div>
 			</div>
 		</div>
-		 
+		 <div style="float:right;margin:10px 17px 0 10px;" id="btn-insight"><button  id="btnAddNewInsight" name=""  onclick="addnewinsight()"><img src="images/addnewinsight.png"></button></div>
 	</div>
-		
-			<div style="float:right;margin:10px 17px 0 10px;" id="btn-insight"><button type="submit" id="btnAddNewInsight" name="addnewinsight" value=" "><img src="images/addnewinsight.png"></button></div>
 		
 	  </div>
   

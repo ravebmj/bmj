@@ -6,13 +6,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.bmj.userinsights.entity.FoundVia;
+import org.bmj.userinsights.entity.Geographies;
 import org.bmj.userinsights.entity.InsightFoundVia;
 import org.bmj.userinsights.entity.InsightGeographies;
 import org.bmj.userinsights.entity.InsightMainUserType;
 import org.bmj.userinsights.entity.InsightProduct;
 import org.bmj.userinsights.entity.InsightProject;
 import org.bmj.userinsights.entity.InsightTag;
+import org.bmj.userinsights.entity.MainUserType;
 import org.bmj.userinsights.entity.Product;
+import org.bmj.userinsights.entity.Project;
+import org.bmj.userinsights.entity.Tag;
 
 public class InsightDTO implements Serializable{
 
@@ -21,12 +26,19 @@ public class InsightDTO implements Serializable{
 	private String title;
 	private String description;
 	private String insightType;
-	private Date foundDate;
+	private String foundDate;
 	private Integer foundCount;
 	private Integer insightServerity;
 	private Integer insightApplicationID;
 		
 	private List<Product> productsList;
+	private List<Project> projectsList;
+	private List<Tag> tagList;
+	private List<FoundVia> foundViaList;
+	private List<MainUserType> mainUserTypeList;
+	private List<Geographies> geographiesList;
+	
+	private Set<InsightProduct> productsSet;
 	private Set<InsightProject> projects;
 	private Set<InsightTag> tags;
 	private Set<InsightFoundVia> foundVias;
@@ -35,11 +47,12 @@ public class InsightDTO implements Serializable{
 	private String products;
 	
 	private int addedUser;
-	private Date addedDate;
+	private String addedDate;
 	private int modifiedUser;
 	private Date modifiedDate;
 	
-	private Set<InsightProduct> productsSet;
+	
+	
 
 	public String getTitle() {
 		return title;
@@ -83,14 +96,7 @@ public class InsightDTO implements Serializable{
 		this.addedUser = addedUser;
 	}
 
-	public Date getAddedDate() {
-		return addedDate;
-	}
-
-	public void setAddedDate(Date addedDate) {
-		this.addedDate = addedDate;
-	}
-
+	
 	public int getModifiedUser() {
 		return modifiedUser;
 	}
@@ -123,14 +129,7 @@ public class InsightDTO implements Serializable{
 		this.productsSet = productsSet;
 	}
 
-	public Date getFoundDate() {
-		return foundDate;
-	}
-
-	public void setFoundDate(Date foundDate) {
-		this.foundDate = foundDate;
-	}
-
+	
 	public Integer getFoundCount() {
 		return foundCount;
 	}
@@ -202,6 +201,62 @@ public class InsightDTO implements Serializable{
 
 	public void setInsightApplicationID(Integer insightApplicationID) {
 		this.insightApplicationID = insightApplicationID;
+	}
+
+	public List<Project> getProjectsList() {
+		return projectsList;
+	}
+
+	public void setProjectsList(List<Project> projectsList) {
+		this.projectsList = projectsList;
+	}
+
+	public List<Tag> getTagList() {
+		return tagList;
+	}
+
+	public void setTagList(List<Tag> tagList) {
+		this.tagList = tagList;
+	}
+
+	public List<FoundVia> getFoundViaList() {
+		return foundViaList;
+	}
+
+	public void setFoundViaList(List<FoundVia> foundViaList) {
+		this.foundViaList = foundViaList;
+	}
+
+	public List<MainUserType> getMainUserTypeList() {
+		return mainUserTypeList;
+	}
+
+	public void setMainUserTypeList(List<MainUserType> mainUserTypeList) {
+		this.mainUserTypeList = mainUserTypeList;
+	}
+
+	public List<Geographies> getGeographiesList() {
+		return geographiesList;
+	}
+
+	public void setGeographiesList(List<Geographies> geographiesList) {
+		this.geographiesList = geographiesList;
+	}
+
+	public String getFoundDate() {
+		return foundDate;
+	}
+
+	public void setFoundDate(String foundDate) {
+		this.foundDate = foundDate;
+	}
+
+	public String getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(String addedDate) {
+		this.addedDate = addedDate;
 	}
 
 

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.InsightsConstants;
 import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
@@ -73,7 +74,7 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
     			 recentInsightsDto.setInsightName(insightDetail.getTitle());
     			 recentInsightsDto.setType(map.get(insightDetail.getType()).getInsightTypeName());
     			 recentInsightsDto.setProjects(new ArrayList<InsightProject>(insightDetail.getProjects()));
-    			 recentInsightsDto.setLastEdited(getDDMMMYYYY(insightDetail.getModifiedDate()));
+    			 recentInsightsDto.setLastEdited(CommonUtils.getDDMMMYYYY(insightDetail.getModifiedDate()));
     			 System.out.println("******************* date *********************"+insightDetail.getModifiedDate().toString());
     			 lstRecentInsightsDto.add(recentInsightsDto);
     		 }
@@ -183,19 +184,6 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
 	
 	
 	
-	public String getDDMMMYYYY(Date date){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-		//Date date = null;
-		String dateStr = null;
-		//try {
-			//date = sdf.parse(dateString);
-			dateStr = sdf.format(date);
-		/*} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		return dateStr;
-	}
 	
 	
 	  

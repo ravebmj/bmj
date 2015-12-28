@@ -3,6 +3,7 @@ package org.bmj.userinsights.insight.Dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.entity.InsightDetail;
 import org.bmj.userinsights.insight.dto.InsightDTO;
@@ -29,13 +30,13 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				 insightDto.setDescription(insightDetail.getDescription());
 				 insightDto.setProducts(null);
 				 insightDto.setProductsList(null);
-				 insightDto.setAddedDate(insightDetail.getAddedDate());
-				 insightDto.setFoundDate(insightDetail.getFoundDate());
+				 insightDto.setAddedDate(CommonUtils.getDDMMMYYYY(insightDetail.getAddedDate()));
+				 insightDto.setFoundDate(CommonUtils.getDDMMMYYYY(insightDetail.getFoundDate()));
 				 insightDto.setFoundCount(insightDetail.getFoundCount());
 				 insightDto.setInsightServerity(insightDetail.getInsightServerity());
 				 insightDto.setProductsSet(insightDetail.getProducts());
-				 
-				 
+				 insightDto.setProjects(insightDetail.getProjects());
+				 insightDto.setTags(insightDetail.getTags());
 				 
 				 
 				 insightDtoList.add(insightDto);

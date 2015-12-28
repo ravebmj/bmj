@@ -68,3 +68,33 @@ function quickAdvanceSearch(){
 }
 
 
+function projectSearch(id){
+	var form; // dynamic form that will call controller
+    form = $('<form />', {
+        action: "dashBoardSearch.html",
+        method: 'post',
+        style: 'display: none;'
+    });
+    //Form parameter insightId
+    //$("<input>").attr("type", "hidden").attr("name", "searchType").val(searchType).appendTo(form);//searchType value appended to form
+    $("<input>").attr("type", "hidden").attr("name", "id").val(id).appendTo(form);//id append to form
+    
+    //Form submit
+    form.appendTo('body').submit();
+}
+
+function addnewinsight(){
+	var form; // dynamic form that will call controller
+    form = $('<form />', {
+        action: "createinsight.html",
+        method: 'post',
+        style: 'display: none;'
+    });
+    //Form parameter insightId
+   // $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
+    
+    //Form submit
+    form.appendTo('body').submit();
+}
+
+

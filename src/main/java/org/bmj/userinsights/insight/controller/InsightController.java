@@ -13,7 +13,11 @@ import org.bmj.userinsights.dashboard.dto.DashboardDTO;
 import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
 import org.bmj.userinsights.dto.TagEditorJson;
 import org.bmj.userinsights.entity.InsightProduct;
+import org.bmj.userinsights.entity.InsightProject;
+import org.bmj.userinsights.entity.InsightTag;
 import org.bmj.userinsights.entity.Product;
+import org.bmj.userinsights.entity.Project;
+import org.bmj.userinsights.entity.Tag;
 import org.bmj.userinsights.insight.dto.InsightDTO;
 import org.bmj.userinsights.insight.service.IInsightService;
 import org.json.JSONArray;
@@ -54,6 +58,8 @@ public class InsightController {
 		System.out.println("in the view Insight");
 		
 		List<Product> lstProduct = new ArrayList<Product>();
+		List<Project>  lstProject = new ArrayList<Project>();
+		List<Tag>     lstTag = new ArrayList<Tag>();
 		
 		ModelAndView mav = new ModelAndView("viewInsight");			
 		List<InsightDTO> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
@@ -70,7 +76,23 @@ public class InsightController {
 			}
 		}
 		
+		List<InsightProject> lstInsightProjects = new ArrayList<InsightProject>(insightDTO.getProjects());		
+		if(lstInsightProjects!=null && lstInsightProjects.size()>0){
+			for(InsightProject insightProject : lstInsightProjects){
+				lstProject.add(insightProject.getProject());
+			}
+		}
+		
+		List<InsightTag> lstInsightTag = new ArrayList<InsightTag>(insightDTO.getTags());		
+		if(lstInsightTag!=null && lstInsightTag.size()>0){
+			for(InsightTag insightTag : lstInsightTag){
+				lstTag.add(insightTag.getTag());
+			}
+		}
+		
 		insightDTO.setProductsList(lstProduct);
+		insightDTO.setProjectsList(lstProject);
+		insightDTO.setTagList(lstTag);
 		mav.addObject("mInsightDTO", insightDTO);
 		
        return mav;

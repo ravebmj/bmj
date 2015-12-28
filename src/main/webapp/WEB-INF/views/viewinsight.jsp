@@ -21,21 +21,14 @@
 	<fieldset><legend>Projects</legend>
 <div class="view">
 
-<%-- <c:if test="${not empty mInsightDTO.productsList}">
+ <c:if test="${not empty mInsightDTO.projectsList}">
        
-    <c:forEach items="${mInsightDTO.productsList}" var="currQue" varStatus="queIndex">
+    <c:forEach items="${mInsightDTO.projectsList}" var="currQue" varStatus="queIndex">
     	<a href="#" onclick="${currQue.id}">${currQue.name}</a>,  
     </c:forEach>
-  </c:if> --%>
+  </c:if> 
 
-<a href="#">Project 1</a>,  
-<a href="#">Project 2</a>,  
-<a href="#">Project 3</a>, 
- <a href="#">Project 4</a>. 
- <a href="#"> Project 5</a>,  
- <a href="#">Project 6</a>, 
- <a href="#"> Project 7</a>,
-  <a href="#">Project 8</a>
+
 
 
 
@@ -58,7 +51,16 @@
 	<div class="margintop10">Severity: ${mInsightDTO.insightServerity} <img src="images/flag-green.png">(Green)</div>
 	<div class="margintop20">Applies to: Doctors Geographical Location: UK</div></fieldset>
 	<fieldset><legend>Tags</legend>
-		<div style="">Tag1, Tag2, Tag3, Tag4</div></fieldset>
+		<div style="">
+		
+	 <c:if test="${not empty mInsightDTO.tagList}">       
+	    <c:forEach items="${mInsightDTO.tagList}" var="currQue" varStatus="queIndex">
+	    	<a href="#" onclick="${currQue.id}">${currQue.name}</a>,  
+	    </c:forEach>
+  	</c:if>
+		
+		
+		</div></fieldset>
 			<fieldset><legend>Attachments</legend>
 		<div style=""><span class="dtable"><img src="images/Form_img.png"><br/>IMG_2522.JPG </span><span class="dtable"><img src="images/Form_img.png"><br/>IMG_2522.JPG </span><span class="dtable"><img src="images/Form_img.png"><br/>IMG_2522.JPG </span><span class="dtable"><img src="images/Form_img.png"><br/>IMG_2522.JPG </span></div></fieldset>
 		<fieldset><legend>URL'S</legend>

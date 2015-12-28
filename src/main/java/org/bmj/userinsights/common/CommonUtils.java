@@ -134,5 +134,21 @@ public class CommonUtils {
         bub.getConvertUtils().register(new BigDecimalConverter(new BigDecimal("0")), java.math.BigDecimal.class);
         bub.copyProperties(dest, orig);
     }
+    
+    
+    public static String getDDMMMYYYY(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+		//Date date = null;
+		String dateStr = null;
+		//try {
+			//date = sdf.parse(dateString);
+			dateStr = sdf.format(date);
+		/*} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		return dateStr;
+	}
+	
 
 }
