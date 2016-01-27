@@ -12,11 +12,8 @@ public class CodeListName implements Serializable{
 	private String codelistName;
 	private String codelistDescription;
 	private Integer applicationId;
-	private Integer codelistStatus;
 	private Integer addedUser;
 	private Date addedDate;
-	private Integer modifiedUser;
-	private Date modifiedDate;
 	/**
 	 * @return the codelistId
 	 */
@@ -65,18 +62,7 @@ public class CodeListName implements Serializable{
 	public void setApplicationId(Integer applicationId) {
 		this.applicationId = applicationId;
 	}
-	/**
-	 * @return the codelistStatus
-	 */
-	public Integer getCodelistStatus() {
-		return codelistStatus;
-	}
-	/**
-	 * @param codelistStatus the codelistStatus to set
-	 */
-	public void setCodelistStatus(Integer codelistStatus) {
-		this.codelistStatus = codelistStatus;
-	}
+	
 	/**
 	 * @return the addedUser
 	 */
@@ -101,30 +87,6 @@ public class CodeListName implements Serializable{
 	public void setAddedDate(Date addedDate) {
 		this.addedDate = addedDate;
 	}
-	/**
-	 * @return the modifiedUser
-	 */
-	public Integer getModifiedUser() {
-		return modifiedUser;
-	}
-	/**
-	 * @param modifiedUser the modifiedUser to set
-	 */
-	public void setModifiedUser(Integer modifiedUser) {
-		this.modifiedUser = modifiedUser;
-	}
-	/**
-	 * @return the modifiedDate
-	 */
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-	/**
-	 * @param modifiedDate the modifiedDate to set
-	 */
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-	
+		
 
 }

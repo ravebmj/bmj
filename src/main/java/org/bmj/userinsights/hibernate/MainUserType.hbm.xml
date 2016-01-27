@@ -13,8 +13,10 @@
 		<property name="applicationId" column="main_user_type_application_id"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
-		<property name="modifiedUser" column="modified_user"/>
-		<property name="modifiedDate" column="modified_date" type="date"/>
 	</class>
-	
+	<query name="MainUserType.getAll">
+       <![CDATA[
+		  	from MainUserType 
+        ]]>
+    </query>
 </hibernate-mapping>

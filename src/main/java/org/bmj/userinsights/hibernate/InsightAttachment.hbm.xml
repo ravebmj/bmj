@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="org.bmj.userinsights.entity.InsightAttachment" table="insight_attachment">
+		<id name="id" column="attachment_id">
+			<generator class="native"/>
+		</id>		
+		<property name="fileName" column="attachment_file_name"/>
+		<property name="fileId" column="attachment_file_id"/>
+		<property name="fileSize" column="attachment_file_size"/>
+		<property name="filePath" column="attachment_uploaded_path"/>
+		<property name="fileExternalPath" column="attachment_ext_storage_path"/>
+		<property name="fileExternalAdditionalInfo" column="attachment_ext_addtnl_info"/>
+		<property name="addedUser" column="added_user"/>
+		<property name="addedDate" column="added_date" type="date"/>
+		<many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="join">
+            <column name="insight_id" not-null="true" />
+        </many-to-one>
+	</class>
+	<query name="InsightAttachment.getAttachmentsForInsight">
+       <![CDATA[
+		  	select ia from InsightAttachment ia 
+		  	where ia.insightDetail.id = :id
+        ]]>
+    </query>  
+	<query name="InsightAttachment.getAttachmentsForId">
+       <![CDATA[
+		  	select ia from InsightAttachment ia 
+		  	where ia.id = :id
+        ]]>
+    </query>	
+</hibernate-mapping>

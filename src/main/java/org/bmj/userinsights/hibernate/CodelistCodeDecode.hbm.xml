@@ -12,11 +12,8 @@
 		<property name="codeDecodeDecode" column="code_decode_decode"/>
 		<property name="codelistId" column="code_decode_codelist_id"/>
 		<property name="displayOrder" column="display_order"/>
-		<property name="codelistStatus" column="codelist_status"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date"/>
-		<property name="modifiedUser" column="modified_user"/>
-		<property name="modifiedDate" column="modified_date"/>
 	</class>
  	<query name="CodelistCodeDecode.getCodelistCodeDecode">
         <![CDATA[
@@ -30,5 +27,14 @@
     	AND ind.type = cn.id AND ccd.codelistId = cn.id
         ]]>
     </query>
+    
+    <query name="CodelistCodeDecode.codelistCodeDecode">
+       <![CDATA[
+		  	select ccd from CodelistCodeDecode ccd ,CodeListName cl
+            WHERE ccd.codelistId = cl.codelistId
+            AND cl.applicationId =:applicationId  AND cl.codelistName =:name
+        ]]>
+    </query>
+    
     
 </hibernate-mapping>

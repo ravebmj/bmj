@@ -17,5 +17,14 @@
 		<property name="adminuserApplicationId" column="admin_user_application_id"/>
 		<property name="addedDate" column="added_date"/>
 	</class>
- 	
+<query name="AdminUser.getPasswordForUserName">
+		<![CDATA[
+			from AdminUser where adminuserName=:username
+		]]>
+	</query>
+	<query name="AdminUser.getAdminUser">
+		<![CDATA[
+			from AdminUser where adminuserId=:addedUserId
+		]]>
+	</query>
 </hibernate-mapping>

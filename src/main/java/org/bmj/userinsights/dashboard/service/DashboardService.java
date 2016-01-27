@@ -2,39 +2,40 @@ package org.bmj.userinsights.dashboard.service;
 
 import java.util.List;
 
-import org.bmj.userinsights.dao.IUserInsightDao;
 import org.bmj.userinsights.dashboard.Dao.IDashboardDao;
-import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
-import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
-import org.bmj.userinsights.dashboard.dto.StrongestEvidenceInsightDTO;
+import org.bmj.userinsights.dto.InsightDetailsDto;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
-
+/**
+ * This service class having dao reference injected by spring container
+ * throught that reference call the dao methods and get the details
+ */
 public class DashboardService implements IDashboardService{
 
-	@Override
-	public List<InsightTypesDto> getSearchAllInsightsDtoLst()
-			throws Exception {
-		
-		return getDaoRef().getSearchAllInsightsDtoLst();
-	}
 	
+	/**
+	 * Get list of recently added insights by added date
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
-	public List<RecentInsightsDto> getRecentlyAddedInsights() throws Exception {
-		
+	public List<InsightDetailsDto> getRecentlyAddedInsights() throws Exception {		
 		return getDaoRef().getRecentlyAddedInsights();
 	}
 
-	
+	/**
+	 * Get list of strongest evidence insights by users count
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
-	public List<StrongestEvidenceInsightDTO> getStrongestEvidenceInsights()
-			throws Exception {
-		
+	public List<InsightDetailsDto> getStrongestEvidenceInsights()
+			throws Exception {		
 		return getDaoRef().getStrongestEvidenceInsights();
 	}
 	
 	/**
-	 * get reference to GCSDao implementation.
+	 * get reference to DashboardDao implementation.
 	 * @return
 	 * @throws Exception
 	 */

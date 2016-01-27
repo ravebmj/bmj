@@ -2,7 +2,13 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<!-- Defines a resolver implementation bean. It gets applied to all requests handled by that DispatcherServlet -->
+	<!-- This entry to handle file uploaded by client -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	
 	<!-- Message properties setting start -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -10,12 +16,14 @@
     	<property name="defaultEncoding" value="UTF-8"/>
 	</bean>	
 	<!-- Message properties setting end -->
-	
-	<context:component-scan base-package="org.bmj.userinsights.controller" />
+	<context:component-scan base-package="org.bmj.userinsights.upload.controller" />
 	<context:component-scan base-package="org.bmj.userinsights.search.controller" />
 	<context:component-scan base-package="org.bmj.userinsights.dashboard.controller" />	
 	<context:component-scan base-package="org.bmj.userinsights.login.controller" />
 	<context:component-scan base-package="org.bmj.userinsights.insight.controller" />
+	<context:component-scan base-package="org.bmj.userinsights.search.Dao" />
+	<context:component-scan base-package="org.bmj.userinsights.search.service" />
+	<context:component-scan base-package="org.bmj.userinsights.cache.controller"/>
 	<!-- Tiles changes start here  -->
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -40,7 +48,7 @@
 	<!-- class to set application context - end-->	
 	
   <bean id="userInsightServiceRef" class="org.bmj.userinsights.service.UserInsightService"></bean>
-  <bean id="refUserInsightDao" class="org.bmj.userinsights.dao.UserInsightDaoImpl">
+  <bean id="refUserInsightDao" class="org.bmj.userinsights.dao.UserInsightDao">
 		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
 	</bean> 
  	
@@ -90,6 +98,8 @@
 	</bean>
 	
 	<bean id="insightServiceRef" class="org.bmj.userinsights.insight.service.InsightService"></bean>
+	<bean id="awsBucketServiceRef" class="org.bmj.userinsights.awsbucket.service.AwsBucketService"></bean>
+	<bean id="cacheServiceRef" class="org.bmj.userinsights.cache.service.CacheService"></bean>
 	
 	<bean id="refInsightDao" class="org.bmj.userinsights.insight.Dao.InsightDao">
 		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
@@ -116,6 +126,9 @@
 	</bean>
 	
 	
+	<bean id="commonUtils" class="org.bmj.userinsights.common.CommonUtils">
+		<property name="insightService" ref="insightServiceRef"> </property>
+	</bean>
 	
 	<bean id="searchServiceRef" class="org.bmj.userinsights.search.service.SearchService"></bean>
 	
@@ -142,8 +155,31 @@
 			</props>
 		</property>
 	</bean>
+	<tx:annotation-driven/>
 	
-	
+	<bean id="loginServiceRef" class="org.bmj.userinsights.login.service.LoginService"></bean>
+	<bean id="refLoginDaoImpl"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		scope="request">
+		<property name="transactionManager">
+			<ref local="transactionManager"/>
+		</property>
+		<property name="target">
+			<ref local="refLoginDao"/>
+		</property> 
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="fetch*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+<bean id="refLoginDao" class="org.bmj.userinsights.login.dao.LoginDao">
+		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
+	</bean>
 	
 	
 	
@@ -170,7 +206,7 @@
 		<property name="url" value="jdbc:sqlserver://rank-srv-24:1433;databaseName=GCS_DEV" />
 		<property name="username" value="test_user_solar2_sp8" />
 		<property name="password" value="testsolar2@" />
-	</bean>  --> 
+	</bean>   
 	 <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
@@ -178,8 +214,16 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean> 
-	
-	
+	 <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+		<property name="url" value="jdbc:mysql://localhost:3306/bmjdb" />
+		<property name="username" value="root" />
+		<property name="password" value="toor" />
+	</bean> 	-->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/dsBmjDB"/>
+    </bean>
 	
 	<bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -199,6 +243,7 @@
 				<value>org/bmj/userinsights/hibernate/Geographies.hbm.xml</value>
 				
 				<value>org/bmj/userinsights/hibernate/InsightWebLink.hbm.xml</value>
+				<value>org/bmj/userinsights/hibernate/InsightAttachment.hbm.xml</value>				
 				<value>org/bmj/userinsights/hibernate/InsightTag.hbm.xml</value>
 				<value>org/bmj/userinsights/hibernate/InsightProject.hbm.xml</value>
 				
@@ -214,13 +259,15 @@
 				
 			</list>
 		</property>
+		
 
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> 
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.default_schema">insight</prop>
+				<prop key="hibernate.default_schema">bmjdb</prop>
+				<prop key="current_session_context_class">thread</prop>
 			</props>
 		</property>
 	</bean>	
@@ -238,4 +285,13 @@
 	<mvc:resources mapping="/resources/images/**" location="/resources/images/" /> 
 	<mvc:annotation-driven />
 	<!-- resource like css/js/images access setting end -->
+	
+	<!-- Cache... -->
+	<cache:annotation-driven />
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cacheManager-ref="ehcache" />
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:configLocation="classpath:ehcache.xml" p:shared='true' />
 	</beans>

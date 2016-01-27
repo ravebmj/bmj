@@ -13,8 +13,22 @@
 		<property name="applicationId" column="product_application_id"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
-		<property name="modifiedUser" column="modified_user"/>
-		<property name="modifiedDate" column="modified_date" type="date"/>
 	</class>
-	
+	<query name="Product.getAutoCompleteList">
+       <![CDATA[
+		  	from Product where name like :pname
+        ]]>
+    </query>
+	<query name="Product.getAllProducts">
+       <![CDATA[
+		  	from Product p
+        ]]>
+    </query>	    	
+    
+	<query name="Product.getInsightForProduct">
+       <![CDATA[
+		  	select p from InsightProduct p 
+		  	where p.product.id = :productId
+        ]]>
+    </query>
 </hibernate-mapping>

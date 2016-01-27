@@ -10,56 +10,68 @@
 		</id>
 		<property name="title" column="insight_title"/>
 		<property name="description" column="insight_description"/>
+		<property name="plainDescription" column="insight_plain_description"/>
 		<property name="type" column="insight_type"/>
 		
-		<property name="foundDate" column="insight_found_date"/>
+		<property name="foundDate" column="insight_found_date"  type="date"/>
 		<property name="foundCount" column="insight_found_count"/>
 		<property name="insightServerity" column="insight_severity"/>
-		
+		<property name="companyName" column="company_name"/>
 		<property name="insightApplicationID" column="insight_application_id"/>
 		
 		<property name="addedUser" column="added_user"/>
-		<property name="addedDate" column="added_date" type="date"/>
+		<property name="addedDate" column="added_date" />
 		
 		<property name="modifiedUser" column="modified_user"/>
-		<property name="modifiedDate" column="modified_date" type="date"/>
-		<set name="products" table="insight_product" inverse="true" lazy="false" fetch="join" >
+		<property name="modifiedDate" column="modified_date" />
+		<set name="products" table="insight_product" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightProduct" />
         </set>
-        <set name="projects" table="insight_project" inverse="true" lazy="false" fetch="join" >
+        <set name="projects" table="insight_project" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightProject" />
         </set>
-        <set name="tags" table="insight_tag" inverse="true" lazy="false" fetch="join" >
+        <set name="tags" table="insight_tag" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightTag" />
         </set>
-        <set name="foundVias" table="insight_found_via" inverse="true" lazy="false" fetch="join" >
+        <set name="foundVias" table="insight_found_via" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightFoundVia" />
         </set>
-        <set name="mainUserTypes" table="insight_main_user_type" inverse="true" lazy="false" fetch="join" >
+        <set name="mainUserTypes" table="insight_main_user_type" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightMainUserType" />
         </set>
-        <set name="geographies" table="insight_geographies" inverse="true" lazy="false" fetch="join" >
+        <set name="geographies" table="insight_geographies" inverse="true" lazy="false" fetch="join" cascade="all">
             <key>
                 <column name="insight_id" not-null="true" />
             </key>
             <one-to-many class="org.bmj.userinsights.entity.InsightGeographies" />
         </set>
-	
+	    <set name="weblinks" table="insight_weblink" inverse="true" lazy="false" fetch="join" cascade="all">
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightWeblink" />
+        </set>
+        <set name="attachments" table="insight_attachment" inverse="true" lazy="false" fetch="join" cascade="all">
+            <key>
+                <column name="insight_id" not-null="true" />
+            </key>
+            <one-to-many class="org.bmj.userinsights.entity.InsightAttachment" />
+        </set>
 	</class>
 	<query name="InsightDetail.getInsightDetailsById">
 	<![CDATA[
@@ -67,6 +79,22 @@
 		]]>
 	
 	</query>
-
+	<query name="InsightDetail.getAutoCompleteList">
+       <![CDATA[
+		  	from InsightDetail where title like :insightTitle
+        ]]>
+    </query>	
+    
+	<query name="InsightDetail.getAllInsight">
+       <![CDATA[
+		  	from InsightDetail 
+        ]]>
+    </query>
+    <query name="InsightDetail.getInsightsById">
+	<![CDATA[
+		from InsightDetail where id in (:insightIds)
+		]]>
+	
+	</query>    
 
 </hibernate-mapping>

@@ -5,9 +5,7 @@ import java.util.Date;
 
 public class InsightProduct  implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5255081806844517547L;
 	private Integer id;	
 	private InsightDetail insightDetail;

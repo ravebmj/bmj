@@ -5,8 +5,10 @@ import java.util.Date;
 
 public class InsightWeblink  implements Serializable{
 	
+	
+	private static final long serialVersionUID = 3107119055246544294L;
 	private Integer id;
-	private Integer insightId;
+	private InsightDetail insightDetail;
 	private String weblinkValue;
 	private Integer addedUser;
 	private Date addedDate;
@@ -27,18 +29,20 @@ public class InsightWeblink  implements Serializable{
 		this.id = id;
 	}
 
+	
+
 	/**
-	 * @return the insightId
+	 * @return the insightDetail
 	 */
-	public Integer getInsightId() {
-		return insightId;
+	public InsightDetail getInsightDetail() {
+		return insightDetail;
 	}
 
 	/**
-	 * @param insightId the insightId to set
+	 * @param insightDetail the insightDetail to set
 	 */
-	public void setInsightId(Integer insightId) {
-		this.insightId = insightId;
+	public void setInsightDetail(InsightDetail insightDetail) {
+		this.insightDetail = insightDetail;
 	}
 
 	/**

@@ -8,13 +8,13 @@
 		<id name="id" column="insight_geographies_id">
 			<generator class="native"/>
 		</id>		
-		<property name="insightGeographicValue" column="insight_geographies_other_value"/>
+		<property name="insightGeographicOtherValue" column="insight_geographies_other_value"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
 	    <many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="join">
             <column name="insight_id" not-null="true" />
         </many-to-one>
-         <many-to-one name="geographies" class="org.bmj.userinsights.entity.InsightGeographies" fetch="join">
+         <many-to-one name="geographies" class="org.bmj.userinsights.entity.Geographies" fetch="join">
             <column name="geographies_id" not-null="true" />
         </many-to-one>
 	</class>

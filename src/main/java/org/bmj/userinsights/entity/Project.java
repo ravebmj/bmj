@@ -11,8 +11,6 @@ public class Project  implements Serializable{
 	private Integer applicationId;
 	private Integer addedUser;
 	private Date addedDate;
-	private Integer modifiedUser;
-	private Date modifiedDate;
 	
 	public Project(){}
 
@@ -101,36 +99,5 @@ public class Project  implements Serializable{
 		this.addedDate = addedDate;
 	}
 
-	/**
-	 * @return the modifiedUser
-	 */
-	public Integer getModifiedUser() {
-		return modifiedUser;
-	}
-
-	/**
-	 * @param modifiedUser the modifiedUser to set
-	 */
-	public void setModifiedUser(Integer modifiedUser) {
-		this.modifiedUser = modifiedUser;
-	}
-
-	/**
-	 * @return the modifiedDate
-	 */
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	/**
-	 * @param modifiedDate the modifiedDate to set
-	 */
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	
-	
-	
 
 }

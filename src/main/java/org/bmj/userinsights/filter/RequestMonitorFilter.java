@@ -32,7 +32,6 @@ public class RequestMonitorFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse)response;
 		HttpSession session=req.getSession(false);
 		String pageRequested = req.getRequestURL().toString();
-		System.out.println(" Inside RequestMonitorFilter "+pageRequested);
 		isAuthenticationRequire = checkPageAuthentication(
 				isAuthenticationRequire, pageRequested);
 		if(isAuthenticationRequire){// Page require authentication.
@@ -71,6 +70,9 @@ public class RequestMonitorFilter implements Filter {
 		}
 		return isAuthenticationRequire;
 	}
+	
+	
+	
 
 	@Override
 	public void destroy() {

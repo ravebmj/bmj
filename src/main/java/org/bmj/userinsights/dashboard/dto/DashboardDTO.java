@@ -3,58 +3,42 @@ package org.bmj.userinsights.dashboard.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class DashboardDTO implements Serializable{
+import org.bmj.userinsights.dto.InsightDetailsDto;
+
+public class DashboardDto implements Serializable {
 
 
 	private static final long serialVersionUID = -8014402374004189946L;
 	
-	private String searchTxt;	
-	private String searchAllInsight;
-	private List<InsightTypesDto> insightTypesDtoLst;
-	private List<RecentInsightsDto> recentInsightsDtoLst;
-	private List<StrongestEvidenceInsightDTO> strongestEvidenceInsightDtoLst;
-
-	public String getSearchAllInsight() {
-		return searchAllInsight;
+	private List<InsightDetailsDto> recentInsightsLst;	// list conatins recently added insights
+	private List<InsightDetailsDto> strongestEvidenceInsightLst; // this list contains strongest evidence insights
+	
+	/**
+	 * @return the recentInsightsLst
+	 */
+	public List<InsightDetailsDto> getRecentInsightsLst() {
+		return recentInsightsLst;
 	}
-
-	public void setSearchAllInsight(String searchAllInsight) {
-		this.searchAllInsight = searchAllInsight;
+	/**
+	 * @param recentInsightsLst the recentInsightsLst to set
+	 */
+	public void setRecentInsightsLst(List<InsightDetailsDto> recentInsightsLst) {
+		this.recentInsightsLst = recentInsightsLst;
 	}
-
-	public String getSearchTxt() {
-		return searchTxt;
+	/**
+	 * @return the strongestEvidenceInsightLst
+	 */
+	public List<InsightDetailsDto> getStrongestEvidenceInsightLst() {
+		return strongestEvidenceInsightLst;
 	}
-
-	public void setSearchTxt(String searchTxt) {
-		this.searchTxt = searchTxt;
+	/**
+	 * @param strongestEvidenceInsightLst the strongestEvidenceInsightLst to set
+	 */
+	public void setStrongestEvidenceInsightLst(
+			List<InsightDetailsDto> strongestEvidenceInsightLst) {
+		this.strongestEvidenceInsightLst = strongestEvidenceInsightLst;
 	}
-
 	
 
-	public List<RecentInsightsDto> getRecentInsightsDtoLst() {
-		return recentInsightsDtoLst;
-	}
-
-	public void setRecentInsightsDtoLst(List<RecentInsightsDto> recentInsightsDtoLst) {
-		this.recentInsightsDtoLst = recentInsightsDtoLst;
-	}
-
-	public List<InsightTypesDto> getInsightTypesDtoLst() {
-		return insightTypesDtoLst;
-	}
-
-	public void setInsightTypesDtoLst(List<InsightTypesDto> insightTypesDtoLst) {
-		this.insightTypesDtoLst = insightTypesDtoLst;
-	}
-
-	public List<StrongestEvidenceInsightDTO> getStrongestEvidenceInsightDtoLst() {
-		return strongestEvidenceInsightDtoLst;
-	}
-
-	public void setStrongestEvidenceInsightDtoLst(
-			List<StrongestEvidenceInsightDTO> strongestEvidenceInsightDtoLst) {
-		this.strongestEvidenceInsightDtoLst = strongestEvidenceInsightDtoLst;
-	}
-
 }
+

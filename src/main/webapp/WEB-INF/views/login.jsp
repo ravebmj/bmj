@@ -1,6 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 Login Page
-<form:form method="POST" modelAttribute="loginDTO" action="loginSubmit.html">
+<form:form method="GET" modelAttribute="loginDTO" action="loginSubmit.html">
    <table>
     <tr>
         <td><form:label path="name">Name</form:label></td>

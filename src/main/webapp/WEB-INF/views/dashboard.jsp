@@ -1,159 +1,200 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.ResourceBundle"%>
 
-<script src="js/insight.js"></script> 	
+<script src="resources/js/Tooltip.js"></script>
+<body id="headbg">
+	<div id="wrapper" class="dashboard">
+		<div id="main-container fl">
+			<div class="row-header fl">
+				<div class="viewall-top fr">
+					<a id="recentviewallid" class="recentViewAllClass"><spring:message
+							code="dashboard_viewall_all" /></a>
+				</div>
+				<div class="header-title">
+					<spring:message code="dashboard_viewall_title" />
+				</div>
+			</div>
+			<div class="row-start fl">
+				<div class="table-title font18 fl">
+					<spring:message code="dashboard_viewall_insight" />
+				</div>
+			</div>
+			<div class="row-head-p  fl">
+				<div class="table-title font18 fl">
+					<spring:message code="dashboard_viewall_project" />
+				</div>
+			</div>
+			<div class="row-head-t  fl">
+				<div class="table-title font18 fl">
+					<spring:message code="dashboard_viewall_type" />
+				</div>
+			</div>
+			<div class="row-head  fl">
+				<div class="table-title font18 fr">
+					<spring:message code="dashboard_viewall_lastedited" />
+				</div>
+			</div>
+			<c:choose>
+				<c:when test="${not empty dashboardDto.recentInsightsLst}">
+					<c:forEach items="${dashboardDto.recentInsightsLst}" var="currQue"
+						varStatus="queIndex">
+						<div class="row-full fl">
+							<div class="row-start-1  fl">
+								<div class="table-title-row fl"
+									onMouseOver="sshow('closediv${currQue.id}title')"
+									onMouseOut="hhide('closediv${currQue.id}title')">
+									<div id="${currQue.id}" class="clsShowTwoLines insightTitle">
+										<span data-tooltip title="${currQue.escpedTitle}"
+											class="cursor"><a>${currQue.escpedTitle}</a></span>
+									</div>
+								</div>
+							</div>
+							<div class="row-p  fl">
+								<div class="table-row fl"
+									onMouseOver="sshow('closediv${currQue.id}project')"
+									onMouseOut="hhide('closediv${currQue.id}project')">
+									<c:choose>
+										<c:when test="${not empty currQue.insightProjectsDto}">
+											<div class="clsShowTwoLines recentouterdivclass">
+												<span> <c:forEach
+														items="${currQue.insightProjectsDto}" var="currPro"
+														varStatus="proIndex">
+														<a id="${currPro.project.id}" class="insightProjectClass">${currPro.project.name}
+														</a>
+														<c:if test="${!proIndex.last }">,</c:if>
+													</c:forEach>
+												</span>
+											</div>
+											<div id="closediv${currQue.id}project" style="display: none;"
+												class="closediv">
+												<span class="fr"><span class="hiddentext fl">
+														<c:forEach items="${currQue.insightProjectsDto}"
+															var="currPro" varStatus="proIndex">
+															<a id="${currPro.project.id}" class="insightProjectClass">${currPro.project.name}
+															</a>
+															<br />
+														</c:forEach>
+												</span></span>
+											</div>
+										</c:when>
+										<c:otherwise>
+		              &nbsp;
+		             </c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+							<div class="row-t  fl">
+								<div class="table-row-grey fl">
+									<c:out value="${currQue.insightTypeName}" />
+								</div>
+							</div>
+							<div class="row  fr">
+								<div class="table-row-end font15 fr">
+									<c:out value="${currQue.lastEditedDate}" />
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<div class="norecordsfound">
+						<spring:message code="dashboard_viewall_norecord" />
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<div id="main-container fl">
+			<div class="row-header fl">
+				<div class="viewall_bottom fr">
+					<a id="evidviewallid" class="evidViewAllClass"><spring:message
+							code="dashboard_strgevi_all" /></a>
+				</div>
+				<div class="header-title">
+					<spring:message code="dashboard_strgevi_title" />
+				</div>
+			</div>
+			<div class="row-start fl">
+				<div class="table-title font18 fl">
+					<spring:message code="dashboard_strgevi_insight" />
+				</div>
+			</div>
+			<div class="row-head-middle  fl">
+				<div class="table-title font18 fl">
+					<spring:message code="dashboard_strgevi_project" />
+				</div>
+			</div>
+			<div class="row-head-end  fl">
+				<div class="table-title font18 fr">
+					<spring:message code="dashboard_strgevi_users" />
+				</div>
+			</div>
+			<c:choose>
+				<c:when test="${not empty dashboardDto.strongestEvidenceInsightLst}">
+					<c:forEach items="${dashboardDto.strongestEvidenceInsightLst}"
+						var="evidQue" varStatus="queIndex">
+						<div class="row-full fl">
+							<div class="row-start-1 fl">
+								<div class="table-title-row fl"
+									onMouseOver="sshow('evid${evidQue.id}title')"
+									onMouseOut="hhide('evid${evidQue.id}title')">
+									<div id="${evidQue.id}" class="clsShowTwoLines insightTitle">
+										<span data-tooltip title="${evidQue.escpedTitle}"
+											class="cursor"><a>${evidQue.escpedTitle}</a></span>
+									</div>
+								</div>
+							</div>
+							<div class="row-p-middle  fl">
+								<div class="table-row fl"
+									onMouseOver="sshow('evid${evidQue.id}project')"
+									onMouseOut="hhide('evid${evidQue.id}project')">
+									<c:choose>
+										<c:when test="${not empty evidQue.insightProjectsDto}">
+											<div class="clsShowTwoLines evidouterdivclass">
+												<span> <c:forEach
+														items="${evidQue.insightProjectsDto}" var="evidPro"
+														varStatus="proIndex">
+														<a id="${evidPro.project.id}" class="insightProjectClass">${evidPro.project.name}</a>
+														<c:if test="${!proIndex.last }">,</c:if>
+													</c:forEach>
+												</span>
+											</div>
+											<div id="evid${evidQue.id}project" style="display: none;"
+												class="closediv">
+												<span class="fr"><span class="hiddentext fl">
+														<c:forEach items="${evidQue.insightProjectsDto}"
+															var="evidPro" varStatus="proIndex">
+															<a id="${evidPro.project.id}" class="insightProjectClass">${evidPro.project.name}</a>
+															</br>
+														</c:forEach>
+												</span></span>
+											</div>
 
-
-
-<div id="wrapper">
-	<div id="main-container fl">
-	
-			<div class="header-title">Recently added insights</div>
-		
-    <table>
-   
-    <tr>
-    	
-        <th><div class="row-start fl">
-			<div class="table-title fl">Insight</div>
-		</div></th>
-        <th><div class="row  fl">
-			<div class="table-title fl">Project</div>
-		</div></th>
-        <th><div class="row  fl">
-			<div class="table-title fl">Type</div>
-		</div></th> 
-         <th><div class="row  fl">
-			<div class="table-title fl">Last Edited</div>
-		</div></th>         
-    </tr>
-      <c:if test="${not empty dashboardDto.recentInsightsDtoLst}">
-       
-    <c:forEach items="${dashboardDto.recentInsightsDtoLst}" var="currQue" varStatus="queIndex">
-        
-	        <tr>	       			       		
-	            <td>
-	              <div class="row-start-1 fl">
-					<div class="table-title-row fl">
-	               <a  href="#" onclick="viewInsight(${currQue.insightId})"> <c:out value="${currQue.insightName}"/></a><br/>
-	              	</div>
-	              </div>  
-	            </td>
-	            <td>  
-	                <div class="row  fl"> 
-	                <div class="table-row fl">
-	                 <c:if test="${not empty currQue.projects}">       
-    					<c:forEach items="${currQue.projects}" var="currPro" varStatus="proIndex">     	
-	               <a  href="#" onclick="projectSearch(${currPro.project.id})">  <c:out value="${currPro.project.name}"/>,</a><br/>
-	               </c:forEach>
-	               </c:if>
-	                </div>
-	                </div>
-	             </td>
-	             <td> 
-	               <div class="row  fl">
-					<div class="table-row-grey fl">         	
-	                <c:out value="${currQue.type}"/><br/>
-	                </div>
-	                </div>
-	             </td>
-	             <td> 
-	               <div class="row  fl">
-					<div class="table-row-end fl">         	
-	                <c:out value="${currQue.lastEdited}"/><br/>
-	                </div>
-	                </div>
-	             </td>
-	            
-	        </tr>
-       		
-    </c:forEach>
-   	 </c:if>
-   	 
-    </table>
-    <div class="viewall-top fr"><a href="#" onclick="projectSearch('recent')">view all</a></div>
-   </div>
-   
-   
-   <div id="main-container fl">	
-   
-   
-   
-   
-   <div class="header-title">Strongest evidence against insights</div>
-		
-    <table>
-   
-    <tr>
-    	
-        <th><div class="row-start fl">
-			<div class="table-title fl">Insight</div>
-		</div></th>
-        <th><div class="row  fl">
-			<div class="table-title fl">Project</div>
-		</div></th>
-        <th><div class="row  fl">
-			<div class="table-title fl">&nbsp;</div>
-		</div></th> 
-         <th><div class="row  fl">
-			<div class="table-title fl">Users</div>
-		</div></th>         
-    </tr>
-      <c:if test="${not empty dashboardDto.strongestEvidenceInsightDtoLst}">
-       
-    <c:forEach items="${dashboardDto.strongestEvidenceInsightDtoLst}" var="evidQue" varStatus="queIndex">
-        
-	        <tr>	       			       		
-	            <td>
-	              <div class="row-start-1 fl">
-					<div class="table-title-row fl">
-	               <a  href="#" onclick="viewInsight(${evidQue.insightId})"> <c:out value="${evidQue.insightName}"/></a><br/>
-	              	</div>
-	              </div>  
-	            </td>
-	            <td>  
-	                <div class="row  fl"> 
-	                <div class="table-row fl">
-	                
-	                 <c:if test="${not empty evidQue.projects}">       
-    					<c:forEach items="${evidQue.projects}" var="evidPro" varStatus="proIndex">     	
-	              			 <a  href="#" onclick="projectSearch(${evidPro.project.id})">  <c:out value="${evidPro.project.name}"/>,</a><br/>
-	               		</c:forEach>
-	               </c:if>
-	               
-	               
-	                </div>
-	                </div>
-	             </td>
-	             <td> 
-	               <div class="row  fl">
-					<div class="table-row-grey fl">         	
-	                <c:out value=" "/><br/>
-	                </div>
-	                </div>
-	             </td>
-	             <td> 
-	               <div class="row  fl">
-					<div class="table-row-end fl">         	
-	                <c:out value="${evidQue.foundCount} Users"/><br/>
-	                </div>
-	                </div>
-	             </td>
-	            
-	        </tr>
-       		
-    </c:forEach>
-   	 </c:if>
-   	 
-    </table>
-    <div class="viewall-top fr"><a href="#" onclick="projectSearch('evidence')">view all</a></div>
-   
-   
-   
+										</c:when>
+										<c:otherwise>
+		         &nbsp;
+		         </c:otherwise>
+									</c:choose>
+								</div>
+							</div>
+							<div class="row  fr">
+								<div class="table-row-end fr">
+									<c:out value="${evidQue.foundCount}" />
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<div class="norecordsfound">
+						<spring:message code="dashboard_strgevi_norecord" />
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
 	</div>
-   
-   </div> 
-
+</body>
 

@@ -5,14 +5,12 @@ import java.util.Date;
 
 public class InsightFoundVia  implements Serializable{
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 6542883351175376287L;
 	private Integer id;
 	private InsightDetail insightDetail;
 	private FoundVia foundVia;;
-	private String foundViaValue;
+	private String foundViaOtherValue;
 	private Integer addedUser;
 	private Date addedDate;
 	
@@ -61,17 +59,17 @@ public class InsightFoundVia  implements Serializable{
 	}
 
 	/**
-	 * @return the foundViaValue
+	 * @return the foundViaOtherValue
 	 */
-	public String getFoundViaValue() {
-		return foundViaValue;
+	public String getFoundViaOtherValue() {
+		return foundViaOtherValue;
 	}
 
 	/**
-	 * @param foundViaValue the foundViaValue to set
+	 * @param foundViaOtherValue the foundViaOtherValue to set
 	 */
-	public void setFoundViaValue(String foundViaValue) {
-		this.foundViaValue = foundViaValue;
+	public void setFoundViaOtherValue(String foundViaOtherValue) {
+		this.foundViaOtherValue = foundViaOtherValue;
 	}
 
 	/**
@@ -102,7 +100,6 @@ public class InsightFoundVia  implements Serializable{
 		this.addedDate = addedDate;
 	}
 
-	
 	
 	
 

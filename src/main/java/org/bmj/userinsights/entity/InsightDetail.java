@@ -2,17 +2,17 @@ package org.bmj.userinsights.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class InsightDetail  implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5119035759859846280L;
 	private Integer id;
 	private String title;
 	private String description;
+	private String plainDescription;
 	private Integer type;
 	private Date foundDate;
 	private Integer foundCount;
@@ -22,12 +22,15 @@ public class InsightDetail  implements Serializable{
 	private Date addedDate;
 	private Integer modifiedUser;
 	private Date modifiedDate;
-	private Set<InsightProduct> products;
-	private Set<InsightProject> projects;
-	private Set<InsightTag> tags;
-	private Set<InsightFoundVia> foundVias;
-	private Set<InsightMainUserType> mainUserTypes;
-	private Set<InsightGeographies> geographies;
+	private String companyName;
+	private Set<InsightProduct> products = new HashSet<>();
+	private Set<InsightProject> projects= new HashSet<>();
+	private Set<InsightTag> tags= new HashSet<>();
+	private Set<InsightFoundVia> foundVias= new HashSet<>();
+	private Set<InsightMainUserType> mainUserTypes= new HashSet<>();
+	private Set<InsightGeographies> geographies= new HashSet<>();
+	private Set<InsightWeblink> weblinks= new HashSet<>();
+	private Set<InsightAttachment> attachments= new HashSet<>();
 	
 	
 	public InsightDetail(){}
@@ -284,7 +287,62 @@ public class InsightDetail  implements Serializable{
 		this.geographies = geographies;
 	}
 
-	
+	/**
+	 * @return the weblinks
+	 */
+	public Set<InsightWeblink> getWeblinks() {
+		return weblinks;
+	}
+
+	/**
+	 * @param weblinks the weblinks to set
+	 */
+	public void setWeblinks(Set<InsightWeblink> weblinks) {
+		this.weblinks = weblinks;
+	}
+
+	/**
+	 * @return the attachments
+	 */
+	public Set<InsightAttachment> getAttachments() {
+		return attachments;
+	}
+
+	/**
+	 * @param attachments the attachments to set
+	 */
+	public void setAttachments(Set<InsightAttachment> attachments) {
+		this.attachments = attachments;
+	}
+
+	/**
+	 * @return the companyName
+	 */
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	/**
+	 * @param companyName the companyName to set
+	 */
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	/**
+	 * @return the plainDescription
+	 */
+	public String getPlainDescription() {
+		return plainDescription;
+	}
+
+	/**
+	 * @param plainDescription the plainDescription to set
+	 */
+	public void setPlainDescription(String plainDescription) {
+		this.plainDescription = plainDescription;
+	}
+
 	
 	
 	

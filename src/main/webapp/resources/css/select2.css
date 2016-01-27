@@ -10,6 +10,7 @@ Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
     *display: inline;
     vertical-align: middle;
 }
+.tag-control .select2-container {margin:0 0 15px 10px}
 
 .select2-container,
 .select2-drop,
@@ -32,7 +33,7 @@ Version: 3.5.2 Timestamp: Sat Nov  1 14:43:36 EDT 2014
     overflow: hidden;
     position: relative;
 
-    border: 1px solid #aaa;
+     border: 1px solid #d0d0d0;
     white-space: nowrap;
     line-height: 26px;
     color: #444;
@@ -143,10 +144,11 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
     position: absolute;
     z-index: 9999;
     top: 100%;
-
+    margin:0 0 0 10px;
+    width: 737px!important;
     background: #fff;
     color: #000;
-    border: 1px solid #aaa;
+    border: 1px solid #d0d0d0;
     border-top: 0;
 
     border-radius: 0 0 4px 4px;
@@ -486,13 +488,14 @@ disabled look for disabled choices in the results dropdown
 /* multiselect */
 
 .select2-container-multi .select2-choices {
+	width:730px;
     height: auto !important;
     height: 1%;
-    margin: 0;
+    margin: 0 0 0 10px;
     padding: 0 5px 0 0;
     position: relative;
 
-    border: 1px solid #aaa;
+    border: 1px solid #d0d0d0;
     cursor: text;
     overflow: hidden;
 
@@ -559,12 +562,12 @@ html[dir="rtl"] .select2-container-multi .select2-choices li
 }
 
 .select2-container-multi .select2-choices .select2-search-choice {
-    padding: 3px 5px 3px 18px;
+    padding: 3px 18px 6px 18px;
     margin: 3px 0 3px 5px;
     position: relative;
 
     line-height: 13px;
-    color: #333;
+    color: #fff;
     cursor: default;
     border: 1px solid #aaaaaa;
 
@@ -581,12 +584,9 @@ html[dir="rtl"] .select2-container-multi .select2-choices li
           -ms-user-select: none;
               user-select: none;
 
-    background-color: #e4e4e4;
+    background-color: #919499;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#f4f4f4', GradientType=0);
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eee));
-    background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
-    background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
-    background-image: linear-gradient(to bottom, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+   
 }
 html[dir="rtl"] .select2-container-multi .select2-choices .select2-search-choice
 {
@@ -618,7 +618,7 @@ html[dir="rtl"] .select2-search-choice-close {
 }
 
 .select2-container-multi .select2-search-choice-close {
-    left: 3px;
+    /*left: 3px;*/
 }
 
 html[dir="rtl"] .select2-container-multi .select2-search-choice-close {

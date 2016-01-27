@@ -2,14 +2,21 @@ package org.bmj.userinsights.dashboard.service;
 
 import java.util.List;
 
-import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
-import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
-import org.bmj.userinsights.dashboard.dto.StrongestEvidenceInsightDTO;
-
+import org.bmj.userinsights.dto.InsightDetailsDto;
+/**
+ * This interface having the abstract method which service class can give the implementation
+ */
 public interface IDashboardService {
-	public List<InsightTypesDto> getSearchAllInsightsDtoLst() throws Exception;
-
-	public List<RecentInsightsDto> getRecentlyAddedInsights() throws Exception;
-	
-	public List<StrongestEvidenceInsightDTO> getStrongestEvidenceInsights() throws Exception;
+	/**
+	 * Get list of recently added insights by added date
+	 * @return
+	 * @throws Exception
+	 */
+	public List<InsightDetailsDto> getRecentlyAddedInsights() throws Exception;
+	/**
+	 * Get list of strongest evidence insights by users count
+	 * @return
+	 * @throws Exception
+	 */
+	public List<InsightDetailsDto> getStrongestEvidenceInsights() throws Exception;
 }

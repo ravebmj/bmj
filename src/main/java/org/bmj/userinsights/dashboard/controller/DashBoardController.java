@@ -1,124 +1,106 @@
 package org.bmj.userinsights.dashboard.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.InsightsConstants;
 import org.bmj.userinsights.common.dto.SelectValuesDto;
-import org.bmj.userinsights.dashboard.dto.DashboardDTO;
-import org.bmj.userinsights.dashboard.dto.DateCriteriaDto;
-import org.bmj.userinsights.dashboard.dto.InsightTypesDto;
-import org.bmj.userinsights.dashboard.dto.RecentInsightsDto;
-import org.bmj.userinsights.dashboard.dto.SeveritiesDto;
-import org.bmj.userinsights.dashboard.dto.StrongestEvidenceInsightDTO;
+import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dashboard.service.IDashboardService;
-import org.bmj.userinsights.search.dto.SearchCriteria;
-import org.bmj.userinsights.service.IUserInsightService;
+import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.search.dto.SearchCriteriaDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-@SessionAttributes("searchCriteria")
+/** 
+ *This class is used for dashboard related actions except the quick search and advance search
+ */
+@SessionAttributes({"searchCriteria","dashboardDto"})
 @Controller
-public class DashBoardController {
-	
-	
-	@Autowired
-	MessageSource messageSource;
-	
-	@Autowired
-	private IUserInsightService userInsightService;
-	
-	@Autowired
-	private IDashboardService dashboardService;
+public class DashBoardController {	
 	
 	private static final  Logger log = Logger.getLogger(DashBoardController.class);
+		
+	@Autowired
+	private IDashboardService dashboardService; // inject the dashboard service
+	ResourceBundle messagesProperties= ResourceBundle.getBundle("userinsights_messages");// get the resource bundle object
 	
+	/**
+	 * This method redirect the request from home to dashboard page
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/home")  
     public String showHome() throws Exception {  
-		
-		System.out.println("++++4444+++++ "+messageSource.getMessage("welcomemessage", null, "Default",null));		
-		//System.out.println(userInsightService.getPerson("1"));
-		//System.out.println(" ****4444***** "+userInsightService.getPerson("2"));
+		log.info("entered in to showHome method in DashBoardController");
         return "redirect:dashboard.html";  
     }  
 	
-	
-    @RequestMapping("/dashboard")  
-    public ModelAndView showDashboard() {
-    	List<InsightTypesDto> lstInsightTypesDto = null;
-    	List<SeveritiesDto> lstSeveritiesDto = null;
-    	List<DateCriteriaDto> lstDateCriteriaDto = null;
-    	List<RecentInsightsDto> lstRecentInsightsDto = null;
-    	List<StrongestEvidenceInsightDTO> lstSrongestEvidenceInsightDTO = null;
-    	System.out.println("in the showDashboard");    	
-    	DashboardDTO dashboardDto = new DashboardDTO();
-    	ModelAndView mav = new ModelAndView("dashboard");    	
-    	SearchCriteria searchCriteria=null;
+	/**
+	 * This method will display all the data which are present on dashboard
+	 * page.
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/dashboard")
+	public ModelAndView showDashboard(HttpServletRequest request) {
+		log.info("Entered in to showdashboard method in DashBoardController");
+		List<SelectValuesDto> lstInsightTypesDto = null;
+		List<SelectValuesDto> lstSeveritiesDto = null;		
+		List<SelectValuesDto> lstDateCriteriaDto = null;
+		List<InsightDetailsDto> lstRecentInsightsDto = null;
+		List<InsightDetailsDto> lstSrongestEvidenceInsightDTO = null;
+		DashboardDto dashboardDto = new DashboardDto();
+		ModelAndView mav = new ModelAndView("dashboard");
+		SearchCriteriaDto searchCriteriaDto = new SearchCriteriaDto();
 		try {
-			lstInsightTypesDto = getInsightTypesCodeListDecodedNames(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);// populate the possible values for the insight types dropdown in Advanced Search section
-			lstSeveritiesDto = getSeveritiesCodeListDecodedNames(InsightsConstants.SEVERITY_CODE_LIST_NAME,InsightsConstants.APPLICATION_ID);
-			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();			
+			// populate the possible values for the insight types dropdown in
+			// Advanced Search section			
+			lstInsightTypesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,
+					InsightsConstants.APPLICATION_ID);
+			// populate the possible values for the severity dropdown in
+			// Advanced Search section
+			lstSeveritiesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.SEVERITY_CODE_LIST_NAME,
+					InsightsConstants.APPLICATION_ID);
+			// populate the possible values for the Date Range options dropdown
+			// in Advanced Search section
+			lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();
+			//This map is using from CommonUtils to get the insight type name by passing insight type id
+			CommonUtils.setCodeListInsightMap(CommonUtils.getCodeListMap(
+					InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,
+					InsightsConstants.APPLICATION_ID));
+			// get all recently added insights based on Added date
 			lstRecentInsightsDto = dashboardService.getRecentlyAddedInsights();
-			lstSrongestEvidenceInsightDTO = dashboardService.getStrongestEvidenceInsights();
-			
-			searchCriteria = userInsightService.getSearchCriteriaDto(lstInsightTypesDto,lstSeveritiesDto,lstDateCriteriaDto);
-			
+			// get all strongest evidence insight based on users count
+			lstSrongestEvidenceInsightDTO = dashboardService
+					.getStrongestEvidenceInsights();
+
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			CommonUtils.errorLoggging(log, e,
+					messagesProperties.getString("dashboard_error"));
+
 		}
-    	
-    	dashboardDto.setInsightTypesDtoLst(lstInsightTypesDto);
-    	dashboardDto.setRecentInsightsDtoLst(lstRecentInsightsDto);
-    	dashboardDto.setStrongestEvidenceInsightDtoLst(lstSrongestEvidenceInsightDTO);
-    	
-        mav.addObject("dashboardDto", dashboardDto);  
-        mav.addObject("searchCriteria", searchCriteria);
-    	
-    	
-        return mav;  
-    } 
+
+		searchCriteriaDto.setLstInsightTypesDto(lstInsightTypesDto);
+		searchCriteriaDto.setLstSeveritiesDto(lstSeveritiesDto);
+		searchCriteriaDto.setLstDateCriteriaDto(lstDateCriteriaDto);
+		dashboardDto.setRecentInsightsLst(lstRecentInsightsDto);
+		dashboardDto
+				.setStrongestEvidenceInsightLst(lstSrongestEvidenceInsightDTO);
+
+		mav.addObject("dashboardDto", dashboardDto);
+		mav.addObject("searchCriteria", searchCriteriaDto);
+		log.info("End of the showdashboard method in DashBoardController");
+
+		return mav;
+	}
     
-    
-    private List<InsightTypesDto> getInsightTypesCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
-    	List<SelectValuesDto> decodedNamesDtoLst = userInsightService.getSelectValuesDtoLst(codelistName,applicationId);
-    	List<InsightTypesDto> lstInsighsTypes = new ArrayList<InsightTypesDto>();
-    	if(decodedNamesDtoLst!=null && decodedNamesDtoLst.size()>0){
-    		for(SelectValuesDto decodedObj:decodedNamesDtoLst){
-    			InsightTypesDto insightTypesDto = new InsightTypesDto();    			
-    			insightTypesDto.setInsightTypeId(decodedObj.getCodeDecodedCode());
-    			insightTypesDto.setInsightTypeName(decodedObj.getCodeDecodedName());
-    			lstInsighsTypes.add(insightTypesDto);
-    		}
-    	}
-    	
-    	
-    	return lstInsighsTypes;
-    	
-    }
-    
-    private List<SeveritiesDto> getSeveritiesCodeListDecodedNames(String codelistName,String applicationId) throws Exception{
-    	List<SelectValuesDto> decodedNamesDtoLst = userInsightService.getSelectValuesDtoLst(codelistName,applicationId);
-    	List<SeveritiesDto> lstSeverities = new ArrayList<SeveritiesDto>();
-    	if(decodedNamesDtoLst!=null && decodedNamesDtoLst.size()>0){
-    		for(SelectValuesDto decodedObj:decodedNamesDtoLst){
-    			SeveritiesDto severitiesDto = new SeveritiesDto();
-    			severitiesDto.setServerityId(decodedObj.getCodeDecodedCode());
-    			severitiesDto.setServerityName(decodedObj.getCodeDecodedName());
-    			lstSeverities.add(severitiesDto);
-    		}
-    	}
-    	
-    	
-    	return lstSeverities;
-    	
-    }
    
 }

@@ -5,15 +5,27 @@
     
 <hibernate-mapping>
 	<class name="org.bmj.userinsights.entity.InsightWeblink" table="insight_weblink">
-		<id name="id" column="insight_weblink">
+		<id name="id" column="insight_weblink_id">
 			<generator class="native"/>
-		</id>
-		<property name="insightId" column="insightId"/>
+		</id>		
 		<property name="weblinkValue" column="weblinik_value"/>
 		<property name="addedUser" column="added_user"/>
 		<property name="addedDate" column="added_date" type="date"/>
-	
+		<many-to-one name="insightDetail" class="org.bmj.userinsights.entity.InsightDetail" fetch="join">
+            <column name="insight_id" not-null="true" />
+        </many-to-one>
 	</class>
-
+	<query name="InsightWeblink.getWeblinksForInsight">
+       <![CDATA[
+		  	select iwl from InsightWeblink iwl 
+		  	where iwl.insightDetail.id = :id
+        ]]>
+    </query>  
+	<query name="InsightWeblink.getWeblinkForId">
+       <![CDATA[
+		  	select iwl from InsightWeblink iwl 
+		  	where iwl.id = :id
+        ]]>
+    </query>	
 	
 </hibernate-mapping>

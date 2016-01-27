@@ -10,9 +10,7 @@ public class Geographies  implements Serializable{
 	private String description;
 	private Integer applicationId;
 	private Date addedDate;
-	private Date modifiedDate;
 	private Integer addedUser;
-	private Integer modifiedUser;
 	
 	public Geographies(){}
 
@@ -87,20 +85,6 @@ public class Geographies  implements Serializable{
 	}
 
 	/**
-	 * @return the modifiedDate
-	 */
-	public Date getModifiedDate() {
-		return modifiedDate;
-	}
-
-	/**
-	 * @param modifiedDate the modifiedDate to set
-	 */
-	public void setModifiedDate(Date modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}
-
-	/**
 	 * @return the addedUser
 	 */
 	public Integer getAddedUser() {
@@ -114,22 +98,5 @@ public class Geographies  implements Serializable{
 		this.addedUser = addedUser;
 	}
 
-	/**
-	 * @return the modifiedUser
-	 */
-	public Integer getModifiedUser() {
-		return modifiedUser;
-	}
-
-	/**
-	 * @param modifiedUser the modifiedUser to set
-	 */
-	public void setModifiedUser(Integer modifiedUser) {
-		this.modifiedUser = modifiedUser;
-	}
-
 	
-	
-	
-
 }

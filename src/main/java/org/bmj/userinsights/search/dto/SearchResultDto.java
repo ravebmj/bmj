@@ -4,134 +4,150 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-import org.bmj.userinsights.entity.FoundVia;
-import org.bmj.userinsights.entity.Geographies;
-import org.bmj.userinsights.entity.InsightFoundVia;
-import org.bmj.userinsights.entity.InsightGeographies;
-import org.bmj.userinsights.entity.InsightMainUserType;
-import org.bmj.userinsights.entity.InsightProduct;
-import org.bmj.userinsights.entity.InsightProject;
-import org.bmj.userinsights.entity.InsightTag;
-import org.bmj.userinsights.entity.MainUserType;
-import org.bmj.userinsights.entity.Product;
-import org.bmj.userinsights.entity.Project;
-import org.bmj.userinsights.entity.Tag;
+import org.bmj.userinsights.dto.InsightDetailsDto;
 
 public class SearchResultDto implements Serializable {
 	
 	private static final long serialVersionUID = 2938054522288743030L;
-	//List of search Detail
-	List<SearchResultDetailDto> searchResult = new ArrayList<>();
+		
+	List<InsightDetailsDto> searchResult = new ArrayList<>();// this list contains all the search results related to the searchcriteria
 	
-	
-	private String title;
-	private String type;
-	private List<String> product;
-	private String projectName;
-	private int user;
-	private List<String> tags;
-	private Date lastEditedDate;
-	private String lastEdited;
-	
-	private List<SearchResultDetailDto> lstSearchResultDetailDto;
-	
-	
-	
-	/*private Integer insightId;
-	private String insightName;
-	private String projectName;
-	private String type;
-	private String lastEdited;
-	private List<InsightProject> projects;*/
-	
-
-	public List<SearchResultDetailDto> getSearchResult() {
+	// start - these properties are specific to reset quick search or advance search options
+	private String sortFlag; // use this flag on jsp to differentiate view all
+	private String keyword; //to hold quich search text box value
+	private String insightType; // to hold insight type
+	private String serverity; // to hold severity value
+	private String dateRangeOpt; // to hold datecriteria value
+	private String fromDate; // to hold from date
+	private String toDate; // to hold to date
+	private String serachType; // this property hold value and used for to differentiate which search button clicked.
+	private String weightageSortFlag;
+	// end - these properties are specific to reset quick search or advance search options
+	/**
+	 * @return the searchResult
+	 */
+	public List<InsightDetailsDto> getSearchResult() {
 		return searchResult;
 	}
-
-	public void setSearchResult(List<SearchResultDetailDto> searchResult) {
+	/**
+	 * @param searchResult the searchResult to set
+	 */
+	public void setSearchResult(List<InsightDetailsDto> searchResult) {
 		this.searchResult = searchResult;
 	}
-
+	
+	/**
+	 * @return the sortFlag
+	 */
+	public String getSortFlag() {
+		return sortFlag;
+	}
+	/**
+	 * @param sortFlag the sortFlag to set
+	 */
+	public void setSortFlag(String sortFlag) {
+		this.sortFlag = sortFlag;
+	}
+	
+	/**
+	 * @return the keyword
+	 */
+	public String getKeyword() {
+		return keyword;
+	}
+	/**
+	 * @param keyword the keyword to set
+	 */
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	/**
+	 * @return the insightType
+	 */
+	public String getInsightType() {
+		return insightType;
+	}
+	/**
+	 * @param insightType the insightType to set
+	 */
+	public void setInsightType(String insightType) {
+		this.insightType = insightType;
+	}
+	/**
+	 * @return the serverity
+	 */
+	public String getServerity() {
+		return serverity;
+	}
+	/**
+	 * @param serverity the serverity to set
+	 */
+	public void setServerity(String serverity) {
+		this.serverity = serverity;
+	}
+	/**
+	 * @return the dateRangeOpt
+	 */
+	public String getDateRangeOpt() {
+		return dateRangeOpt;
+	}
+	/**
+	 * @param dateRangeOpt the dateRangeOpt to set
+	 */
+	public void setDateRangeOpt(String dateRangeOpt) {
+		this.dateRangeOpt = dateRangeOpt;
+	}
+	/**
+	 * @return the fromDate
+	 */
+	public String getFromDate() {
+		return fromDate;
+	}
+	/**
+	 * @param fromDate the fromDate to set
+	 */
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	/**
+	 * @return the toDate
+	 */
+	public String getToDate() {
+		return toDate;
+	}
+	/**
+	 * @param toDate the toDate to set
+	 */
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
+	/**
+	 * @return the serachType
+	 */
+	public String getSerachType() {
+		return serachType;
+	}
+	/**
+	 * @param serachType the serachType to set
+	 */
+	public void setSerachType(String serachType) {
+		this.serachType = serachType;
+	}
+	/**
+	 * @return the weightageSortFlag
+	 */
+	public String getWeightageSortFlag() {
+		return weightageSortFlag;
+	}
+	/**
+	 * @param weightageSortFlag the weightageSortFlag to set
+	 */
+	public void setWeightageSortFlag(String weightageSortFlag) {
+		this.weightageSortFlag = weightageSortFlag;
+	}
+	
 	
 
-	public String getProjectName() {
-		return projectName;
-	}
-
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public List<String> getProduct() {
-		return product;
-	}
-
-	public void setProduct(List<String> product) {
-		this.product = product;
-	}
-
-	public int getUser() {
-		return user;
-	}
-
-	public void setUser(int user) {
-		this.user = user;
-	}
-
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-
-	public Date getLastEditedDate() {
-		return lastEditedDate;
-	}
-
-	public void setLastEditedDate(Date lastEditedDate) {
-		this.lastEditedDate = lastEditedDate;
-	}
-
-	public String getLastEdited() {
-		return lastEdited;
-	}
-
-	public void setLastEdited(String lastEdited) {
-		this.lastEdited = lastEdited;
-	}
-
-	public List<SearchResultDetailDto> getLstSearchResultDetailDto() {
-		return lstSearchResultDetailDto;
-	}
-
-	public void setLstSearchResultDetailDto(
-			List<SearchResultDetailDto> lstSearchResultDetailDto) {
-		this.lstSearchResultDetailDto = lstSearchResultDetailDto;
-	}
-
 	
-	
-	
-
 }

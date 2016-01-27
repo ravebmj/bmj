@@ -12,22 +12,25 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
+/**
+ * This class handle token encryption
+ * and decryption
+ */
 public class TokenEncriptOrDecriptUtility {
 	
 	
 	/**
 	 * This method is decrypting the token
-	 * @param url
+	 * @param passPharse
 	 * @return
 	 * @throws Exception
 	 */
 	public static String decryptToken (String token,String passPharse) throws Exception
 	{
-		ResourceBundle messagesProperties= MessageBundle.getResourceBundle();
+		ResourceBundle messagesProperties= ResourceBundle.getBundle("userinsights_messages");
         byte[] encryptedToken = Base64.decodeBase64(token);
 
 		SecretKeySpec secretKeySpec = tokenKeySpec(messagesProperties,passPharse);
-                
         Cipher cipher = Cipher.getInstance(messagesProperties.getString(InsightsConstants.SECRET_KEY));
         cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
@@ -55,15 +58,14 @@ public class TokenEncriptOrDecriptUtility {
 	
 	/**
 	 * Method to generate the encrypted token.
-	 * @param mscNo
+	 * @param passPharse
 	 * @return
 	 * @throws Exception
 	 */
 	public static String encryptToken (String token,String passPharse) throws Exception
 	{
-		ResourceBundle messagesProperties= MessageBundle.getResourceBundle();
+		ResourceBundle messagesProperties= ResourceBundle.getBundle("userinsights_messages");
 		SecretKeySpec secretKeySpec = tokenKeySpec(messagesProperties,passPharse);
-
         Cipher cipher = Cipher.getInstance(messagesProperties.getString(InsightsConstants.SECRET_KEY));
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 

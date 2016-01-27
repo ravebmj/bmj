@@ -8,7 +8,7 @@ public class InsightGeographies  implements Serializable{
 	private Integer id;
 	private InsightDetail insightDetail;
 	private Geographies geographies;
-	private String insightGeographicValue;
+	private String insightGeographicOtherValue;
 	private Integer addedUser;
 	private Date addedDate;
 
@@ -57,17 +57,17 @@ public class InsightGeographies  implements Serializable{
 	}
 
 	/**
-	 * @return the insightGeographicValue
+	 * @return the insightGeographicOtherValue
 	 */
-	public String getInsightGeographicValue() {
-		return insightGeographicValue;
+	public String getInsightGeographicOtherValue() {
+		return insightGeographicOtherValue;
 	}
 
 	/**
-	 * @param insightGeographicValue the insightGeographicValue to set
+	 * @param insightGeographicOtherValue the insightGeographicOtherValue to set
 	 */
-	public void setInsightGeographicValue(String insightGeographicValue) {
-		this.insightGeographicValue = insightGeographicValue;
+	public void setInsightGeographicOtherValue(String insightGeographicOtherValue) {
+		this.insightGeographicOtherValue = insightGeographicOtherValue;
 	}
 
 	/**

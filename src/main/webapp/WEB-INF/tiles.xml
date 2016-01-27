@@ -3,14 +3,6 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="base.definition"  
-        template="/WEB-INF/views/layout.jsp">  
-        <put-attribute name="title" value="" />  
-        <put-attribute name="header" value="/WEB-INF/views/header.jsp" />       
-        <put-attribute name="menu" value="/WEB-INF/views/menu.jsp" />  
-        <put-attribute name="body" value="" />  
-        <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />  
-    </definition>
 	 <definition name="plain.definition"
 		template="/WEB-INF/views/plain.jsp">
         <put-attribute name="header" value="/WEB-INF/views/header.jsp" />
@@ -23,14 +15,20 @@
         <put-attribute name="searchheader" value="/WEB-INF/views/searchheader.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />          			          
-	</definition>      
+	</definition> 
+	<definition name="cache.definition" template="/WEB-INF/views/cache.jsp">
+		<put-attribute name="body" value="" />
+	</definition>    
+	<definition name="bodytemplate.definition" template="/WEB-INF/views/bodytemplate.jsp">
+		<put-attribute name="body" value="" />
+	</definition> 
 	<definition name="dashboard" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp" />
 		<put-attribute name="title" value="DashBoard" />
 	</definition>	   
 	<definition name="searchresults" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/searchresults.jsp" />
-		<put-attribute name="title" value="Searchr Results" />
+		<put-attribute name="title" value="Search Results" />
 	</definition>	
 	<definition name="createInsight" extends="plain.definition">
 		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
@@ -48,8 +46,18 @@
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
 		<put-attribute name="title" value="Login Page" />
 	</definition>	
-	<definition name="login1" extends="base.definition">
-		<put-attribute name="body" value="/WEB-INF/views/login1.jsp" />
-		<put-attribute name="title" value="Login1 Page" />
-	</definition>		
+	<definition name="CacheSuccessPage" extends="cache.definition">
+		<put-attribute name="body" value="/WEB-INF/views/CacheClearSuccess.jsp" />
+		<put-attribute name="title" value="Clear Cache Success" />
+	</definition>
+	<definition name="redirectSave"  extends="bodytemplate.definition">
+		<put-attribute name="body" value="/WEB-INF/views/redirectsave.jsp" />
+	</definition>	
+	<definition name="error.definition" template="/WEB-INF/views/errortemplate.jsp">
+		<put-attribute name="body" value="" />
+	</definition>
+
+<definition name="ErrorPage" extends="error.definition">
+		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
+	</definition>			
 </tiles-definitions>
