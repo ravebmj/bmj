@@ -1251,8 +1251,8 @@ input.gbqfif:focus{ outline-width: 0;}
 
 .dateinfo{color: #ff0000; position: absolute; margin-left: 572px; margin-top: -32px;}
 
-#error-message-foundwith{color:#ff0000;position:relative;margin:0px 0 4px 19px;font-size: 14px;font-weight:normal}
-
+#error-message-foundwith{color:#ff0000;position:absolute;margin:16px 0 4px 108px;font-size: 14px;font-weight:normal}
+#error-message-type{color:#ff0000;position:absolute;margin:16px 0 4px 89px;font-size: 14px;font-weight:normal}
 .fieldset_geoprahic{float:left;width: 100%;border:none!important;padding:15px 0 0 0}
 
 .alignright{text-align:right;}

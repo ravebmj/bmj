@@ -68,6 +68,39 @@ function saveEditInsightData(){
 	$("#error-message-editproduct").hide();
 	$("#error-message-editFoundWith").hide();
 	$("#error-message-editcompany").hide();
+	
+	var checkForUserInsight = true;
+	var checkForMarkerInsight = true;
+	var checkForCompetitorInsight = true;
+	var checkForBugInsight = true;
+	var insightType = $("#hidInsightType").val();
+	if(insightType ==1){
+		 checkForUserInsight = true;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}else if(insightType==2){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = true;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}else if(insightType==3){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = true;
+		 checkForBugInsight = false;
+	}else if(insightType==4){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = true;
+	}else{
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}
+
 	var submitFlag = true;	
 	var frm = $('#frmInsightEdit');
 	var nicInsightEditDesc = nicEditors.findEditor('idInsightEditDesc');
@@ -101,6 +134,7 @@ function saveEditInsightData(){
 	}
 	
 	  // For Project
+	   if(checkForUserInsight || checkForMarkerInsight){
     var projectDetail = $("#idInsigtEditProject").val();
     if(projectDetail.length>0){
     if(projectDetail.length >100){
@@ -110,7 +144,7 @@ function saveEditInsightData(){
 		showErrorMessage('#error-message-editproject',errmsgProjectPaternMismatch+"'");
 		submitFlag = false;
 	}
-    }
+    }}
     
   
  // For Product
@@ -125,6 +159,7 @@ function saveEditInsightData(){
 	}
     }
     
+    if(checkForUserInsight){
     // // Found with Users
     var foundWithUser = $("#idInsightEditfoundCnt").val();
     $("#error-message-editFoundWith").hide();
@@ -142,13 +177,15 @@ function saveEditInsightData(){
 	submitFlag = false;
 	showErrorMessage('#error-message-editFoundWith',errmsgFoundWithOnlyDigit);
 	}
-    }
+    }}
 	
+    if(checkForCompetitorInsight || checkForBugInsight){
+	//Company
 	 var companyName = $("#idInsigtEditCompany").val().trim();
 		 if(companyName.length >100){
 			showErrorMessage('#error-message-editcompany',errmsgCompanyMaxLimit);
 			submitFlag = false;
-		}
+		}}
 	if(submitFlag)
 {
 		
@@ -189,7 +226,7 @@ function saveEditInsightData(){
  */
 function populateInsightPopUp(editInsightDTO){
 	document.getElementById("idInsightEditTitle").value=editInsightDTO.title;
-
+	document.getElementById("hidInsightType").value=editInsightDTO.type;
 	document.getElementById("idInsightEditfoundCnt").value=editInsightDTO.foundCount;
 	
 	document.getElementById("idInsigtEditProject").value=editInsightDTO.strProjects;

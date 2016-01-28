@@ -11,8 +11,9 @@
 		<div id="main-container fl">
 			<div class="row-header fl">
 				<div class="viewall-top fr">
+				<c:if test="${not empty dashboardDto.recentInsightsLst}">
 					<a id="recentviewallid" class="recentViewAllClass"><spring:message
-							code="dashboard_viewall_all" /></a>
+							code="dashboard_viewall_all" /></a></c:if>
 				</div>
 				<div class="header-title">
 					<spring:message code="dashboard_viewall_title" />
@@ -110,8 +111,9 @@
 		<div id="main-container fl">
 			<div class="row-header fl">
 				<div class="viewall_bottom fr">
+				<c:if test="${not empty dashboardDto.strongestEvidenceInsightLst}">
 					<a id="evidviewallid" class="evidViewAllClass"><spring:message
-							code="dashboard_strgevi_all" /></a>
+							code="dashboard_strgevi_all" /></a></c:if>
 				</div>
 				<div class="header-title">
 					<spring:message code="dashboard_strgevi_title" />

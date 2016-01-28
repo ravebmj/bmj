@@ -127,8 +127,9 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 			
 		</div>
 		<div class="row-inside fl width240">
+		<div id="error-message-type" style="display: none" class="errormessage"></div>
 			<div class="form-title"><legend class="legend"><spring:message code="create_insight_type"/><span class="asterisk_red">*</span></legend>
-			<div id="error-message-type" style="display: none" class="errormessage"></div>
+			
 			<div class="input-control fl">
  				<form:select path="insightDetailsDto.type" class="select-input" onchange="showFieldForInsightPage(this.value)">
 				   <form:option value="0" label="--- Select ---"/>
@@ -142,8 +143,9 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 		
 		<div id="idDivfoundWith" style="display: none">
 				<div class="row-inside fl width255">
+				 <div id="error-message-foundwith" style="display: none"></div>
 				<div class="form-title"><legend class="legend"><spring:message code="create_insight_foundwith"/></legend></div>
-				<div id="error-message-foundwith" style="display: none"></div>
+				
 				<div class="input-control fl">
 					<form:input path="insightDetailsDto.foundCount" class="input-text-found" onkeypress="return onlyNumberKey(event,this.value)"/>
 					 <span><spring:message code="create_insight_foundwith_helptext"/></span>
@@ -431,8 +433,8 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 </fieldset>		
 			<div class="btn-panel">
 			<span>
-					<input type="button" value="<spring:message code="create_insight_button_saveandclose"/>" onclick="submitInsight('1');" class="save-btn"/>&nbsp; 
-					<input type="button" value="<spring:message code="create_insight_button_saveandadd"/>" onclick="submitInsight('2');" class="save-btn"/>
+					<input type="button" value="<spring:message code="create_insight_button_saveandclose"/>" onclick="submitInsight('1');" class="save-btn" id="submitButton"/>&nbsp; 
+					<input type="button" value="<spring:message code="create_insight_button_saveandadd"/>" onclick="submitInsight('2');" class="save-btn"  />
 					<input type="button" value="<spring:message code="create_insight_button_cancel"/>" onclick="cancelInsight();" class="save-btn"/>
 		    </span>
 			</div>		
@@ -445,6 +447,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 		<form:hidden path="idOtherMainUserType" id="idOtherMainUserType"/>
 		<form:hidden path="idOtherGeographies" id="idOtherGeographies"/>
 		<input type="hidden" name="insightId" id="insightId"/>
+		<input type="hidden" name="errorPlace" id="errorPlace" value=""/>
 		<input type="hidden" name="saveType" id="saveType"/>
 		<input type="hidden" name="attchmentSize" id="attchmentSize" value="${fn:length(mInsightDTO.attachmentDTO.lstInsightAttachmentDTO)}"/>
 		<input type="hidden" name="fromSave" id="fromSave" value=""/> 
@@ -531,6 +534,8 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 
 	<input type="hidden" id="hidEditInsightId" name="hidEditInsightId"/>
 	<input type="hidden" id="hidoldFoundCount" name="hidoldFoundCount"/>
+	<input type="hidden" id="hidInsightType" name="hidInsightType"/>
+	
 	
 	</form>
 </div>

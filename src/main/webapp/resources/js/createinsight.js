@@ -565,12 +565,21 @@ function validate(){
 	$("#error-message-foundVia").hide();
 	$("#error-message-project").hide();
 	$("#error-message-product").hide();
-	$("#error-message-tag").hide();
 	$("#error-message-foundwith").hide();
+	
+	$("#error-message-tag").hide();
 	$("#error-message-mainUserType").hide();
 	$("#error-message-geographies").hide();
 	$("#error-message-attachment").hide();
 	$("#error-message-company").hide();
+	
+	
+	var checkForUserInsight = true;
+	var checkForMarkerInsight = true;
+	var checkForCompetitorInsight = true;
+	var checkForBugInsight = true;
+	
+	
 	
 	var submitFlag = true;	
    
@@ -613,6 +622,36 @@ function validate(){
 	submitFlag = false;
 	}
 
+	
+	if(insightType ==1){
+		 checkForUserInsight = true;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}else if(insightType==2){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = true;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}else if(insightType==3){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = true;
+		 checkForBugInsight = false;
+	}else if(insightType==4){
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = true;
+	}else{
+		 checkForUserInsight = false;
+		 checkForMarkerInsight = false;
+		 checkForCompetitorInsight = false;
+		 checkForBugInsight = false;
+	}
+	
+	
+	
 	//Found Date
 	var foundDate = $("#idInsightDate").val(); 
     var today = new Date();     
@@ -625,6 +664,8 @@ function validate(){
     }
 
   //Found Via
+    if(checkForUserInsight || checkForBugInsight )
+    {
     var foundVia = document.getElementById("idFoundVia").value;
     var toCheck = foundVia.indexOf("9");
     var foundViaFlag = true;
@@ -644,16 +685,17 @@ function validate(){
     	submitFlag = false;
         }
 		
-    }
+    }}
 
     // For Project
+    if(checkForUserInsight || checkForMarkerInsight){
     var projectDetail = $("#idProject").val();
     if(projectDetail.length>0){
     if(projectDetail.length >100){
     	showErrorMessage('#error-message-project',errmsgProjectMaxLimit);
     	submitFlag = false;
 	}
-    }
+    }}
  
   
  // For Product
@@ -674,6 +716,7 @@ function validate(){
 	}
     }
     // Found with Users
+    if(checkForUserInsight){
     var foundWithUser = $(".input-text-found").val();
     $("#error-message-foundwith").hide();
 	if(foundWithUser.length>0){
@@ -690,7 +733,7 @@ function validate(){
 	submitFlag = false;
 	showErrorMessage('#error-message-foundwith',errmsgFoundWithOnlyDigit);
 	}
-    }
+    }}
     
  
 
@@ -739,11 +782,41 @@ function validate(){
 	
 	
 	      //Company
+	 if(checkForCompetitorInsight || checkForBugInsight){
 	var company = $("#idCompany").val().trim();
 	 if(company.length >100){
 		showErrorMessage('#error-message-company',errmsgCompanyMaxLimit);
 		submitFlag = false;
 	}
+	 }
+	 
+	 if( ($('#error-message-title').is(':visible')) ||  ($('#error-message-description').is(':visible'))){
+		 $("#errorPlace").val('upper');
+	 }else if(($('#error-message-company').is(':visible'))||  ($('#error-message-type').is(':visible')) || ($('#error-message-foundVia').is(':visible'))
+			 || ($('#error-message-foundDate').is(':visible')) || ($('#error-message-project').is(':visible')) || ($('#error-message-product').is(':visible')) || ($('#error-message-foundwith').is(':visible')))
+	 {
+		 $("#errorPlace").val('middle');
+	 }else if(($('#error-message-tag').is(':visible')) || ($('#error-message-mainUserType').is(':visible')) || ($('#error-message-geographies').is(':visible'))
+			  || ($('#error-message-attachment').is(':visible'))){
+		 $("#errorPlace").val('lower');
+	 }
+	
+ 	
+ 	if($("#errorPlace").val().trim() == 'upper')
+ 	{ 
+ 	   $('html, body').animate({
+           scrollTop: $("#main-container").offset().top
+       }, 0);
+ 	}else if($("#errorPlace").val().trim() == 'lower'){
+ 		 $('html, body').animate({
+ 	           scrollTop: $("#submitButton").offset().top
+ 	       }, 0);
+ 	}else if($("#errorPlace").val().trim() == 'middle'){
+		 $('html, body').animate({
+	           scrollTop: $("#idDivfoundWith").offset().top
+	       }, 0);
+	}
+	 
 	return submitFlag;
 }
 /**
@@ -988,6 +1061,20 @@ $(window).resize(function() {
 
 function showFieldForInsightPage(insightType)
 {	
+	$("#error-message-title").hide();
+	$("#error-message-description").hide();
+	$("#error-message-type").hide();
+	$("#error-message-foundDate").hide();
+	$("#error-message-foundVia").hide();
+	$("#error-message-project").hide();
+	$("#error-message-product").hide();
+	$("#error-message-foundwith").hide();
+	
+	$("#error-message-tag").hide();
+	$("#error-message-mainUserType").hide();
+	$("#error-message-geographies").hide();
+	$("#error-message-attachment").hide();
+	$("#error-message-company").hide();
 	if(insightType == 1) // User 
 	{
 		document.getElementById("idDivProject").style.display = "inline";
