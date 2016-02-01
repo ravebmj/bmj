@@ -79,27 +79,35 @@ public class InsightController {
 		 */
 	@RequestMapping(value="/createinsight",method=RequestMethod.GET)  
 	public ModelAndView createInsight(HttpServletRequest request) throws Exception {
-		resetSessionData(request);
-		String fromSave=request.getParameter("fromSave");
-		InsightDto insightDTO=new InsightDto();
-		insightDTO.getInsightDetailsDto().setId(0);// New Insight
-		try{
-			if(fromSave!=null && fromSave.equalsIgnoreCase("true")){
-				insightDTO.setMsgSuccess("Insight has been saved successfully.");
+		log.info("in the createInsight insight page");
+		HttpSession session = request.getSession();		
+		if(session != null && session.getAttribute("BMJSessionToken")!=null){
+			resetSessionData(request);
+			String fromSave=request.getParameter("fromSave");
+			InsightDto insightDTO=new InsightDto();
+			insightDTO.getInsightDetailsDto().setId(0);// New Insight
+			try{
+				if(fromSave!=null && fromSave.equalsIgnoreCase("true")){
+					insightDTO.setMsgSuccess("Insight has been saved successfully.");
+				}
+				insightDTO.setLstFoundViaDto(insightService.getFoundViaDetails()); // Populate master list of "Found Via"
+				Collections.sort(insightDTO.getLstFoundViaDto());
+				insightDTO.setLstMainUserTypeDto(insightService.getMainUserTypeDetails()); // Populate master list of "Main User Type"
+				Collections.sort(insightDTO.getLstMainUserTypeDto());
+				insightDTO.setLstGeographiesDto(insightService.getGeographiesDetails()); // Populate master list of "Geographies"
+				Collections.sort(insightDTO.getLstGeographiesDto());
+				setOtherId(insightDTO);
+				setMasterData(insightDTO);
+				setWebLinkInSession(request, insightDTO);
+			}catch(Exception e){
+				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_create"));
 			}
-			insightDTO.setLstFoundViaDto(insightService.getFoundViaDetails()); // Populate master list of "Found Via"
-			Collections.sort(insightDTO.getLstFoundViaDto());
-			insightDTO.setLstMainUserTypeDto(insightService.getMainUserTypeDetails()); // Populate master list of "Main User Type"
-			Collections.sort(insightDTO.getLstMainUserTypeDto());
-			insightDTO.setLstGeographiesDto(insightService.getGeographiesDetails()); // Populate master list of "Geographies"
-			Collections.sort(insightDTO.getLstGeographiesDto());
-			setOtherId(insightDTO);
-			setMasterData(insightDTO);
-			setWebLinkInSession(request, insightDTO);
-		}catch(Exception e){
-			CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_create"));
+			return new ModelAndView("createInsight","mInsightDTO",insightDTO);
+		}else{
+			log.info("in the createInsight insight page if the BMJSessionToken is null");				
+			ModelAndView mav = new ModelAndView("redirectcreate");				
+			return mav;
 		}
-		return new ModelAndView("createInsight","mInsightDTO",insightDTO);
 	}
 	
 	 /**
@@ -134,6 +142,8 @@ public class InsightController {
 			
 			if(fromSave!=null && fromSave.equalsIgnoreCase("true")){
 				insightDTO.setMsgSuccess("Insight has been saved successfully.");
+			}else if(fromSave!=null && fromSave.equalsIgnoreCase("false")){
+				insightDTO.setMsgSuccess("Session got expired,insight details was not saved.");
 			}
 			mav.addObject("mInsightDTO", insightDTO);
 
@@ -171,24 +181,34 @@ public class InsightController {
 	 */
 	@RequestMapping(value="/editinsight",method=RequestMethod.GET)  
 	public ModelAndView editInsight(HttpServletRequest request) throws Exception {
-		resetSessionData(request);
-
-		String insightId=request.getParameter("insightId");
-		InsightDto insightDTO = null ;
-		try{
-		List<InsightDto> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
-	    insightDTO = insightDtoList.get(0);
-		setMasterData(insightDTO);
-		setDBDataForFields(insightDTO);
-		setOtherId(insightDTO);
-		setWebLinkInSession(request, insightDTO);
-		Collections.sort(insightDTO.getLstFoundViaDto());
-		Collections.sort(insightDTO.getLstMainUserTypeDto());
-		Collections.sort(insightDTO.getLstGeographiesDto());
-		}catch(Exception e){
-			CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_edit"));
+		log.info("in the edit insight method");
+		HttpSession session = request.getSession();		
+		if(session != null && session.getAttribute("BMJSessionToken")!=null){
+			resetSessionData(request);
+	
+			String insightId=request.getParameter("insightId");
+			InsightDto insightDTO = null ;
+			try{
+			List<InsightDto> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
+		    insightDTO = insightDtoList.get(0);
+			setMasterData(insightDTO);
+			setDBDataForFields(insightDTO);
+			setOtherId(insightDTO);
+			setWebLinkInSession(request, insightDTO);
+			Collections.sort(insightDTO.getLstFoundViaDto());
+			Collections.sort(insightDTO.getLstMainUserTypeDto());
+			Collections.sort(insightDTO.getLstGeographiesDto());
+			}catch(Exception e){
+				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_edit"));
+			}
+			return new ModelAndView("editInsight","mInsightDTO",insightDTO);
+		}else{
+			String insightId=request.getParameter("insightId");			
+			log.debug("in the edit insight page insightId "+insightId);
+			request.setAttribute("insightId",insightId);
+			ModelAndView mav = new ModelAndView("redirectEdit");	
+			return mav;
 		}
-		return new ModelAndView("editInsight","mInsightDTO",insightDTO);
 	}
 
 	/**
@@ -310,37 +330,52 @@ public class InsightController {
 	 */
 	@RequestMapping(value="/saveinsight",method=RequestMethod.GET)  
 	public ModelAndView saveInsight(@ModelAttribute("mInsightDTO") InsightDto insightDTO,HttpServletRequest request) throws Exception {
-		try{
-			String saveType=request.getParameter("saveType");
-			insightDTO.setUserId(getUserId(request));// TBD in dynamic way.
-			
-			insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(insightDTO.getInsightDetailsDto().getTitle()));
-			
-			if((insightDTO.getInsightDetailsDto().getType()==3 || insightDTO.getInsightDetailsDto().getType()==4) && null != insightDTO.getInsightDetailsDto().getCompanyName() && !"".equals(insightDTO.getInsightDetailsDto().getCompanyName().trim()) ){
-				insightDTO.getInsightDetailsDto().setCompanyName(insightDTO.getInsightDetailsDto().getCompanyName());
-			}else{
-				insightDTO.getInsightDetailsDto().setCompanyName("");
+		log.info("in the saveInsight insight page ");				
+		HttpSession session = request.getSession();
+		if(session != null  && session.getAttribute("BMJSessionToken")!=null ){		
+			try{
+				String saveType=request.getParameter("saveType");
+				insightDTO.setUserId(getUserId(request));// TBD in dynamic way.
+				
+				insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(insightDTO.getInsightDetailsDto().getTitle()));
+				
+				if((insightDTO.getInsightDetailsDto().getType()==3 || insightDTO.getInsightDetailsDto().getType()==4) && null != insightDTO.getInsightDetailsDto().getCompanyName() && !"".equals(insightDTO.getInsightDetailsDto().getCompanyName().trim()) ){
+					insightDTO.getInsightDetailsDto().setCompanyName(insightDTO.getInsightDetailsDto().getCompanyName());
+				}else{
+					insightDTO.getInsightDetailsDto().setCompanyName("");
+				}
+	
+				setModifiedProducts(insightDTO);		
+				setModifiedProjects(insightDTO);
+				setModifiedTags(insightDTO);
+				setModifiedFoundVia(insightDTO);
+				setModifiedMainUserType(insightDTO);
+				setModifiedGeographies(insightDTO);
+	
+				setAttachmentForNewInsight(insightDTO, request);
+				setWebLinks(insightDTO, request);
+	
+				Integer idInsight=insightService.saveInsightDetails(insightDTO);
+				request.setAttribute("insightId",idInsight.intValue()+"");
+				return new ModelAndView("redirectSave","saveType",saveType);
+	
+			}catch(Exception e){
+				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_save"));
+	
 			}
-
-			setModifiedProducts(insightDTO);		
-			setModifiedProjects(insightDTO);
-			setModifiedTags(insightDTO);
-			setModifiedFoundVia(insightDTO);
-			setModifiedMainUserType(insightDTO);
-			setModifiedGeographies(insightDTO);
-
-			setAttachmentForNewInsight(insightDTO, request);
-			setWebLinks(insightDTO, request);
-
-			Integer idInsight=insightService.saveInsightDetails(insightDTO);
-			request.setAttribute("insightId",idInsight.intValue()+"");
-			return new ModelAndView("redirectSave","saveType",saveType);
-
-		}catch(Exception e){
-			CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_save"));
-
+			return new ModelAndView("createInsight","mInsightDTO",insightDTO);
+		}else{
+			if(insightDTO!=null && insightDTO.getInsightDetailsDto()!=null && insightDTO.getInsightDetailsDto().getId()!=null && insightDTO.getInsightDetailsDto().getId()!=0){
+				Integer insightId=insightDTO.getInsightDetailsDto().getId();			
+				log.debug("in the saveInsight insight page insightId session expiry "+insightId+"");
+				request.setAttribute("insightId",insightId+"");
+				ModelAndView mav = new ModelAndView("redirectEdit");	
+				return mav;
+			}else{
+				ModelAndView mav = new ModelAndView("redirectcreate");				
+				return mav;
+			}
 		}
-		return new ModelAndView("createInsight","mInsightDTO",insightDTO);
 	}
 
 
@@ -355,48 +390,56 @@ public class InsightController {
 	@RequestMapping(value = "/saveEditInsightData", method = RequestMethod.GET)
 	public @ResponseBody String saveEditInsightData(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		log.info("in the saveEditInsightData insight page ");				
+		HttpSession session = request.getSession();
+		if(session != null  && session.getAttribute("BMJSessionToken")!=null ){		
 		String success="true";
-		try{
-		String title= request.getParameter("idInsightEditTitle");
-		String desc= request.getParameter("idInsightEditDesc");
-		String project= request.getParameter("idInsigtEditProject");
-		String oldProject= request.getParameter("idInsigtEditOldProject");
-		String product= request.getParameter("idInsigtEditProduct");
-		String oldProduct= request.getParameter("idInsigtEditOldProduct");
-		String foundCount= request.getParameter("idInsightEditfoundCnt");
-		String insightId= request.getParameter("idInsight");
-		String hidoldFoundCount= request.getParameter("oldFoundCount");
-		String companyName = request.getParameter("idInsigtEditCompany");
-		int inOldFoundCount=0;
-		
-		if(hidoldFoundCount!=null && !hidoldFoundCount.equals("")){
-			inOldFoundCount=new Integer(hidoldFoundCount).intValue();
+			try{
+			String title= request.getParameter("idInsightEditTitle");
+			String desc= request.getParameter("idInsightEditDesc");
+			String project= request.getParameter("idInsigtEditProject");
+			String oldProject= request.getParameter("idInsigtEditOldProject");
+			String product= request.getParameter("idInsigtEditProduct");
+			String oldProduct= request.getParameter("idInsigtEditOldProduct");
+			String foundCount= request.getParameter("idInsightEditfoundCnt");
+			String insightId= request.getParameter("idInsight");
+			String hidoldFoundCount= request.getParameter("oldFoundCount");
+			String companyName = request.getParameter("idInsigtEditCompany");
+			int inOldFoundCount=0;
+			
+			if(hidoldFoundCount!=null && !hidoldFoundCount.equals("")){
+				inOldFoundCount=new Integer(hidoldFoundCount).intValue();
+			}
+	
+			InsightDto insightDTO=new InsightDto();
+			insightDTO.setUserId(getUserId(request));
+			insightDTO.getInsightDetailsDto().setId(new Integer(insightId));
+			insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(title));
+			insightDTO.getInsightDetailsDto().setDescription(desc);
+			insightDTO.getInsightDetailsDto().setFoundCount(new Integer(foundCount));// Update new found count.
+			if(inOldFoundCount>0 && insightDTO.getInsightDetailsDto().getFoundCount()!=null){// Add Old found count to newly added found count.
+				insightDTO.getInsightDetailsDto().setFoundCount(insightDTO.getInsightDetailsDto().getFoundCount().intValue()+inOldFoundCount);
+			}
+	
+			insightDTO.setStrOldProducts(oldProduct);
+			insightDTO.setStrOldProjects(oldProject);
+			insightDTO.setStrProducts(product);
+			insightDTO.setStrProjects(project);
+			insightDTO.getInsightDetailsDto().setCompanyName(companyName);
+			setModifiedProducts(insightDTO);		
+			setModifiedProjects(insightDTO);
+	
+			insightService.saveInsightDetails(insightDTO);
+			}catch(Exception e)
+			{
+				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_saveandaddanother"));
+			}
+			return success;
+		}else{
+			String success="false";				
+			log.debug("in the saveEditInsightData session expiry ");				
+			return success;
 		}
-
-		InsightDto insightDTO=new InsightDto();
-		insightDTO.setUserId(getUserId(request));
-		insightDTO.getInsightDetailsDto().setId(new Integer(insightId));
-		insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(title));
-		insightDTO.getInsightDetailsDto().setDescription(desc);
-		insightDTO.getInsightDetailsDto().setFoundCount(new Integer(foundCount));// Update new found count.
-		if(inOldFoundCount>0 && insightDTO.getInsightDetailsDto().getFoundCount()!=null){// Add Old found count to newly added found count.
-			insightDTO.getInsightDetailsDto().setFoundCount(insightDTO.getInsightDetailsDto().getFoundCount().intValue()+inOldFoundCount);
-		}
-
-		insightDTO.setStrOldProducts(oldProduct);
-		insightDTO.setStrOldProjects(oldProject);
-		insightDTO.setStrProducts(product);
-		insightDTO.setStrProjects(project);
-		insightDTO.getInsightDetailsDto().setCompanyName(companyName);
-		setModifiedProducts(insightDTO);		
-		setModifiedProjects(insightDTO);
-
-		insightService.saveInsightDetails(insightDTO);
-		}catch(Exception e)
-		{
-			CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_saveandaddanother"));
-		}
-		return success;
 
 	}
 
@@ -1078,7 +1121,7 @@ public class InsightController {
 				if(insightWeblinkDTO.getWebLinkUIId()!=null && weblinkUIId!=null && insightWeblinkDTO.getWebLinkUIId().equals(weblinkUIId)){
 					insightWeblinkDTO.setFlgDelete(true);//Mark weblink as delete.
 					break;
-				}else if(insightWeblinkDTO.getId()!=null && weblinkId!=null && insightWeblinkDTO.getId().intValue()==new Integer(weblinkId).intValue() ){
+				}else if(insightWeblinkDTO.getId()!=null && weblinkId!=null && !weblinkId.equalsIgnoreCase("null") && insightWeblinkDTO.getId().intValue()==new Integer(weblinkId).intValue() ){
 					insightWeblinkDTO.setFlgDelete(true);//Mark weblink as delete.
 					break;
 				}
@@ -1290,5 +1333,10 @@ public class InsightController {
 		long tmp = Math.round(value);
 		return (double) tmp / factor;
 	}
+	
+	@ModelAttribute("mInsightDTO")
+	   public InsightDto populateInsightDto() {
+	       return new InsightDto(); // populates form for the first time if its null
+	   }
 
 }

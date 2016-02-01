@@ -1,9 +1,9 @@
 
 
 $(document).ready(function() {
+	
 	if(sessionExists =='false')
 	{
-		lightbox_open();
 		$("#actionPage").val('create');
 	}
 	var insightType = $(".select-input").val();
@@ -26,6 +26,12 @@ $(document).ready(function() {
 	$("#idInsightDate").val(today);
 	}
 
+	var foundWith  = document.getElementById("insightDetailsDto.foundCount").value;
+	if(foundWith==0)
+	{
+		document.getElementById("insightDetailsDto.foundCount").value="1";
+	}
+	
 	document.getElementById("idInsightDate").readOnly = true;
 	// ***********************************Tag Editor code for Product start***********************************
 	$('#idProduct').select2({
@@ -312,11 +318,12 @@ function submitInsight(type){
 	document.getElementById("frmInsight").action='saveinsight.html';
 	document.getElementById("saveType").value=type;
 	
-	if(validate()){
+	if(validate()){//nilesh	
 	document.getElementById("frmInsight").submit();
 	}
 	
 }
+
 $(function() {
 	// When user clicks on checkbox for "other'
 	$('#chkFvOther').on('click',
@@ -378,13 +385,13 @@ function populateFoundVia(){
 	    if(arryFoundVia[i].checked){// If checked
 			if(strFoundVia==''){
 				if(arryFoundVia[i].value==idOther){
-					strFoundVia=idOther+':'+document.getElementById("fv_others").value;
+					strFoundVia=idOther+':'+document.getElementById("fv_others").value.trim();
 				}else{
 					strFoundVia=arryFoundVia[i].value;
 				}
 			}else{
 				if(arryFoundVia[i].value==idOther){
-					strFoundVia=strFoundVia+','+idOther+':'+document.getElementById("fv_others").value;
+					strFoundVia=strFoundVia+','+idOther+':'+document.getElementById("fv_others").value.trim();
 				}else{
 					strFoundVia=strFoundVia+','+arryFoundVia[i].value;
 				}
@@ -407,13 +414,13 @@ function populateMainUserType(){
 	    if(arryMainUserType[i].checked){// If checked
 			if(strMainUserType==''){
 				if(arryMainUserType[i].value==idOther){
-					strMainUserType=idOther+':'+document.getElementById("mut_others").value;
+					strMainUserType=idOther+':'+document.getElementById("mut_others").value.trim();
 				}else{
 					strMainUserType=arryMainUserType[i].value;
 				}
 			}else{
 				if(arryMainUserType[i].value==idOther){
-					strMainUserType=strMainUserType+','+idOther+':'+document.getElementById("mut_others").value;
+					strMainUserType=strMainUserType+','+idOther+':'+document.getElementById("mut_others").value.trim();
 				}else{
 					strMainUserType=strMainUserType+','+arryMainUserType[i].value;
 				}
@@ -436,13 +443,13 @@ function populateGeographies(){
 	    if(arryGeographies[i].checked){// If checked
 			if(strGeographies==''){
 				if(arryGeographies[i].value==idOther){
-					strGeographies=idOther+':'+document.getElementById("g_others").value;
+					strGeographies=idOther+':'+document.getElementById("g_others").value.trim();
 				}else{
 					strGeographies=arryGeographies[i].value;
 				}
 			}else{
 				if(arryGeographies[i].value==idOther){
-					strGeographies=strGeographies+','+idOther+':'+document.getElementById("g_others").value;
+					strGeographies=strGeographies+','+idOther+':'+document.getElementById("g_others").value.trim();
 				}else{
 					strGeographies=strGeographies+','+arryGeographies[i].value;
 				}
@@ -566,7 +573,7 @@ function validate(){
 	$("#error-message-project").hide();
 	$("#error-message-product").hide();
 	$("#error-message-foundwith").hide();
-	
+	$("#error_message_indiaction").hide();
 	$("#error-message-tag").hide();
 	$("#error-message-mainUserType").hide();
 	$("#error-message-geographies").hide();
@@ -676,7 +683,7 @@ function validate(){
     if(foundViaFlag)
     {
     	var foundViaText = foundVia.substring(foundVia.lastIndexOf(',')+1, foundVia.length);
-    	var foundViaTextfinal = foundViaText.substring(foundViaText.indexOf(':')+1, foundViaText.length);
+    	var foundViaTextfinal = foundViaText.substring(foundViaText.indexOf(':')+1, foundViaText.length).trim();
 		if(foundViaTextfinal.length ==0){
 		showErrorMessage('#error-message-foundVia',errmsgFoundViaOtherempty);
 		submitFlag = false;
@@ -748,7 +755,7 @@ function validate(){
     if(mainUserTypeFlag)
     {
     	var mainUserTypeText = mainUserType.substring(mainUserType.lastIndexOf(',')+1, mainUserType.length);
-    	var mainUserTypeTextfinal = (mainUserTypeText.substring(mainUserTypeText.indexOf(':')+1, mainUserTypeText.length));
+    	var mainUserTypeTextfinal = (mainUserTypeText.substring(mainUserTypeText.indexOf(':')+1, mainUserTypeText.length)).trim();
 		if(mainUserTypeTextfinal.length ==0){
 		showErrorMessage('#error-message-mainUserType',errmsgUserTypeSelect);
 		submitFlag = false;
@@ -769,7 +776,7 @@ function validate(){
 	if(geogaraphicFlag)
 	 {
 	    	var geogaraphicText = geogaraphic.substring(geogaraphic.lastIndexOf(',')+1, geogaraphic.length);
-	    	var geogaraphicTextfinal =geogaraphicText.substring(geogaraphicText.indexOf(':')+1, geogaraphicText.length);
+	    	var geogaraphicTextfinal =geogaraphicText.substring(geogaraphicText.indexOf(':')+1, geogaraphicText.length).trim();
 			if(geogaraphicTextfinal.length ==0){
 			showErrorMessage('#error-message-geographies',errmsgGeographiesSelect);
 			submitFlag = false;
@@ -781,7 +788,7 @@ function validate(){
 	 }
 	
 	
-	      //Company
+	  //Company
 	 if(checkForCompetitorInsight || checkForBugInsight){
 	var company = $("#idCompany").val().trim();
 	 if(company.length >100){
@@ -790,33 +797,45 @@ function validate(){
 	}
 	 }
 	 
+	
+	 // Removing data from insight type
+	 if(insightType ==1){
+		 document.getElementById("insightDetailsDto.insightServerity").value='0';
+	}else if(insightType==2){
+		 document.getElementById("insightDetailsDto.insightServerity").value='0';
+		 document.getElementById("insightDetailsDto.foundCount").value='0';
+		document.getElementById("idFoundVia").value="";
+	}else if(insightType==3){
+		document.getElementById("idFoundVia").value = "";
+		 document.getElementById("insightDetailsDto.foundCount").value='0';
+		document.getElementById("insightDetailsDto.insightServerity").value='0';
+		$("#idProject").val("");
+	}else if(insightType==4){
+		 document.getElementById("insightDetailsDto.foundCount").value='0';
+		$("#idProject").val("");
+	}
+	 
+	 //Moving as per error messsages
 	 if( ($('#error-message-title').is(':visible')) ||  ($('#error-message-description').is(':visible'))){
 		 $("#errorPlace").val('upper');
 	 }else if(($('#error-message-company').is(':visible'))||  ($('#error-message-type').is(':visible')) || ($('#error-message-foundVia').is(':visible'))
 			 || ($('#error-message-foundDate').is(':visible')) || ($('#error-message-project').is(':visible')) || ($('#error-message-product').is(':visible')) || ($('#error-message-foundwith').is(':visible')))
 	 {
-		 $("#errorPlace").val('middle');
+		 $("#errorPlace").val('upper');
 	 }else if(($('#error-message-tag').is(':visible')) || ($('#error-message-mainUserType').is(':visible')) || ($('#error-message-geographies').is(':visible'))
 			  || ($('#error-message-attachment').is(':visible'))){
-		 $("#errorPlace").val('lower');
+		 $("#errorPlace").val('upper');
 	 }
 	
  	
  	if($("#errorPlace").val().trim() == 'upper')
  	{ 
+ 		$('#error-message-indication').show();
  	   $('html, body').animate({
            scrollTop: $("#main-container").offset().top
        }, 0);
- 	}else if($("#errorPlace").val().trim() == 'lower'){
- 		 $('html, body').animate({
- 	           scrollTop: $("#submitButton").offset().top
- 	       }, 0);
- 	}else if($("#errorPlace").val().trim() == 'middle'){
-		 $('html, body').animate({
-	           scrollTop: $("#idDivfoundWith").offset().top
-	       }, 0);
-	}
-	 
+ 	}
+	
 	return submitFlag;
 }
 /**
@@ -827,7 +846,27 @@ function addLink(insightId){
 	$("#error-message-addURL").hide();
 	document.getElementById("error-message-addURL").innerHTML = "";
 	var submitFlag = true;
-	  var addUrlDeatil = $("#idUrl").val();
+	var addUrlDeatil = $("#idUrl").val().trim();
+	  
+	
+	if( $('#tableWebLink').length ) 
+	{
+		var table = document.getElementById('tableWebLink');
+	    for (var r = 0, n = table.rows.length; r < n; r++) {
+	        for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+	            var tableData = table.rows[r].cells[c].innerHTML;
+	            if(tableData.trim() == addUrlDeatil){
+	            	showErrorMessage('#error-message-addURL',errmsgUrlDuplicate);
+	            	document.getElementById("idUrl").value = "";
+	            	submitFlag = false;
+	            }
+	        }
+	    }
+	}
+	
+	
+    if(submitFlag)
+	{
 	  var regexp1 = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
 	  var regexp2 = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 	    if(addUrlDeatil.length==0)
@@ -846,7 +885,7 @@ function addLink(insightId){
 		submitFlag = false;
 		}
 			
-			 }
+				} }
 	if(submitFlag)
 		{
 		$.ajax({
@@ -873,7 +912,7 @@ function addLink(insightId){
 function refreshWebLinks(serverResponse){
 	var finalWLdata = "";
 	if(serverResponse.lstInsightWeblinkDTO.length>0){// If attached list is more than zero.
-		finalWLdata = "<table width='98%' cellpadding='5' cellspacing='0' border='0' style='margin:0 auto;'>";
+		finalWLdata = "<table width='98%' cellpadding='5' cellspacing='0' border='0' style='margin:0 auto;' id='tableWebLink'>";
 		for (var i=0, len=serverResponse.lstInsightWeblinkDTO.length; i<len; i++) {
 			if(serverResponse.lstInsightWeblinkDTO[i].flgDelete==false){// If weblink is not deleted.
 				finalWLdata =finalWLdata+"<tr>";
@@ -1082,6 +1121,7 @@ function showFieldForInsightPage(insightType)
 		document.getElementById("idDivfoundVia").style.display = "inline";
 		document.getElementById("idDivSeverity").style.display = "none";
 		document.getElementById("idDivCompany").style.display = "none";
+
 	}else if(insightType == 2) // Marker
 	{
 		document.getElementById("idDivProject").style.display = "inline";

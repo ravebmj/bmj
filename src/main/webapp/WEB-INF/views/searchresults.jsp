@@ -107,8 +107,16 @@ toDate = '<%=model.getToDate()%>';
 		          </c:otherwise>  
 			    </c:choose>  
 			    </td> 
-			    <td class="alignright">${insight.foundCount}</td>
+			     <c:choose>
+			     <c:when test="${insight.foundCount == 0}">
+			    <td class="alignright"></td>
 			    <td onMouseOver="sshow('closediv${insight.id}tag')" onMouseOut="hhide('closediv${insight.id}tag')">
+			    </c:when>
+			    <c:otherwise>
+			     <td class="alignright">${insight.foundCount}</td>
+			    <td onMouseOver="sshow('closediv${insight.id}tag')" onMouseOut="hhide('closediv${insight.id}tag')">
+			    </c:otherwise>
+			    </c:choose>
 			     <c:choose>
 			     <c:when test="${not empty insight.insightTagsDto}">
 			      <div class="clsShowTwoLines clssearchtag"><span>

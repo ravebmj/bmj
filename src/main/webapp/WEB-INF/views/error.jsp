@@ -1,1 +1,1 @@
-${error_message}
+<div class="red center errorcontainer">${error_message}</div>

@@ -50,6 +50,13 @@ $(function() {
 				  var title= $(this).next('label').text();
 				  //txtFoundVia = txtFoundVia+title+ ",";
 				  if ($(this).is(':checked')) {
+					  if(title == 'Other'){
+						  document.getElementById('idDivfoundVia').scrollIntoView();
+						  window.setTimeout(function () { 
+							    document.getElementById('fv_others').focus(); 
+							}, 0);
+						 
+					  }
 					    $(".hida").hide();
 					    var strDisplay=document.getElementById('divSelFoundVia').innerHTML;
 						if(strDisplay.indexOf(title)==-1){//if title is not present then add
@@ -87,6 +94,10 @@ $(function() {
 				  var checbox = $(this).prev().is(':checked');
 				  if (!checbox) {
 					  $(this).prev().click();
+					  if(title == 'Other'){
+						  document.getElementById('idDivfoundVia').scrollIntoView();
+						  $('#fv_others').focus();
+					  }
 					    $(".hida").hide();
 					    var strDisplay=document.getElementById('divSelFoundVia').innerHTML;
 					   
@@ -126,6 +137,12 @@ $(function() {
 			function() {
 				  var title= $(this).next('label').text();
 				  if ($(this).is(':checked')) {
+					  if(title == 'Other'){
+						  document.getElementById('divMainUserType').scrollIntoView();
+						  window.setTimeout(function () { 
+							    document.getElementById('mut_others').focus(); 
+							}, 0);
+					  }
 					    $(".hida").hide();
 					    var strDisplay=document.getElementById('divSelMainUsrType').innerHTML;//$("#divSelFoundVia").innerHTML(txtFoundVia);
 						if(strDisplay.indexOf(title)==-1){//if title is not present then add
@@ -138,6 +155,7 @@ $(function() {
 					    }
 					    $(".hida").hide();
 				 } else {
+					 
 					 var strDisplay=document.getElementById('divSelMainUsrType').innerHTML;
 					 if(strDisplay.indexOf(', '+title+',')!=-1){
 						 strDisplay=strDisplay.replace(', '+title,'');
@@ -158,11 +176,15 @@ $(function() {
 	$('#divMainUserType label').on(
 			'click',
 			function(e) {
-				
 				  var title= $(this).text();
 				  var checbox = $(this).prev().is(':checked');
 				  if (!checbox) {
+			
 					  $(this).prev().click();
+					  if(title == 'Other'){
+						  document.getElementById('divMainUserType').scrollIntoView();
+						  $('#mut_others').focus();
+					  }
 					    $(".hida").hide();
 					    var strDisplay=document.getElementById('divSelMainUsrType').innerHTML;
 					   
@@ -202,6 +224,12 @@ $(function() {
 				  var title= $(this).next('label').text();
 				  //txtFoundVia = txtFoundVia+title+ ",";
 				  if ($(this).is(':checked')) {
+					  if(title == 'Other'){
+						  document.getElementById('divGeographies').scrollIntoView();
+						  window.setTimeout(function () { 
+							    document.getElementById('g_others').focus(); 
+							}, 0);
+					  }
 					    $(".hida").hide();
 				    var strDisplay=document.getElementById('divSelGeographies').innerHTML;//$("#divSelFoundVia").innerHTML(txtFoundVia);
 						if(strDisplay.indexOf(title)==-1){//if title is not present then add
@@ -240,6 +268,10 @@ $(function() {
 				  var checbox = $(this).prev().is(':checked');
 				  if (!checbox) {
 					  $(this).prev().click();
+					  if(title == 'Other'){
+						  document.getElementById('divGeographies').scrollIntoView();
+						  $('#g_others').focus();
+					  }
 					    $(".hida").hide();
 					    var strDisplay=document.getElementById('divSelGeographies').innerHTML;
 					   

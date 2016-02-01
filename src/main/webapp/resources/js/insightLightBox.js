@@ -209,7 +209,7 @@ function saveEditInsightData(){
 			+ "&idInsight=" + document.getElementById('hidEditInsightId').value
 			+ "&oldFoundCount=" + document.getElementById('hidoldFoundCount').value,
 		success : function(result) {
-			redirectEditSubmit();
+			redirectEditSubmit(result);
 		},
 		error : function(data, status, er) {
 			
@@ -416,10 +416,14 @@ function renderProduct(){
 
 }
 
-function redirectEditSubmit(){
+function redirectEditSubmit(result){
 	document.getElementById("frmInsight").method="get";
 	document.getElementById("frmInsight").action='viewinsight.html';
-	document.getElementById("fromSave").value='true';
+	if(result == 'true'){
+		document.getElementById("fromSave").value='true';
+	}else if(result == 'false'){
+		document.getElementById("fromSave").value='false';
+	}
 	document.getElementById("insightId").value=document.getElementById("hidEditInsightId").value;
 	document.getElementById("frmInsight").submit();
 }

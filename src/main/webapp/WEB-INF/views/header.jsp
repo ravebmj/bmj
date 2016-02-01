@@ -58,7 +58,7 @@ var errmsgAdvSeracheDates = '<%=errmsgAdvSeracheDates%>';
 				%>
 				<li><div class="loginname font13 fr" id="idShowUserName" style="display: none"></div></li>
 				<% } %>
-				<li><a href="home.html">Home</a></li> 
+				<li><a href="home.html"><spring:message code="header_message_label_home"/></a></li> 
 
 				<%
 					if (sessionExists.equalsIgnoreCase("true")) {

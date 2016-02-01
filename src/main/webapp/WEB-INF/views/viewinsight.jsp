@@ -52,13 +52,13 @@ var sessionExists = '<%=sessionExists%>';
 <div class="view"><br/><span class="grey_highlight"><spring:message code="viewinsight_label_type"/></span><span id="viewInsightType">&nbsp;${mInsightDTO.insightDetailsDto.insightTypeName}</span><br/><br/>
 <span class="grey_highlight"> <spring:message code="viewinsight_label_foundon"/></span><span>&nbsp;${mInsightDTO.foundDate} </span>&nbsp;&nbsp;
 
-<c:if test="${not empty mInsightDTO.insightDetailsDto.foundVias}">
 <div id="idDivfoundViaView" style="display: none">
+<c:if test="${not empty mInsightDTO.insightDetailsDto.foundVias}">
 <span class="grey_highlight"><spring:message code="viewinsight_label_via"/></span>&nbsp;<span>
 	${mInsightDTO.strFoundVias}
 	</span>
-	</div>
 </c:if>
+</div>
 </div></fieldset>
 
 <div id="idDivProjectView" style="display: none">

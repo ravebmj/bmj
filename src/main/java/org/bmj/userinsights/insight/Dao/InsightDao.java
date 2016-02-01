@@ -272,9 +272,8 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 					insightDetail.setPlainDescription(insightDTO.getInsightDetailsDto().getDescription());
 				}				
 			}
-			if(insightDTO.getInsightDetailsDto().getFoundCount()!=null){
 				insightDetail.setFoundCount(insightDTO.getInsightDetailsDto().getFoundCount());
-			}
+			
 			insightDetail.setCompanyName(insightDTO.getInsightDetailsDto().getCompanyName());
 			insightDetail.setInsightApplicationID(new Integer(InsightsConstants.APPLICATION_ID));
 			insightDetail.setModifiedUser(insightDTO.getUserId());

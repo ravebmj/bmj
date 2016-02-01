@@ -50,11 +50,11 @@ String errmsgFoundViaOtherMaxLimit= configProperties.getString("error.message.fo
 String errmsgAddURLEmpty= configProperties.getString("error.message.addURL.empty");
 String emsgAttchSize= configProperties.getString("message.attachment.size");
 String errmsgCompanyMaxLimit= configProperties.getString("error.message.company.maxlimit");
-
-
+String errmsgUrlDuplicate= configProperties.getString("error.message.url.duplicate");
 %>
 
 <script type="text/javascript">
+var errmsgUrlDuplicate = '<%=errmsgUrlDuplicate%>';
 var errmsgCompanyMaxLimit = '<%=errmsgCompanyMaxLimit%>';
 var emsgAttchSize = '<%=emsgAttchSize%>';
 var sessionExists = '<%=sessionExists%>';
@@ -111,7 +111,8 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 	<div id="idDragDropArea" style="width:997px;margin:0 auto;">
 	<fieldset class="fieldset">
 	<div class="row-inside">
-		<div class="form-title"><legend class="legend"><spring:message code="create_insight_title"/><span class="asterisk_red">*</span></legend>
+		<div class="form-title"><legend class="legend"><spring:message code="create_insight_title"/><span class="asterisk_red">*</span></legend> 
+		 <div id="error-message-indication"style="display: none"><spring:message code="error_message_indiaction"/></div>
 		<div id="error-message-title" style="display: none" class="errormessage"></div>	
 			<div class="input-control">
 				<form:textarea path="insightDetailsDto.title" class="input-textarea-title" id="idInsightTitle"/>
@@ -276,7 +277,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 
 			<div class="row-inside">
 				<div class="form-title"><legend class="legend"><spring:message code="create_insight_applyto"/></legend>
-				<div id="error-message-mainUserType" style="display: none" class="errormessage"></div>
+				<div id="error-message-mainUserType" style="display: none" class="errormessage"></div><div class="lbl-mainuUser"><spring:message code="create_insight_mainuser"/></div>
 				</div>
 				
 				<!-- ************** Main User Type Start*************** -->
@@ -314,7 +315,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 				<!-- ************** Main User Type End*************** -->
 				<!-- ************** Geographies Start*************** -->
 				<div class="row-inside">
-				<div class="form-title"><div id="error-message-geographies" style="display: none" class="errormessage"></div>
+				<div class="form-title"><div id="error-message-geographies" style="display: none" class="errormessage"></div><div class="lbl-mainuUser"><spring:message code="create_insight_geographies"/></div>
 				</div>
 				
 					<dl class="gdropdown">
@@ -411,7 +412,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 				
 				<div id="divWebLinks">
 					<c:if test="${fn:length(mInsightDTO.weblinkDTO.lstInsightWeblinkDTO) > 0}">
-						<table width="98%" cellpadding="5" cellspacing="0" border="0" style="margin:0 auto;">
+						<table width="98%" cellpadding="5" cellspacing="0" border="0" style="margin:0 auto;" id="tableWebLink">
 							<!--tr>
 								<th>Name</th>
 								<th>Delete</th>

@@ -15,6 +15,7 @@ import org.bmj.userinsights.dto.InsightDetailsDto;
 import org.bmj.userinsights.search.dto.SearchCriteriaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,5 +103,33 @@ public class DashBoardController {
 		return mav;
 	}
     
-   
+	@ModelAttribute("searchCriteria")
+	   public SearchCriteriaDto populateSearchCriteriaDto() throws Exception {
+		log.info("start populateSearchCriteriaDto method in DashBoardController");
+		List<SelectValuesDto> lstInsightTypesDto = null;
+		List<SelectValuesDto> lstSeveritiesDto = null;		
+		List<SelectValuesDto> lstDateCriteriaDto = null;
+		SearchCriteriaDto searchCriteriaDto = new SearchCriteriaDto();
+		// populate the possible values for the insight types dropdown in
+					// Advanced Search section			
+					lstInsightTypesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,
+							InsightsConstants.APPLICATION_ID);
+					// populate the possible values for the severity dropdown in
+					// Advanced Search section
+					lstSeveritiesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.SEVERITY_CODE_LIST_NAME,
+							InsightsConstants.APPLICATION_ID);
+					// populate the possible values for the Date Range options dropdown
+					// in Advanced Search section
+					lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();
+					searchCriteriaDto.setLstInsightTypesDto(lstInsightTypesDto);
+					searchCriteriaDto.setLstSeveritiesDto(lstSeveritiesDto);
+					searchCriteriaDto.setLstDateCriteriaDto(lstDateCriteriaDto);
+					log.info("end populateSearchCriteriaDto method  in DashBoardController");
+	       return new SearchCriteriaDto(); // populates form for the first time if its null
+	   }
+	
+	@ModelAttribute("dashboardDto")
+	   public DashboardDto populateDashboardDto() {
+	       return new DashboardDto(); // populates form for the first time if its null
+	   }
 }

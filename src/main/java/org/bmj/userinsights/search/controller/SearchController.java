@@ -10,9 +10,11 @@ import org.apache.log4j.Logger;
 import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.InsightsConstants;
 import org.bmj.userinsights.common.PdfReportUtility;
+import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
 import org.bmj.userinsights.insight.service.IInsightService;
+import org.bmj.userinsights.search.dto.SearchCriteriaDto;
 import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.search.service.ISearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -314,7 +316,35 @@ public class SearchController {
 	 */
 	public void setPdfContent(byte[] pdfContent) {
 		this.pdfContent = pdfContent;
-	}	
+	}
+	
+	
+	@ModelAttribute("searchCriteria")
+	   public SearchCriteriaDto populateSearchCriteriaDto() throws Exception {
+		
+		List<SelectValuesDto> lstInsightTypesDto = null;
+		List<SelectValuesDto> lstSeveritiesDto = null;		
+		List<SelectValuesDto> lstDateCriteriaDto = null;
+		SearchCriteriaDto searchCriteriaDto = new SearchCriteriaDto();
+		// populate the possible values for the insight types dropdown in
+					// Advanced Search section			
+					lstInsightTypesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,
+							InsightsConstants.APPLICATION_ID);
+					// populate the possible values for the severity dropdown in
+					// Advanced Search section
+					lstSeveritiesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.SEVERITY_CODE_LIST_NAME,
+							InsightsConstants.APPLICATION_ID);
+					// populate the possible values for the Date Range options dropdown
+					// in Advanced Search section
+					lstDateCriteriaDto = InsightsConstants.getDateCriteriaLst();
+					searchCriteriaDto.setLstInsightTypesDto(lstInsightTypesDto);
+					searchCriteriaDto.setLstSeveritiesDto(lstSeveritiesDto);
+					searchCriteriaDto.setLstDateCriteriaDto(lstDateCriteriaDto);
+	       return searchCriteriaDto; // populates form for the first time if its null
+	   }
    	
-   	
+	@ModelAttribute("dashboardDto")
+	   public DashboardDto populateDashboardDto() {
+	       return new DashboardDto(); // populates form for the first time if its null
+	   }
 }

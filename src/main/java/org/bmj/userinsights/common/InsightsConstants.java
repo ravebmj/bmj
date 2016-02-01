@@ -51,6 +51,8 @@ public class InsightsConstants {
 	public static final String CACHE_NAME_PROJECT="projectLib";
 	public static final String CACHE_NAME_TAG="tagLib";
 	public static final String CACHE_NAME_INSIGHT_TITLE="insightTitleCache";
+	public static final Integer CREATED_DATE_VALUE=1;
+	public static final Integer EDITED_DATE_VALUE=2;
 	
 	
 	public static final List<String> getImageFileList(){

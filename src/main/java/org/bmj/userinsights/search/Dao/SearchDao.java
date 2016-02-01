@@ -60,7 +60,7 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 			 sbQuery.append(" AND id.insightServerity = "+Integer.valueOf(serverity));
 		 }
 		 
-		 if(dateRangeOpt!=null && !dateRangeOpt.isEmpty() && (Integer.valueOf(dateRangeOpt) == dateCriteriaMap.get(Integer.valueOf(dateRangeOpt)).getCodeDecodedCode())){
+		 if(dateRangeOpt!=null && !dateRangeOpt.isEmpty() && (Integer.valueOf(dateRangeOpt) == InsightsConstants.CREATED_DATE_VALUE)){
 			 if(fromDate!=null && !fromDate.equals("From") && toDate!=null && !toDate.equals("To") ){				
 				 sbQuery.append(" AND (id.addedDate BETWEEN :frmdate AND :todate) ");
 				 paramName.add("frmdate");				
@@ -82,7 +82,7 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 				
 			 }
 			
-		 }else if(dateRangeOpt!=null && !dateRangeOpt.isEmpty() && (Integer.valueOf(dateRangeOpt) == dateCriteriaMap.get(Integer.valueOf(dateRangeOpt)).getCodeDecodedCode())){
+		 }else if(dateRangeOpt!=null && !dateRangeOpt.isEmpty() && (Integer.valueOf(dateRangeOpt) == InsightsConstants.EDITED_DATE_VALUE)){
 			 if(fromDate!=null && !fromDate.equals("From") && toDate!=null && !toDate.equals("To") ){				
 				 sbQuery.append(" AND (id.modifiedDate BETWEEN :frmdate  AND :todate ) ");
 				 paramName.add("frmdate");				
@@ -340,7 +340,6 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 	 * @see org.bmj.userinsights.search.Dao.ISearchDao#getAllInsight()
 	 */
 	@Override
-	@Cacheable(value="searchCache")
 	public List<InsightDetailsDto> getAllInsight() throws Exception {
 		List<InsightDetail> insightDetails = (List<InsightDetail>) this.getHibernateTemplate().findByNamedQuery("InsightDetail.getAllInsight");
 		

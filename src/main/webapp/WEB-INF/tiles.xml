@@ -52,12 +52,20 @@
 	</definition>
 	<definition name="redirectSave"  extends="bodytemplate.definition">
 		<put-attribute name="body" value="/WEB-INF/views/redirectsave.jsp" />
-	</definition>	
-	<definition name="error.definition" template="/WEB-INF/views/errortemplate.jsp">
-		<put-attribute name="body" value="" />
 	</definition>
-
-<definition name="ErrorPage" extends="error.definition">
+	<definition name="redirectEdit"  extends="bodytemplate.definition">
+		<put-attribute name="body" value="/WEB-INF/views/redirectEdit.jsp" />
+	</definition>
+	<definition name="redirectcreate"  extends="bodytemplate.definition">
+		<put-attribute name="body" value="/WEB-INF/views/redirectcreate.jsp" />
+	</definition>		
+	<definition name="error.definition" template="/WEB-INF/views/errortemplate.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/errorheader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/errorfooter.jsp" />
+	</definition>
+    <definition name="ErrorPage" extends="error.definition">
 		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
+		<put-attribute name="title" value="Error Page" />
 	</definition>			
 </tiles-definitions>
