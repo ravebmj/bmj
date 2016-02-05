@@ -422,11 +422,11 @@ span{color:#5a5e64;}
 .title_text{color:#242627;font-size:18px;margin:0 0 8px 0px;}
 .addedon{color:#666769;}
 .asterisk_red{color:#ff0000}
-.input-text{height:41px; border:1px solid #d0d0d0;width:618px;margin:0 0 15px 15px;padding:0 10px 0 10px;}
+.input-text{height:41px; border:1px solid #d0d0d0;width:714px;margin:0 0 15px 15px;padding:0 10px 0 10px;}
 .input-text-found{height:41px; border:1px solid #d0d0d0;width:37px;margin:0 0 15px 18px;padding:0 10px 0 10px;text-align:center;}
 .input-text-title{height:41px; border:1px solid #d0d0d0;width:727px;margin:0 0 15px 4px;padding:0 10px 0 10px;}
 .input-textarea-title{height:60px;border:1px solid #d0d0d0;width:730px;margin:0 0 0px 7px;padding:10px 10px 10px 4px;}
-.input-textarea-title-popup{height:60px;border:1px solid #d0d0d0;width:730px;margin:0 0 0px 0px;padding:10px 10px 10px 4px;}
+.input-field-title-popup{height:12px;border:1px solid #d0d0d0;width:725px;margin:0 0 0px 0px;padding:10px 10px 10px 4px;}
 .select-text{height:41px; border:1px solid #d0d0d0;width:732px;margin:0 0 15px;padding:0 10px;}
 .select-text170{width:170px;height:41px; border:1px solid #d0d0d0;}
 .input-title-padd{float:Left;padding:12px 15px 0 10px;color: ##6c6e72;font-weight: 900;margin: 0 0 0 -85px!important;
@@ -582,7 +582,9 @@ form .title {
 
 .savebtn{background:#f98c17;color:#ffffff;padding:13px 24px;margin-right:8px;}
 
-.cancelbtn{background:none;color:#f98c17;padding:6px 24px;margin:0px 0 0 180px;border:none;cursor:pointer;}
+.cancel-btn{background:none;color:#f98c17;padding:6px 24px;margin:0px 0 0 180px;border:none;cursor:pointer;}
+
+.cancelbtn{background:none;color:#fff!important;padding:12px 24px;margin:0px 0 0 0px;border:none;cursor:pointer;text-decoration:none!important;}
 
 #gbqfb_search {
     background: #ef9b07 none repeat scroll 0 0;
@@ -1033,6 +1035,8 @@ table#searchTable tr td a:hover{text-decoration:underline;}
     margin: 0 auto;
     width: 998px;
     color: #fff;
+    position:relative;
+    right:25px;
 }
 
 .footer{margin-top:100px;}

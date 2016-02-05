@@ -115,7 +115,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 		 <div id="error-message-indication"style="display: none"><spring:message code="error_message_indiaction"/></div>
 		<div id="error-message-title" style="display: none" class="errormessage"></div>	
 			<div class="input-control">
-				<form:textarea path="insightDetailsDto.title" class="input-textarea-title" id="idInsightTitle"/>
+				<form:input path="insightDetailsDto.title" class="input-text" id="idInsightTitle"/>
 								
 			</div>
 			
@@ -434,9 +434,9 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 </fieldset>		
 			<div class="btn-panel">
 			<span>
+			        <a href="#" onclick="cancelInsight();" class="cancelbtn fl font18"> <spring:message code="create_insight_button_cancel"/> </a>
 					<input type="button" value="<spring:message code="create_insight_button_saveandclose"/>" onclick="submitInsight('1');" class="save-btn" id="submitButton"/>&nbsp; 
 					<input type="button" value="<spring:message code="create_insight_button_saveandadd"/>" onclick="submitInsight('2');" class="save-btn"  />
-					<input type="button" value="<spring:message code="create_insight_button_cancel"/>" onclick="cancelInsight();" class="save-btn"/>
 		    </span>
 			</div>		
 		</div>
@@ -469,7 +469,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 						<spring:message code="create_insight_title"/> <span class="asterisk_red">*</span>
 					</legend><div id="error-message-edittitle" style="display: none" class="errormessage-popup"></div>
 					<div class="input-control">
-						<textarea type="text" id="idInsightEditTitle" name="idInsightEditTitle" class="input-textarea-title-popup"></textarea>
+						<input  type="text" id="idInsightEditTitle" name="idInsightEditTitle" class="input-field-title-popup"></textarea>
 					</div>
 				</div>
 				<div class="row-inside">

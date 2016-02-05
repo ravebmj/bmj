@@ -591,7 +591,7 @@ function validate(){
 	var submitFlag = true;	
    
 	// Title
-	var title = $(".input-textarea-title").val().trim();
+	var title = $("#idInsightTitle").val().trim();
 	if((title.length ==0) || title==undefined ){
 		showErrorMessage('#error-message-title',errmsgTitleEmpty);
 		submitFlag = false;
@@ -600,7 +600,7 @@ function validate(){
 		submitFlag = false;
 	}
 	
-	$(".input-textarea-title").val(title);
+	$("#idInsightTitle").val(title);
 	//Description
 	var orginalDescription = nicEditors.findEditor('idDesc').getContent().replace(/&nbsp;/g, ' ').trim();
 	
