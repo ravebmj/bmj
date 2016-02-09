@@ -422,7 +422,9 @@ span{color:#5a5e64;}
 .title_text{color:#242627;font-size:18px;margin:0 0 8px 0px;}
 .addedon{color:#666769;}
 .asterisk_red{color:#ff0000}
+.inputtext{height:41px; border:1px solid #d0d0d0;width:615px;margin:0 0 15px 15px;padding:0 10px 0 10px;}
 .input-text{height:41px; border:1px solid #d0d0d0;width:714px;margin:0 0 15px 15px;padding:0 10px 0 10px;}
+.input_text{height:41px; border:1px solid #d0d0d0;width:724px;margin:0 0 15px 9px;padding:0 10px 0 10px;}
 .input-text-found{height:41px; border:1px solid #d0d0d0;width:37px;margin:0 0 15px 18px;padding:0 10px 0 10px;text-align:center;}
 .input-text-title{height:41px; border:1px solid #d0d0d0;width:727px;margin:0 0 15px 4px;padding:0 10px 0 10px;}
 .input-textarea-title{height:60px;border:1px solid #d0d0d0;width:730px;margin:0 0 0px 7px;padding:10px 10px 10px 4px;}
@@ -638,7 +640,7 @@ form .title {
     table#searchTable tr td.users:nth-child(6){width:56px!important;}
   
  table#searchTable tr td.title{width:21%!important;}
- table#searchTable tr td.ledited{width:81px!important;  background-position: 85px center;}
+ table#searchTable tr td.ledited{width:85px!important;  background-position: 85px center;}
  table#searchTable tr td.project {width:120px!important}
  table#searchTable tr td.type{width:141px!important;}
  table#searchTable tr td.product{width:106px!important;}
@@ -678,7 +680,7 @@ table.dataTable thead .sorting {
 }
 table.dataTable thead .sorting_asc {
     background-image: url("../images/sort_asc.png");
-     background-position: 40px center;
+     background-position: 51px center;
 }
 table.dataTable thead .sorting_desc {
     background-image: url("../images/sort_desc.png");

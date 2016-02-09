@@ -115,7 +115,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 		 <div id="error-message-indication"style="display: none"><spring:message code="error_message_indiaction"/></div>
 		<div id="error-message-title" style="display: none" class="errormessage"></div>	
 			<div class="input-control">
-				<form:input path="insightDetailsDto.title" class="input-text" id="idInsightTitle"/>
+				<form:input path="insightDetailsDto.title" class="input_text" id="idInsightTitle"/>
 								
 			</div>
 			
@@ -405,7 +405,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 				<div class="form-title"><legend class="legend"><spring:message code="create_insight_link"/></legend><div id="error-message-addURL" style="display: none" class="errormessage"></div></div>
 				<div class="input-control">
 
-					<input type="text" value="" class="input-text fl" id="idUrl"><input
+					<input type="text" value="" class="inputtext fl" id="idUrl"><input
 						type="button" value="<spring:message code="create_insight_link_button"/>" class="fl addbtn" onclick="addLink(${insightDetailsDto.id})">
 
 				</div><br/><br/>
