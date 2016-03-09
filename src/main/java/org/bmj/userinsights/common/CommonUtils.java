@@ -69,6 +69,7 @@ public class CommonUtils {
 	public static final String ENCODING_KEY = "BMJ_userinsight@2016#rAveDev2015";
 	public static final String CONFIG_VALUE_RECENT_INSIGHT_LIST_SIZE = "RECENT_INSIGHT_LIST_SIZE";
 	public static final String VALID_USER_ADVANCE_SEARCH = "ValidUser AdvSearch";
+	public static final Integer INSIGHT_DELETE_SCHEDULAR_TIME_IN_SECONDS = 180;
 
 	public static void errorLoggging(Logger log, Exception e, String message) {
 		StringWriter sw = new StringWriter();

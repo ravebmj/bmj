@@ -88,15 +88,15 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 <script src="resources/js/createinsight.js"></script>
 
 
-<body id="create_insight">
-<form:form method="GET" id="frmInsight" modelAttribute="mInsightDTO" action="" >
+<body id="headbg">
+<form:form  id="frmInsight" modelAttribute="mInsightDTO" action="" >
 
 <div id="main-container" class="createview bluebdr">
 
 <c:if test="${mInsightDTO.msgSuccess!=''}">
-	<div class="green center margintop10">${mInsightDTO.msgSuccess}</div>
+	<div class="green center success">${mInsightDTO.msgSuccess}</div>
 </c:if>
-	<h2 class="h2_25">
+	<h2 class="h2_25" id="pageHeader">
 										<c:choose>
 										    <c:when test="${mInsightDTO.insightDetailsDto.id==0}">
 												<spring:message code="create_insight_header_new"/>
@@ -432,18 +432,24 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 
 </fieldset>	
 </fieldset>		
-			<div class="btn-panel">
+			<div class="btn-panel" id="idbuttonPanel">
+			
 			<span>
 			        <a href="#" onclick="cancelInsight();" class="cancelbtn fl font18"> <spring:message code="create_insight_button_cancel"/> </a>
 					<input type="button" value="<spring:message code="create_insight_button_saveandclose"/>" onclick="submitInsight('1');" class="save-btn" id="submitButton"/>&nbsp; 
 					<input type="button" value="<spring:message code="create_insight_button_saveandadd"/>" onclick="submitInsight('2');" class="save-btn"  />
+					<c:choose>
+					<c:when test="${mInsightDTO.insightDetailsDto.id==0}"></c:when><c:otherwise>
+					<c:if test="${mInsightDTO.roleId==1}">
+		            <input type="button" value="<spring:message code="create_insight_button_delete"/>" onclick="deleteInsight();" class="save-btn"  />
+                    </c:if> </c:otherwise></c:choose>	
 		    </span>
 			</div>		
 		</div>
 </div>
 	</div>
 </div>
-		<form:hidden path="insightDetailsDto.id" />
+		<form:hidden path="insightDetailsDto.id"/>
 		<form:hidden path="idOtherFoundVia" id="idOtherFoundVia"/>
 		<form:hidden path="idOtherMainUserType" id="idOtherMainUserType"/>
 		<form:hidden path="idOtherGeographies" id="idOtherGeographies"/>
@@ -462,7 +468,7 @@ var errmsgAddURLEmpty = '<%=errmsgAddURLEmpty%>';
 	<div class="createinsight_popup">
 
 		
-		<form method="GET" id="frmInsightEdit" action="saveInsightEdit.ajx">
+		<form id="frmInsightEdit" action="saveInsightEdit.ajx">
 			<div class="row-inside createview">
 				<div class="form-title">
 					<legend>
@@ -594,11 +600,12 @@ function confirmation_popup_close(){
 	document.getElementById('idconfirmation_popup').style.display='none';
 	document.getElementById('fade').style.display='none';
 }
+
+
 </script>
 <a href="#" onclick="confirmation_popup()">confirmation link</a>
-
-
-
-
-
 <div id="fade" onClick="confirmation_popup_close();"></div>
+
+<form:form method="GET" id="frmInsightDelete" modelAttribute="mInsightDTO" action="" >
+<input type="hidden" name="deleteInsightId" id="deleteInsightId" value="${mInsightDTO.insightDetailsDto.id}"/>
+</form:form>

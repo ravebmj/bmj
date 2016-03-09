@@ -25,6 +25,12 @@ import org.bmj.userinsights.insight.dto.InsightWeblinkDto;
  *
  */
 public interface IInsightService {
+
+   /**
+	 * Performing delete operation
+	 * @param insightId
+	 */	
+	public void  deleteInsight(String insightId) throws Exception;
 	/**
 	 * Get insight details and related objects and populate in to view insight page
 	 * @param insightId
@@ -200,4 +206,16 @@ public interface IInsightService {
 	 * @throws Exception
 	 */
 	public String getConfigValueByKey(String key) throws Exception;
+	/**
+	 * Set delete value to null for insight
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveOrUndoOperation(String insightId) throws Exception;
+	/**
+	 * Get insight details for performing delete operation
+	 * @param insightId
+	 */
+	public List<InsightDto> getInsightDetailForDelete(String insightId)
+			throws Exception;
 }

@@ -44,6 +44,17 @@ public class InsightService implements IInsightService{
 	 * @return
 	 * @throws Exception
 	 */
+	private IInsightDao getDaoRefDelete() throws Exception{
+		ApplicationContext ctx = null; 
+		ctx = AppContext.getApplicationContext();
+		return (IInsightDao)ctx.getBean("refInsightDaoDeleteImpl");
+	}
+
+	/**
+	 * get reference to InsightService implementation.
+	 * @return
+	 * @throws Exception
+	 */
 	private IInsightDao getDaoRef() throws Exception{
 		ApplicationContext ctx = null; 
 		ctx = AppContext.getApplicationContext();
@@ -287,6 +298,37 @@ public class InsightService implements IInsightService{
 	@Override
 	public String getConfigValueByKey(String key) throws Exception {
 		return getDaoRef().getConfigValueByKey(key);
+	}
+	
+	/**
+	 * Set delete value to null for insight
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void saveOrUndoOperation(String insightId) throws Exception {
+		getDaoRef().saveOrUndoOperation(insightId);
+		
+	}
+
+	/**
+	 * Get insight details for performing delete operation
+	 * @param insightId
+	 */
+	@Override
+	public List<InsightDto> getInsightDetailForDelete(String insightId)
+			throws Exception {
+		return getDaoRefDelete().getInsightDetailForDelete(insightId);
+	}
+
+    /**
+	 * Performing delete operation
+	 * @param insightId
+	 */	
+	@Override
+	public void deleteInsight(String insightId) throws Exception {
+		 getDaoRefDelete().deleteInsight(insightId);
+		
 	}
 	
 

@@ -64,9 +64,9 @@ public class CacheController {
 		Cache codeListCache = cacheManager.getCache("codeList");
 		Cache mainUserTypeCache = cacheManager.getCache("mainUserType");
 		Cache foundViaCache = cacheManager.getCache("foundVia");
-		Cache geographiesCache = cacheManager.getCache("geographies ");
+		Cache geographiesCache = cacheManager.getCache("geographies");
 		Cache productLibCache = cacheManager.getCache("productLib");
-		Cache projectLibCache = cacheManager.getCache("projectLib ");
+		Cache projectLibCache = cacheManager.getCache("projectLib");
 		Cache tagLibCache = cacheManager.getCache("tagLib");
 		
 		

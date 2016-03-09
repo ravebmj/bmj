@@ -17,6 +17,7 @@
 		<property name="foundCount" column="insight_found_count"/>
 		<property name="insightServerity" column="insight_severity"/>
 		<property name="companyName" column="company_name"/>
+		<property name="deleteDate" column="insight_delete_date"/>
 		<property name="insightApplicationID" column="insight_application_id"/>
 		
 		<property name="addedUser" column="added_user"/>
@@ -81,13 +82,13 @@
 	</query>
 	<query name="InsightDetail.getAutoCompleteList">
        <![CDATA[
-		  	from InsightDetail where title like :insightTitle
+		  	from InsightDetail where title like :insightTitle and deleteDate is null
         ]]>
     </query>	
     
 	<query name="InsightDetail.getAllInsight">
        <![CDATA[
-		  	from InsightDetail 
+		  	from InsightDetail where deleteDate is null
         ]]>
     </query>
     <query name="InsightDetail.getInsightsById">

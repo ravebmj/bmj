@@ -2,6 +2,7 @@ package org.bmj.userinsights.dashboard.Dao;
 
 import java.util.List;
 
+import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
 /**
  * This interface has abstract methods to get recently,strongest evidences insights
@@ -20,4 +21,10 @@ public interface IDashboardDao {
 	 * @throws Exception
 	 */
 	public List<InsightDetailsDto> getStrongestEvidenceInsights() throws Exception;
+	/**
+	 * Set delete date for insight
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveInsightForDeleteDate(DashboardDto dashboardDto ) throws Exception;
 }

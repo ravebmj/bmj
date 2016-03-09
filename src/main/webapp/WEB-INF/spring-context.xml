@@ -76,6 +76,10 @@
 	<bean id="refDashboardDao" class="org.bmj.userinsights.dashboard.Dao.DashboardDao">
 		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
 	</bean> 
+	
+	<bean id="refDeleteInsightSchedular" class="org.bmj.userinsights.common.DeleteInsightSchedular">
+		<property name="hibernateTemplate" ref="refHibernateTemplate"> </property>
+	</bean>
  	
  	<bean id="refDashboardDaoImpl"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
@@ -125,6 +129,24 @@
 		</property>
 	</bean>
 	
+	<bean id="refInsightDaoDeleteImpl"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref local="transactionManager"/>
+		</property> 
+		<property name="target">
+			<ref local="refInsightDao"/>
+		</property> 
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="fetch*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property> 
+	</bean>
 	
 	<bean id="commonUtils" class="org.bmj.userinsights.common.CommonUtils">
 		<property name="insightService" ref="insightServiceRef"> </property>

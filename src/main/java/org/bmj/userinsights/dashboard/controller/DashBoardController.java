@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.common.CommonUtils;
@@ -62,6 +63,24 @@ public class DashBoardController {
 		ModelAndView mav = new ModelAndView("dashboard");
 		SearchCriteriaDto searchCriteriaDto = new SearchCriteriaDto();
 		try {
+			
+			String deleteInsightId = request.getParameter("deleteInsightId");
+			if(deleteInsightId!=null){
+				HttpSession session = request.getSession();	
+				if(session != null && session.getAttribute("BMJSessionToken")!=null){
+				
+				dashboardDto.setInsightId(deleteInsightId);
+				dashboardDto.setBannerText(messagesProperties.getString("dashboard_banner_message"));
+				log.info("Saving delete date to null for insight id = "+deleteInsightId);
+				dashboardService.saveInsightForDeleteDate(dashboardDto);
+				}else{
+				log.debug("in the dashboard page to delete insight for insightId "+deleteInsightId);
+				request.setAttribute("insightId",deleteInsightId);
+				mav = new ModelAndView("redirectEdit");	
+					return mav;
+				}
+			}
+			
 			// populate the possible values for the insight types dropdown in
 			// Advanced Search section			
 			lstInsightTypesDto = CommonUtils.getSelectValuesDtoLst(InsightsConstants.INSIGHT_TYPE_CODE_LIST_NAME,
@@ -82,6 +101,12 @@ public class DashBoardController {
 			// get all strongest evidence insight based on users count
 			lstSrongestEvidenceInsightDTO = dashboardService
 					.getStrongestEvidenceInsights();
+			
+			if(request.getParameter("banner")!=null){
+				log.info("Setting banner success message");
+				dashboardDto.setBannerText(messagesProperties.getString("dashboard_banner_success_message"));
+			}
+			
 
 		} catch (Exception e) {
 			CommonUtils.errorLoggging(log, e,

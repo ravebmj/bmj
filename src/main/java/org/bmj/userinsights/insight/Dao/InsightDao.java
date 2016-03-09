@@ -46,7 +46,6 @@ import org.bmj.userinsights.entity.Tag;
 import org.bmj.userinsights.insight.dto.InsightDto;
 import org.bmj.userinsights.insight.dto.InsightWeblinkDto;
 import org.bmj.userinsights.insight.service.IInsightService;
-import org.bmj.userinsights.search.controller.SearchController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
@@ -1205,6 +1204,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 		 sbQuery.append("where ((id.title like :keyword) OR (id.plainDescription like :keyword) ");
 		 sbQuery.append("OR (prod.name like :keyword) OR (proj.name like :keyword) OR (tag.name like :keyword)) ");
 		 sbQuery.append("AND id.insightApplicationID = 1 ");
+		 sbQuery.append("AND id.deleteDate is null ");
 		 
 		 paramName.add("keyword");
 		 paramValue.add("%"+searchText+"%");
@@ -1365,5 +1365,60 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 		awsBucketConfig.setSecretKey(secretKey);
 		return awsBucketConfig;
 	}
+	
+	/**
+	 * Set delete value to null for insight
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void saveOrUndoOperation(String insightid) throws Exception {		
+		InsightDetail insightDetail = new InsightDetail();
+		insightDetail.setId(Integer.parseInt(insightid));
+		insightDetail = (InsightDetail)this.getHibernateTemplate().get(InsightDetail.class, insightDetail.getId());
+		insightDetail.setDeleteDate(null);
+		this.getHibernateTemplate().update(insightDetail);
+		
+	}
+	
+	
+	/**
+	 * Get insight details for performing delete operation
+	 * @param insightId
+	 */
+	@Override
+	public List<InsightDto> getInsightDetailForDelete(String id) throws Exception {
+		List<InsightDto> insightDtoList = null;
+		List<InsightDetail> retList = (List<InsightDetail>) this
+				.getHibernateTemplate()
+				.findByNamedQueryAndNamedParam(
+						"InsightDetail.getInsightDetailsById",
+						new String[] { "id" }, new Object[] { new Integer(id) });
+		insightDtoList = new ArrayList<InsightDto>();
+		
+		if(retList!=null && retList.size()>0){
+			InsightDto insightDto = new InsightDto();			
+			 for(InsightDetail insightDetail : retList){				 
+				 CommonUtils.copyProperties(insightDto.getInsightDetailsDto(), insightDetail);
+				 insightDtoList.add(insightDto);
+			 }
+		}
+		
+		return insightDtoList;
+	}
+	
+	 /**
+	 * Performing delete operation
+	 * @param insightId
+	 */	
+	@Override
+	public void deleteInsight(String id) throws Exception {
+		  InsightDetail insightDetail = new InsightDetail();;
+		  insightDetail.setId(Integer.parseInt(id));
+		  insightDetail = (InsightDetail)this.getHibernateTemplate().get(InsightDetail.class, insightDetail.getId());
+		  this.getHibernateTemplate().delete(insightDetail);
+	}
 
+	
+	
 }

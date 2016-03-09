@@ -12,7 +12,39 @@ public class DashboardDto implements Serializable {
 	
 	private List<InsightDetailsDto> recentInsightsLst;	// list conatins recently added insights
 	private List<InsightDetailsDto> strongestEvidenceInsightLst; // this list contains strongest evidence insights
+	private String insightId;
+	private String bannerText;
 	
+	
+	
+	
+	
+
+	
+	/**
+	 * @return the bannerText
+	 */
+	public String getBannerText() {
+		return bannerText;
+	}
+	/**
+	 * @param bannerText the bannerText to set
+	 */
+	public void setBannerText(String bannerText) {
+		this.bannerText = bannerText;
+	}
+	/**
+	 * @return the insightId
+	 */
+	public String getInsightId() {
+		return insightId;
+	}
+	/**
+	 * @param insightId the insightId to set
+	 */
+	public void setInsightId(String insightId) {
+		this.insightId = insightId;
+	}
 	/**
 	 * @return the recentInsightsLst
 	 */

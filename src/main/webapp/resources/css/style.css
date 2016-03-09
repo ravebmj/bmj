@@ -8,6 +8,7 @@
 .red{color:#ff0000;}
 .green{color:#397539}
 .center{text-align:center}
+.success{margin-top:20px;float:Left;width:100%;}
 .errormessage{color:#ff0000;position:relative;margin:0px 0 4px 10px;font-size: 14px;font-weight:normal}
 .errormessage-found-via{float:left;width:32%;color:#ff0000!important;position:absolute;margin:15px 0 4px 378px;font-size: 14px;font-weight:normal;}
 .errormessage-founddate{float:left;width:27%;color:#ff0000;position:relative;margin:0px 0 4px 21px;font-size: 14px;font-weight:normal;padding:13px 0 0 0px;}
@@ -45,7 +46,7 @@ a{text-decoration:none;}
 .header-title{width:100%;margin:0 auto;border-bottom:1px solid #9da0a4;color:#3c3e40;font-weight:normal;padding:28px 0px 7px 0px; font-size:23px;}
 .advance-search-title{ color: #fff; font-weight: normal; height: 20px; padding: 0 10px 0 13px;}
 ul.navmargin{margin:38px 0 0 0 ;}
-ul.nav{margin:38px 0 0 0 ;padding:0px;width:155px;float:right;}
+ul.nav{margin:38px 0 0 0 ;padding:0px;width:157px;float:right;}
 ul.nav li{display:inline;}
 ul.nav li a{color:#296dbd;font-size:18px;text-decoration:none;padding:0 0px 10px 17px}
 ul.nav li a:hover{text-decoration:underline;}
@@ -380,7 +381,7 @@ body#inside{background:none;}
     box-sizing: border-box;
     color: #fff;
     font-size: 18px;
-    margin: 30px 0 0 0;
+    margin: -40px 0 0 0;
     outline: medium none;
     padding: 5px;
     cursor: pointer;}
@@ -418,7 +419,8 @@ fieldset {
 .view a:hover{text-decoration:underline;}
 span{color:#5a5e64;}
 .grey_highlight_11{color:#5d5f64;font-size:11px;}
-.h2_25{color:#3f4144;font-weight:normal;margin:28px 0 15px 0; font-size:23px;}
+.h2_25{color:#3f4144;font-weight:normal;margin:205px 0 15px 0; font-size:23px;}
+.h2_28{color:#3f4144;font-weight:normal;margin:28px 0 15px 0; font-size:23px;}
 .title_text{color:#242627;font-size:18px;margin:0 0 8px 0px;}
 .addedon{color:#666769;}
 .asterisk_red{color:#ff0000}
@@ -503,6 +505,17 @@ span{color:#5a5e64;}
 	filter: alpha(opacity=80);
 }
 
+
+#delete_fade{	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);}
 #fade_editinsight{
 	display: none;
 	position: fixed;
@@ -562,6 +575,8 @@ form .title {
 .loginbtn{background:#6182a7;color:#ffffff;border:none;padding:5px;cursor:pointer;}
 
 .createinsight_popup{width:358px;margin:17px 15px;}
+.deleteinsight_popup{width:358px;margin:17px 15px;}
+
 
 .box_title{ border: 1px solid #d0d0d0;
     height: 40px;
@@ -1026,10 +1041,26 @@ table#searchTable tr td a:hover{text-decoration:underline;}
     cursor:pointer;
 }
 
-.btn-panel { position:fixed;left:0px;right:0px; bottom:0;
+
+.btn-panel-create { position:fixed;left:0px;right:0px; bottom:0;
     width:100%;
     height:44px;
     padding:10px 0 10px 655px;
+    margin:10px 0px;z-index:20;background:#2a6dbe;}
+    
+  .btn-panel-create span {
+    display: block;
+    margin: 0 auto;
+    width: 998px;
+    color: #fff;
+    position:relative;
+    right:25px;
+}  
+    
+.btn-panel { position:fixed;left:0px;right:0px; bottom:0;
+    width:100%;
+    height:44px;
+    padding:10px 0 10px 570px;
     margin:10px 0px;z-index:20;background:#2a6dbe;}
     
 .btn-panel span {
@@ -1323,6 +1354,24 @@ text-overflow: ellipsis;
 .addurllist li:first-child{width:96%;}
 #error-message-attachment{margin:0 0 4px 18px;}
 
+#idUndoBanner{
+	
+	position: absolute;
+	top: 0;
+	left:46%;
+	width: 427px;
+	height:22px;
+	margin-left: -140px;
+	margin-top: 70px;					
+	background: #f9edbe;
+	z-index:1002;
+	overflow:visible;
+	color:#000;
+	text-align:center;
+	padding:5px;
+}
+
+#idUndoBanner a{color:#000;font-weight:bold;text-decoration:underline;}
 
 #idconfirmation_popup{
 	display: none;

@@ -3,6 +3,7 @@ package org.bmj.userinsights.dashboard.service;
 import java.util.List;
 
 import org.bmj.userinsights.dashboard.Dao.IDashboardDao;
+import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
@@ -43,6 +44,17 @@ public class DashboardService implements IDashboardService{
 		ApplicationContext ctx = null; 
 		ctx = AppContext.getApplicationContext();
 		return (IDashboardDao)ctx.getBean("refDashboardDaoImpl");
+	}
+
+	/**
+	 * Set delete date for insight
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public void saveInsightForDeleteDate(DashboardDto dashboardDto ) throws Exception {
+		 getDaoRef().saveInsightForDeleteDate(dashboardDto );
+		
 	}
 
 	

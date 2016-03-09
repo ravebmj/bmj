@@ -2776,6 +2776,12 @@ the specific language governing permissions and limitations under the Apache Lic
                         this.selectHighlighted();
                         killEvent(e);
                         return;
+                    case KEY.SPACE:
+                    	if($("*:focus").attr("id") == 's2id_autogen3'){
+                            this.selectHighlighted();
+                            killEvent(e);
+                         }
+                    	 return;
                     case KEY.TAB:
                         this.selectHighlighted({noFocus:true});
                         this.close();

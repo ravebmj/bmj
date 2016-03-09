@@ -16,8 +16,21 @@ private String userFullName;
 private String userEmailAddress;
 private Integer applicationId;
 private Date addedDate;
+private Integer roleId;
 
 
+/**
+ * @return the roleId
+ */
+public Integer getRoleId() {
+	return roleId;
+}
+/**
+ * @param roleId the roleId to set
+ */
+public void setRoleId(Integer roleId) {
+	this.roleId = roleId;
+}
 /**
  * @return the userId
  */

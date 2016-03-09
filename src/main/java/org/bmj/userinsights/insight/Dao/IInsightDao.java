@@ -212,4 +212,20 @@ public interface IInsightDao {
 	 * @throws Exception
 	 */
 	public AWSBucketConfig getAWSBucketConfig() throws Exception;
+	/**
+	 * Set delete value to null for insight
+	 * @return
+	 * @throws Exception
+	 */
+	public void saveOrUndoOperation(String insightId) throws Exception;
+	/**
+	 * Get insight details for performing delete operation
+	 * @param insightId
+	 */
+	public List<InsightDto> getInsightDetailForDelete(String insightId) throws Exception;
+     /**
+	 * Performing delete operation
+	 * @param insightId
+	 */	
+public void deleteInsight(String id) throws Exception;
 }

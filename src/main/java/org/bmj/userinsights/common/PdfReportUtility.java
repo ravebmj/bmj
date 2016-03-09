@@ -3,8 +3,6 @@ package org.bmj.userinsights.common;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.StringReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.util.Date;

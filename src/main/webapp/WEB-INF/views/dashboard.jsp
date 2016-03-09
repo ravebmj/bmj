@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ResourceBundle"%>
-
+<script src="resources/js/searchheader.js"></script>
 <script src="resources/js/Tooltip.js"></script>
 <body id="headbg">
 	<div id="wrapper" class="dashboard">
@@ -199,4 +199,25 @@
 		</div>
 	</div>
 </body>
+
+
+<c:if test="${not empty dashboardDto.insightId  || not empty dashboardDto.bannerText}">
+<form:form method="GET" id="frmBannerSubmit" action	="dashboard.html" >
+<input type="hidden" name="banner" id="banner" value="true"/>
+</form:form>
+<div id="idUndoBanner" style="display: inline;" >
+${dashboardDto.bannerText}
+<c:if test="${not empty dashboardDto.insightId}">
+<input type="hidden" name="insightId" id="insightid" value="${dashboardDto.insightId}"/>
+</c:if>
+</div>
+</c:if>
+
+
+
+
+
+
+
+
 

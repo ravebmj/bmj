@@ -30,15 +30,15 @@
 		<put-attribute name="body" value="/WEB-INF/views/searchresults.jsp" />
 		<put-attribute name="title" value="Search Results" />
 	</definition>	
-	<definition name="createInsight" extends="plain.definition">
+	<definition name="createInsight" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
 		<put-attribute name="title" value="Create Insight" />
 	</definition>
-	<definition name="editInsight" extends="plain.definition">
+	<definition name="editInsight" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/createinsight.jsp" />
 		<put-attribute name="title" value="Edit Insight" />
 	</definition>	
-	<definition name="viewInsight" extends="plain.definition">
+	<definition name="viewInsight" extends="insight.definition">
 		<put-attribute name="body" value="/WEB-INF/views/viewinsight.jsp" />
 		<put-attribute name="title" value="View Insight" />
 	</definition>

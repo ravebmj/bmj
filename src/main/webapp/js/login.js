@@ -33,21 +33,21 @@ function submitForm()
 							 document.getElementById("idSignDetail").innerHTML="Sign Out";
 							 document.getElementById("idSignDetail").removeAttribute("onclick");
 							 document.getElementById("idShowUserName").style.display = "block";	
-							 document.getElementById("idShowUserName").innerHTML = 'Hi,'+result.substring(10,(result.length));
+							 document.getElementById("idShowUserName").innerHTML = 'Hi, '+result.substring(10,(result.length));
 							 document.getElementById("idEditButton").setAttribute("onclick", "perfromSubmitOpeartionForEdit()");
 						}else if(actionPage == 'search'){
 							 document.getElementById("idSignDetail").href="logout.html";
 							 document.getElementById("idSignDetail").innerHTML="Sign Out";
 							 document.getElementById("idSignDetail").removeAttribute("onclick");
 							 document.getElementById("idShowUserName").style.display = "block";	
-							 document.getElementById("idShowUserName").innerHTML = 'Hi,'+result.substring(10,(result.length));
+							 document.getElementById("idShowUserName").innerHTML = 'Hi, '+result.substring(10,(result.length));
 							 document.getElementById("btnAddNewInsight").setAttribute("onclick", "submitPageForNewInsight()");
 						}else if(actionPage == 'create'){
 							 document.getElementById("idSignDetail").href="logout.html";
 							 document.getElementById("idSignDetail").innerHTML="Sign Out";
 							 document.getElementById("idSignDetail").removeAttribute("onclick");
 							 document.getElementById("idShowUserName").style.display = "block";	
-							 document.getElementById("idShowUserName").innerHTML = 'Hi,'+result.substring(10,(result.length));
+							 document.getElementById("idShowUserName").innerHTML = 'Hi, '+result.substring(10,(result.length));
 						} else if(actionPage == 'Edit'){
 							perfromSubmitOpeartionForEdit();
 						}else{

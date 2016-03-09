@@ -96,6 +96,23 @@ public class InsightDto implements Serializable{
 	private Integer userId;	
 	private Integer oldFoundCount;// Hold value of "found count" in case of existing Insight.	
 	private String msgSuccess="";
+	private Integer roleId;	
+
+	
+	
+	/**
+	 * @return the roleId
+	 */
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	/**
+	 * @param roleId the roleId to set
+	 */
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 
 	/**
 	 * @return the insightDetailsDto

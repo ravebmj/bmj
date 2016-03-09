@@ -48,6 +48,8 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 		 sbQuery.append("where ((id.title like :keyword) OR (id.plainDescription like :keyword) ");
 		 sbQuery.append("OR (prod.name like :keyword) OR (proj.name like :keyword) OR (tag.name like :keyword)) ");
 		 sbQuery.append("AND id.insightApplicationID = 1 ");
+		 sbQuery.append("AND id.deleteDate is null ");
+
 		 
 		 paramName.add("keyword");
 		 paramValue.add("%"+keyword+"%");

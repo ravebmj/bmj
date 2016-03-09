@@ -16,7 +16,6 @@
 	type="text/javascript"></script>
 <script src="js/insight.js"></script>
 <script src="resources/js/searchresults.js"></script>
-<script src="resources/js/searchheader.js"></script>
 <script type="text/javascript" src="resources/js/jquery.reticence.js"></script>
 <script src="resources/js/searchTextAutoComplete.js"></script>
 

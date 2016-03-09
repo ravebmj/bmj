@@ -31,9 +31,30 @@ public class InsightDetail  implements Serializable{
 	private Set<InsightGeographies> geographies= new HashSet<>();
 	private Set<InsightWeblink> weblinks= new HashSet<>();
 	private Set<InsightAttachment> attachments= new HashSet<>();
-	
+	private Date deleteDate;
 	
 	public InsightDetail(){}
+
+	
+	
+	
+	/**
+	 * @return the deleteDate
+	 */
+	public Date getDeleteDate() {
+		return deleteDate;
+	}
+
+
+	/**
+	 * @param deleteDate the deleteDate to set
+	 */
+	public void setDeleteDate(Date deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+
+
+
 
 	/**
 	 * @return the id

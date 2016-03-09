@@ -41,6 +41,7 @@ fromDate = '<%=model.getFromDate()%>';
 toDate = '<%=model.getToDate()%>';
 <%}%>
 </script> 
+<script src="resources/js/searchheader.js"></script>
 <script src="resources/js/Tooltip.js"></script>
 
 

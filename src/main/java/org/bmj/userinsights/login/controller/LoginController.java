@@ -60,6 +60,7 @@ public class LoginController {
 		bmjSessionToken.setUserEmailAddress(adminUser.getAdminuserEmailAddress());
 		bmjSessionToken.setApplicationId(adminUser.getAdminuserApplicationId());
 		bmjSessionToken.setAddedDate(adminUser.getAddedDate());
+		bmjSessionToken.setRoleId(adminUser.getSuperadminRole());
 		log.debug("Setting value in session");
 		session.setAttribute("BMJSessionToken", bmjSessionToken);
 	}  	

@@ -16,6 +16,7 @@
 		<property name="adminuserEmailAddress" column="admin_user_emai_address"/>
 		<property name="adminuserApplicationId" column="admin_user_application_id"/>
 		<property name="addedDate" column="added_date"/>
+		<property name="superadminRole" column="superadmin_role"/>
 	</class>
 <query name="AdminUser.getPasswordForUserName">
 		<![CDATA[

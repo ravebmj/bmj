@@ -67,12 +67,30 @@ public class InsightDetailsDto  implements Serializable{
 	 private Set<InsightTagDto> insightTagsDto = new HashSet<InsightTagDto>();
 	
 	//properties specific to UI end
-	
+	 private Date deleteDate;
 	
 	public InsightDetailsDto(){}
 
 	
 	
+	/**
+	 * @return the deleteDate
+	 */
+	public Date getDeleteDate() {
+		return deleteDate;
+	}
+
+
+
+	/**
+	 * @param deleteDate the deleteDate to set
+	 */
+	public void setDeleteDate(Date deleteDate) {
+		this.deleteDate = deleteDate;
+	}
+
+
+
 	/**
 	 * @return the companyName
 	 */

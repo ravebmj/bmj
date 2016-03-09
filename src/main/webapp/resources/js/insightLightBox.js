@@ -12,8 +12,11 @@ $(document).ready(function() {
 			             var arr=JSON.parse(data);
 			        response( $.map( arr, function( item ) {
 			        return {
+			        	
 			            label: item.text,
-			            value: item.id,
+			            value: item.text,
+			            id: item.id,
+			           
 			        }
 			        }));
 			    }
@@ -21,9 +24,9 @@ $(document).ready(function() {
 		    },
 		    select: function(event, ui) {
 		        console.debug(' ui.item.label ::'+ui.item.label);
-		        console.debug(' ui.item.value ::'+ui.item.value);
+		        console.debug(' ui.item.id ::'+ui.item.id);
 		        openInsightLightBox();
-		        getInsightData(ui.item.value);
+		        getInsightData(ui.item.id);
 		        this.value = "";
 		        return false;
 		        
@@ -124,11 +127,13 @@ function saveEditInsightData(){
 		submitFlag = false;
 	}
 	var descToValidate =replaceAll('<br>','<br/>',description);
+	var escBrDesc = replaceAll('<br/>','',descToValidate);
+	var finalEscDesc = $(escBrDesc).text();
 	if((descToValidate.length ==0) || descToValidate==undefined )
 	{
 	    showErrorMessage('#error-message-editdesc',errmsgDescriptionEmpty);
 	    submitFlag = false;
-	}else if(descToValidate.length >4000){
+	}else if(finalEscDesc.length >4000){
 		showErrorMessage('#error-message-editdesc',errmsgDescriptionMaxLimit);
 		submitFlag = false;
 	}
@@ -192,10 +197,10 @@ function saveEditInsightData(){
 
 	$.ajax({
 		url : 'saveEditInsightData.ajx',
-		type : 'get',
+		type : 'post',
 		data:  "idInsightEditTitle="
 			+ title
-			+ "&idInsightEditDesc=" + descToValidate
+			+ "&idInsightEditDesc=" + encodeURI(descToValidate)
 			+ "&idInsigtEditProject="
 			+ document.getElementById('idInsigtEditProject').value
 			+ "&idInsigtEditCompany="
@@ -208,6 +213,7 @@ function saveEditInsightData(){
 			+ "&idInsightEditfoundCnt=" + document.getElementById('idInsightEditfoundCnt').value
 			+ "&idInsight=" + document.getElementById('hidEditInsightId').value
 			+ "&oldFoundCount=" + document.getElementById('hidoldFoundCount').value,
+		
 		success : function(result) {
 			redirectEditSubmit(result);
 		},
@@ -417,15 +423,30 @@ function renderProduct(){
 }
 
 function redirectEditSubmit(result){
-	document.getElementById("frmInsight").method="get";
-	document.getElementById("frmInsight").action='viewinsight.html';
+	
+	var insightId = document.getElementById("hidEditInsightId").value;
+	var fromSave;
 	if(result == 'true'){
 		document.getElementById("fromSave").value='true';
+		fromSave = document.getElementById("fromSave").value;
 	}else if(result == 'false'){
 		document.getElementById("fromSave").value='false';
+		fromSave = document.getElementById("fromSave").value;
 	}
-	document.getElementById("insightId").value=document.getElementById("hidEditInsightId").value;
-	document.getElementById("frmInsight").submit();
+	var form; // dynamic form that will call controller	
+    form = $('<form />', {
+        action: "viewinsight.html",
+        method: 'get',
+        style: 'display: none;'
+    });
+    //Form parameter insightId
+    $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
+    $("<input>").attr("type", "hidden").attr("name", "fromSave").val(fromSave).appendTo(form);
+    //Form submit
+    form.appendTo('body').submit();
+	
+	
+	
 }
 
 

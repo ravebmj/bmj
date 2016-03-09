@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.common.CommonUtils;
@@ -45,6 +46,7 @@ import org.bmj.userinsights.insight.dto.InsightDto;
 import org.bmj.userinsights.insight.dto.InsightWeblinkDto;
 import org.bmj.userinsights.insight.dto.WeblinkDto;
 import org.bmj.userinsights.insight.service.IInsightService;
+import org.bmj.userinsights.search.dto.SearchCriteriaDto;
 import org.bmj.userinsights.server.BMJSessionToken;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +64,7 @@ import org.springframework.web.servlet.ModelAndView;
  * This class is handling all operation
  * related to insights creation/edit.
  */
-@SessionAttributes( value = {"mInsightDTO"})
+@SessionAttributes( value = {"mInsightDTO","searchCriteria"})
 @Controller
 public class InsightController {
 	private static final  Logger log = Logger.getLogger(InsightController.class);
@@ -117,7 +119,7 @@ public class InsightController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/viewinsight",method=RequestMethod.GET)  
+	@RequestMapping(value="/viewinsight")  
 	public ModelAndView viewInsight(HttpServletRequest request, 
 			@RequestParam("insightId") String insightId) throws Exception {
 		log.info("starting of the viewInsight method in InsightController");
@@ -139,6 +141,7 @@ public class InsightController {
 			insightDTO.setStrFoundVias(getFoundViasListNames(insightDTO));
 			insightDTO.setEmailAddress(adminUserDTO.getAdminuserEmailAddress());
 			insightDTO.setUsername(adminUserDTO.getAdminuserFirstName()+" "+adminUserDTO.getAdminuserLastName());
+			insightDTO.getInsightDetailsDto().setDescription(StringEscapeUtils.unescapeHtml(insightDTO.getInsightDetailsDto().getDescription()));
 			
 			if(fromSave!=null && fromSave.equalsIgnoreCase("true")){
 				insightDTO.setMsgSuccess("Insight has been saved successfully.");
@@ -191,6 +194,7 @@ public class InsightController {
 			try{
 			List<InsightDto> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
 		    insightDTO = insightDtoList.get(0);
+		    insightDTO.setRoleId(getRoleId(request));
 			setMasterData(insightDTO);
 			setDBDataForFields(insightDTO);
 			setOtherId(insightDTO);
@@ -198,6 +202,7 @@ public class InsightController {
 			Collections.sort(insightDTO.getLstFoundViaDto());
 			Collections.sort(insightDTO.getLstMainUserTypeDto());
 			Collections.sort(insightDTO.getLstGeographiesDto());
+			insightDTO.getInsightDetailsDto().setDescription(StringEscapeUtils.unescapeHtml(insightDTO.getInsightDetailsDto().getDescription()));
 			}catch(Exception e){
 				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_insight_edit"));
 			}
@@ -227,7 +232,7 @@ public class InsightController {
 			insightDTO = insightDtoList.get(0);
 			setDBDataForFields(insightDTO);
 			editInsightDTO.setId(insightDTO.getInsightDetailsDto().getId());
-			editInsightDTO.setDescription(insightDTO.getInsightDetailsDto().getDescription());
+			editInsightDTO.setDescription(StringEscapeUtils.unescapeHtml(insightDTO.getInsightDetailsDto().getDescription()));
 			editInsightDTO.setFoundCount(insightDTO.getInsightDetailsDto().getFoundCount());
 			editInsightDTO.setOldFoundCount(insightDTO.getInsightDetailsDto().getFoundCount());
 			editInsightDTO.setTitle(insightDTO.getInsightDetailsDto().getTitle());
@@ -328,7 +333,7 @@ public class InsightController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/saveinsight",method=RequestMethod.GET)  
+	@RequestMapping(value="/saveinsight",method=RequestMethod.POST)  
 	public ModelAndView saveInsight(@ModelAttribute("mInsightDTO") InsightDto insightDTO,HttpServletRequest request) throws Exception {
 		log.info("in the saveInsight insight page ");				
 		HttpSession session = request.getSession();
@@ -337,6 +342,7 @@ public class InsightController {
 				String saveType=request.getParameter("saveType");
 				insightDTO.setUserId(getUserId(request));// TBD in dynamic way.
 				
+				insightDTO.getInsightDetailsDto().setDescription(StringEscapeUtils.escapeHtml(insightDTO.getInsightDetailsDto().getDescription()));
 				insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(insightDTO.getInsightDetailsDto().getTitle()));
 				
 				if((insightDTO.getInsightDetailsDto().getType()==3 || insightDTO.getInsightDetailsDto().getType()==4) && null != insightDTO.getInsightDetailsDto().getCompanyName() && !"".equals(insightDTO.getInsightDetailsDto().getCompanyName().trim()) ){
@@ -387,7 +393,7 @@ public class InsightController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/saveEditInsightData", method = RequestMethod.GET)
+	@RequestMapping(value = "/saveEditInsightData", method = RequestMethod.POST)
 	public @ResponseBody String saveEditInsightData(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		log.info("in the saveEditInsightData insight page ");				
@@ -415,7 +421,7 @@ public class InsightController {
 			insightDTO.setUserId(getUserId(request));
 			insightDTO.getInsightDetailsDto().setId(new Integer(insightId));
 			insightDTO.getInsightDetailsDto().setTitle(CommonUtils.replaceNewLineCrraigeReturnTabSpaces(title));
-			insightDTO.getInsightDetailsDto().setDescription(desc);
+			insightDTO.getInsightDetailsDto().setDescription(StringEscapeUtils.escapeHtml(desc));
 			insightDTO.getInsightDetailsDto().setFoundCount(new Integer(foundCount));// Update new found count.
 			if(inOldFoundCount>0 && insightDTO.getInsightDetailsDto().getFoundCount()!=null){// Add Old found count to newly added found count.
 				insightDTO.getInsightDetailsDto().setFoundCount(insightDTO.getInsightDetailsDto().getFoundCount().intValue()+inOldFoundCount);
@@ -1318,6 +1324,21 @@ public class InsightController {
 		return null;
 	}
 
+	/**
+	 * Get Role  id from session token.
+	 * @param request
+	 * @throws Exception
+	 */
+	private Integer getRoleId(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("BMJSessionToken") != null) {
+			BMJSessionToken bmjSessionToken = (BMJSessionToken) session.getAttribute("BMJSessionToken");
+			log.info("Role id for logged in user = "+bmjSessionToken.getRoleId());
+			return bmjSessionToken.getRoleId();
+		}
+		return null;
+	}
+
 	
 	/**
 	 * To round the given value
@@ -1338,5 +1359,33 @@ public class InsightController {
 	   public InsightDto populateInsightDto() {
 	       return new InsightDto(); // populates form for the first time if its null
 	   }
-
+	
+	
+	
+	   /**
+		 * Undo operation for
+		 * particular insight 
+		 * @param request
+		 * @return
+		 */
+		@RequestMapping(value="/undoInsight",method=RequestMethod.GET)  
+		public @ResponseBody String deleteInsight(HttpServletRequest request) throws Exception {
+			String result = "pass";
+			try{
+				String insightId= request.getParameter("insightid");
+				log.info("Performing undo operation for insight id = "+insightId);
+				insightService.saveOrUndoOperation(insightId);
+			}catch(Exception e){
+				result = "fail";
+				CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_deleting_insight"));
+			}
+			
+			return result;
+		}  
+	
+		@ModelAttribute("searchCriteria")
+		 public SearchCriteriaDto populateSearchCriteriaDto() {
+		       return new SearchCriteriaDto(); // populates form for the first time if its null
+		   }
+		
 }

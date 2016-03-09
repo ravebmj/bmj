@@ -2,6 +2,11 @@
 
 $(document).ready(function() {
 	
+	if((document.getElementById("pageHeader").innerHTML.trim())==('Create New Insight'))
+	{
+		$("#idbuttonPanel").removeClass("btn-panel").addClass("btn-panel-create");
+	}
+	
 	if(sessionExists =='false')
 	{
 		$("#actionPage").val('create');
@@ -315,6 +320,7 @@ function submitInsight(type){
 	var orginalDescription = nicEditors.findEditor('idDesc').getContent().replace(/&nbsp;/g, ' ').trim();
 	var descToSave =replaceAll('<br>','<br/>',orginalDescription);
 	document.getElementById("idDesc").value = descToSave;
+	document.getElementById("frmInsight").method="post";
 	document.getElementById("frmInsight").action='saveinsight.html';
 	document.getElementById("saveType").value=type;
 	
@@ -612,12 +618,14 @@ function validate(){
 	
 	
 	var descToValidate =replaceAll('<br>','<br/>',orginalDescription);
+	var escBrDesc = replaceAll('<br/>','',descToValidate);
+	var finalEscDesc = $(escBrDesc).text();
 	
 	if((descToValidate.length ==0) || descToValidate==undefined )
 	{
 	    showErrorMessage('#error-message-description',errmsgDescriptionEmpty);
 	    submitFlag = false;
-	}else if(descToValidate.length >4000){
+	}else if(finalEscDesc.length >4000){
 		showErrorMessage('#error-message-description',errmsgDescriptionMaxLimit);
 		submitFlag = false;
 	}
@@ -1054,10 +1062,20 @@ function cancelInsight(){
 		document.getElementById("frmInsight").action='dashboard.html';
 		document.getElementById("frmInsight").submit();
 	}else{
-		document.getElementById("frmInsight").method="get";
-		document.getElementById("insightId").value=document.getElementById("insightDetailsDto.id").value;
-		document.getElementById("frmInsight").action='viewinsight.html';
-		document.getElementById("frmInsight").submit();
+		
+		var insightId = document.getElementById("insightDetailsDto.id").value;
+		var form; // dynamic form that will call controller	
+	    form = $('<form />', {
+	        action: "viewinsight.html",
+	        method: 'get',
+	        style: 'display: none;'
+	    });
+	    //Form parameter insightId
+	    $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
+	    //Form submit
+	    form.appendTo('body').submit();
+		
+		
 	}
 }
 
@@ -1151,4 +1169,9 @@ function showFieldForInsightPage(insightType)
 
 }
 
-
+function deleteInsight(){
+	console.debug('Inside Delete Insight');
+	document.getElementById("frmInsightDelete").action='dashboard.html';
+	document.getElementById("frmInsightDelete").submit();
+	
+}

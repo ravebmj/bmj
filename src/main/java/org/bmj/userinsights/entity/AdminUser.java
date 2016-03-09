@@ -16,8 +16,24 @@ public class AdminUser implements Serializable{
 	private String adminuserEmailAddress;
 	private Integer adminuserApplicationId;
 	private Date addedDate;
+	private Integer superadminRole;
 	
 	
+	
+	
+	
+	/**
+	 * @return the superadminRole
+	 */
+	public Integer getSuperadminRole() {
+		return superadminRole;
+	}
+	/**
+	 * @param superadminRole the superadminRole to set
+	 */
+	public void setSuperadminRole(Integer superadminRole) {
+		this.superadminRole = superadminRole;
+	}
 	/**
 	 * @return the adminuserId
 	 */
