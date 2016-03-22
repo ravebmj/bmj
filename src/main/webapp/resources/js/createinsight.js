@@ -1,7 +1,19 @@
 
 
 $(document).ready(function() {
-	
+	$(window).on('keyup', function(event){
+
+		if(event.keyCode == '9'){
+		      var $clicked = $(event.target);
+				if (!$clicked.parents().hasClass("fdropdown"))
+					$(".fdropdown dd ul").hide();
+				if (!$clicked.parents().hasClass("mdropdown"))
+					$(".mdropdown dd ul").hide();
+				if (!$clicked.parents().hasClass("gdropdown"))
+					$(".gdropdown dd ul").hide();
+		    }
+
+	});
 	if((document.getElementById("pageHeader").innerHTML.trim())==('Create New Insight'))
 	{
 		$("#idbuttonPanel").removeClass("btn-panel").addClass("btn-panel-create");
@@ -43,14 +55,20 @@ $(document).ready(function() {
 		tags : true,
 		tokenSeparators : [ ',' ],
 
-		createSearchChoice : function(term) {
-			return {
-				id : term,
-				text : term,
-				n : "new",
-				s : ""
-
-			};
+		createSearchChoice : function(term,data) {
+			if (term.trim().length > 0) {
+                if ($(data).filter(function () {
+                  return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
+                }).length === 0) {
+                    return {
+                        id: term,
+                        text: term,
+                        n : "new",
+                        s : "",
+                        isNew: true // this is necessary to check if the item is newly added or not
+                    };
+                }
+            }
 		},
 
 		ajax : {
@@ -117,14 +135,20 @@ $(document).ready(function() {
 		tags : true,
 		tokenSeparators : [ ',' ],
 
-		createSearchChoice : function(term) {
-			return {
-				id : term,
-				text : term,
-				n : "new",
-				s : ""
-
-			};
+		createSearchChoice : function(term,data) {
+			if (term.trim().length > 0) {
+                if ($(data).filter(function () {
+                  return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
+                }).length === 0) {
+                    return {
+                        id: term,
+                        text: term,
+                        n : "new",
+                        s : "",
+                        isNew: true // this is necessary to check if the item is newly added or not
+                    };
+                }
+            }
 		},
 
 		ajax : {
@@ -190,16 +214,21 @@ $(document).ready(function() {
 		tags : true,
 		tokenSeparators : [ ',' ],
 
-		createSearchChoice : function(term) {
-			return {
-				id : term,
-				text : term,
-				n : "new",
-				s : ""
-
-			};
+		createSearchChoice : function(term,data) {
+			if (term.trim().length > 0) {
+                if ($(data).filter(function () {
+                  return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
+                }).length === 0) {
+                    return {
+                        id: term,
+                        text: term,
+                        n : "new",
+                        s : "",
+                        isNew: true // this is necessary to check if the item is newly added or not
+                    };
+                }
+            }
 		},
-
 		ajax : {
 			url : 'listTags.ajx',
 			dataType : 'json',
@@ -619,7 +648,7 @@ function validate(){
 	
 	var descToValidate =replaceAll('<br>','<br/>',orginalDescription);
 	var escBrDesc = replaceAll('<br/>','',descToValidate);
-	var finalEscDesc = $(escBrDesc).text();
+	var finalEscDesc = $("<div>"+escBrDesc+"</div>").text();
 	
 	if((descToValidate.length ==0) || descToValidate==undefined )
 	{

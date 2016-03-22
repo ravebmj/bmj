@@ -1388,6 +1388,9 @@ the specific language governing permissions and limitations under the Apache Lic
          */
         // abstract
         opening: function() {
+        	$(".fdropdown dd ul").hide();
+    		$(".mdropdown dd ul").hide();
+    		$(".gdropdown dd ul").hide();
             var cid = this.containerEventName,
                 scroll = "scroll." + cid,
                 resize = "resize."+cid,

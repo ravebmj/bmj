@@ -128,7 +128,7 @@ function saveEditInsightData(){
 	}
 	var descToValidate =replaceAll('<br>','<br/>',description);
 	var escBrDesc = replaceAll('<br/>','',descToValidate);
-	var finalEscDesc = $(escBrDesc).text();
+	var finalEscDesc = $("<div>"+escBrDesc+"</div>").text();
 	if((descToValidate.length ==0) || descToValidate==undefined )
 	{
 	    showErrorMessage('#error-message-editdesc',errmsgDescriptionEmpty);
@@ -283,14 +283,20 @@ function renderProject(){
 		tags : true,
 		tokenSeparators : [ ',' ],
 
-		createSearchChoice : function(term) {
-			return {
-				id : term,
-				text : term,
-				n : "new",
-				s : ""
-
-			};
+		createSearchChoice : function(term,data) {
+			if (term.trim().length > 0) {
+                if ($(data).filter(function () {
+                  return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
+                }).length === 0) {
+                    return {
+                        id: term,
+                        text: term,
+                        n : "new",
+                        s : "",
+                        isNew: true // this is necessary to check if the item is newly added or not
+                    };
+                }
+            }
 		},
 
 		ajax : {
@@ -355,14 +361,20 @@ function renderProduct(){
 		tags : true,
 		tokenSeparators : [ ',' ],
 
-		createSearchChoice : function(term) {
-			return {
-				id : term,
-				text : term,
-				n : "new",
-				s : ""
-
-			};
+		createSearchChoice : function(term,data) {
+			if (term.trim().length > 0) {
+                if ($(data).filter(function () {
+                  return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
+                }).length === 0) {
+                    return {
+                        id: term,
+                        text: term,
+                        n : "new",
+                        s : "",
+                        isNew: true // this is necessary to check if the item is newly added or not
+                    };
+                }
+            }
 		},
 
 		ajax : {

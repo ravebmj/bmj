@@ -43,11 +43,7 @@
   <error-page>
    <location>/httpErrors.html</location>
   </error-page>
-  
-  
-  
-  
-<!-- 	<session-config>
-	    <session-timeout>5</session-timeout>
-	</session-config> -->	
+	<session-config>
+	    <session-timeout>120</session-timeout>
+	</session-config> 	
 </web-app>
