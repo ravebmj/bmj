@@ -1,4 +1,5 @@
 package org.bmj.userinsights.dto;
+import java.util.Comparator;
 /**
  * DTO class for Product entity.
  */
@@ -116,6 +117,13 @@ public class ProductDto {
 	}
 
 	
+	public static Comparator<ProductDto> productNameComparator = new Comparator<ProductDto>() {
+		
+		@Override
+		public int compare(ProductDto productDto1, ProductDto productDto2) {
+			return productDto1.getName().toUpperCase().compareTo(productDto2.getName().toUpperCase());
+		}
+    };
 
 
 }

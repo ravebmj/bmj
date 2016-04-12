@@ -82,6 +82,18 @@ public class InsightController {
 	@RequestMapping(value="/createinsight",method=RequestMethod.GET)  
 	public ModelAndView createInsight(HttpServletRequest request) throws Exception {
 		log.info("in the createInsight insight page");
+		String googleSession=request.getParameter("googleSession");
+		if(googleSession==null || (googleSession!=null && !googleSession.equalsIgnoreCase("true"))){// If value of this parameter is "true" then google signin is already exist.
+			ModelAndView mav = null;
+			request.setAttribute("pageType", "createnew");// This variable decides final page for navigation after successful google signin.
+			
+			//Navigate to the intermediate page which checks google session. If google session not exist then navigate to BMJ google login. If exist then
+			//navigate to page which is based on "pageType" variable.
+			mav = new ModelAndView("sessionCheck");	
+			return mav;
+		}
+		
+		
 		HttpSession session = request.getSession();		
 		if(session != null && session.getAttribute("BMJSessionToken")!=null){
 			resetSessionData(request);
@@ -122,6 +134,23 @@ public class InsightController {
 	@RequestMapping(value="/viewinsight")  
 	public ModelAndView viewInsight(HttpServletRequest request, 
 			@RequestParam("insightId") String insightId) throws Exception {
+		
+		//In case of book mark page (view insight), we need to track page type and insight id after successful google login.
+		 // so setting below pageType,insightId.
+		request.setAttribute("pageType", "viewinsight");
+		request.setAttribute("insightId", insightId);
+		String googleSession=request.getParameter("googleSession");
+		if(googleSession==null || (googleSession!=null && !googleSession.equalsIgnoreCase("true"))){// If value of this parameter is "true" then google signin is already exist.
+			ModelAndView mav = null;
+			request.setAttribute("pageType", "viewinsight");// This variable decides final page for navigation after successful google signin.
+			request.setAttribute("insightId", insightId);
+			
+			//Navigate to the intermediate page which checks google session. If google session not exist then navigate to BMJ google login. If exist then
+			//navigate to page which is based on "pageType" variable.
+			mav = new ModelAndView("sessionCheck");	
+			return mav;
+		}
+		
 		log.info("starting of the viewInsight method in InsightController");
 		List<InsightAttachmentDto> uploadedFiles = new ArrayList<InsightAttachmentDto>();
 		String fromSave=request.getParameter("fromSave");
@@ -184,12 +213,25 @@ public class InsightController {
 	 */
 	@RequestMapping(value="/editinsight",method=RequestMethod.GET)  
 	public ModelAndView editInsight(HttpServletRequest request) throws Exception {
+		String insightId=request.getParameter("insightId");
+		String googleSession=request.getParameter("googleSession");
+		if(googleSession==null || (googleSession!=null && !googleSession.equalsIgnoreCase("true"))){// If value of this parameter is "true" then google signin is already exist.
+			ModelAndView mav = null;
+			request.setAttribute("pageType", "editinsight");// This variable decides final page for navigation after successful google signin.
+			request.setAttribute("insightId", insightId);
+			
+			//Navigate to the intermediate page which checks google session. If google session not exist then navigate to BMJ google login. If exist then
+			//navigate to page which is based on "pageType" variable.
+			mav = new ModelAndView("sessionCheck");	
+			return mav;
+		}
+		
 		log.info("in the edit insight method");
 		HttpSession session = request.getSession();		
 		if(session != null && session.getAttribute("BMJSessionToken")!=null){
 			resetSessionData(request);
 	
-			String insightId=request.getParameter("insightId");
+			
 			InsightDto insightDTO = null ;
 			try{
 			List<InsightDto> insightDtoList = insightService.getInsightDetails(insightId);//to get insight details
@@ -208,7 +250,6 @@ public class InsightController {
 			}
 			return new ModelAndView("editInsight","mInsightDTO",insightDTO);
 		}else{
-			String insightId=request.getParameter("insightId");			
 			log.debug("in the edit insight page insightId "+insightId);
 			request.setAttribute("insightId",insightId);
 			ModelAndView mav = new ModelAndView("redirectEdit");	

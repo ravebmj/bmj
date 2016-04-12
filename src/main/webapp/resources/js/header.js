@@ -2,6 +2,7 @@
  $(function() {$( "#todate" ).datepicker({ buttonImage: 'resources/images/calender.png', maxDate: new Date,buttonImageOnly: true,  buttonText : '',  showOn: 'button'  });});
     
 var aaaa =  $("#actionPage").val();
+var googleStatus='false';// variable to hold current status of google sign in session
 window.document.onkeydown = function (e)
 {
  if (!e){
@@ -86,3 +87,89 @@ function lightbox_close(){
 				});
 
 			});
+			/**
+			 * This gets call when user does not have google login session in browser
+			 * @param pageType
+			 * @param insightId
+			 */
+			function redirectToGoogleLogIn(pageType,insightId){
+				var form; // dynamic form that will call controller
+			    form = $('<form />', {
+			        action: "googleLogin.html",
+			        method: 'post',
+			        style: 'display: none;'
+			    });
+			    //Form parameter pageType
+			    $("<input>").attr("type", "hidden").attr("name", "pageType").val(pageType).appendTo(form);
+			    $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
+			    //Form submit
+			    form.appendTo('body').submit();
+
+			}			
+			/**
+			 * This code gets call when any page in BMJ application gets load to check existence of google sign in session.
+			 * When google mail sign in / sign out does in one tab then below code gets executed.
+			 */
+			$(document).ready(function() {
+	
+				gapi.load('auth2', function() {
+					 
+					 auth2 = gapi.auth2.init({
+						 client_id: '1075831596585-jjengvqaon5rp4elo0qou5t8314c583h.apps.googleusercontent.com'
+						});
+	
+						auth2.currentUser.listen(function (googleUser) {
+						    if (googleUser.isSignedIn()) {// Already google signin
+						    	
+						    	googleStatus='true';
+						    } else {// Google sign out.Invalidate BMJ session.Go to BMJ login page.
+						    	
+						    	googleStatus='false';
+						    	$.ajax({
+									url : 'invalidateSession.ajx',
+									type : 'post',
+									success : function(result) {
+										if(result=='true'){
+											if(pageType==''){
+												redirectToGoogleLogIn('dashboard','');
+											}else{
+												
+												if (pageType=='viewinsight'){
+													
+													redirectToGoogleLogIn(pageType,insightId);
+												}
+											}
+										}else{
+
+										}
+									},
+									error : function(data, status, er) {
+										
+									}
+								});
+						    	
+						    }
+						});
+	
+	
+				});
+				
+			});
+			 
+			/**
+			 * When user clicks on "home" link in header.
+			 * Need to pass current status of googleSession to controller.
+			 */
+			function redirectToHome(){
+				var form; // dynamic form that will call controller	
+			    form = $('<form />', {
+			        action: "dashboard.html",
+			        method: 'get',
+			        style: 'display: none;'
+			    });
+			    //Form parameter insightId
+			    $("<input>").attr("type", "hidden").attr("name", "googleSession").val(googleStatus).appendTo(form);
+			    //Form submit
+			    form.appendTo('body').submit();
+			}
+

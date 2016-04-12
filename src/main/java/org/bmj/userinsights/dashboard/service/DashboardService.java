@@ -5,6 +5,7 @@ import java.util.List;
 import org.bmj.userinsights.dashboard.Dao.IDashboardDao;
 import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
 /**
@@ -55,6 +56,16 @@ public class DashboardService implements IDashboardService{
 	public void saveInsightForDeleteDate(DashboardDto dashboardDto ) throws Exception {
 		 getDaoRef().saveInsightForDeleteDate(dashboardDto );
 		
+	}
+
+	/**
+	 * Get list of product
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<ProductDto> getActiveProducts() throws Exception {
+		return getDaoRef().getActiveProducts();
 	}
 
 	

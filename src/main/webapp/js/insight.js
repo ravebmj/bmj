@@ -13,6 +13,7 @@ function viewInsight(insightId){
     });
     //Form parameter insightId
     $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
+    $("<input>").attr("type", "hidden").attr("name", "googleSession").val(googleStatus).appendTo(form);// Parameter to hold current status of google sign in session.
     //Form submit
     form.appendTo('body').submit();
 }
@@ -127,7 +128,7 @@ function submitPageForNewInsight()
     });
     //Form parameter insightId
    // $("<input>").attr("type", "hidden").attr("name", "insightId").val(insightId).appendTo(form);
-    
+    $("<input>").attr("type", "hidden").attr("name", "googleSession").val(googleStatus).appendTo(form);// Parameter to hold current status of google sign in session
     //Form submit
     form.appendTo('body').submit();
 }

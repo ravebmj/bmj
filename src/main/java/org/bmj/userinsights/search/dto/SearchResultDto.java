@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 
 public class SearchResultDto implements Serializable {
 	
 	private static final long serialVersionUID = 2938054522288743030L;
 		
 	List<InsightDetailsDto> searchResult = new ArrayList<>();// this list contains all the search results related to the searchcriteria
-	
+	List<ProductDto> productresult = new ArrayList<ProductDto>();
 	// start - these properties are specific to reset quick search or advance search options
 	private String sortFlag; // use this flag on jsp to differentiate view all
 	private String keyword; //to hold quich search text box value
@@ -145,6 +146,19 @@ public class SearchResultDto implements Serializable {
 	public void setWeightageSortFlag(String weightageSortFlag) {
 		this.weightageSortFlag = weightageSortFlag;
 	}
+	/**
+	 * @return the productresult
+	 */
+	public List<ProductDto> getProductresult() {
+		return productresult;
+	}
+	/**
+	 * @param productresult the productresult to set
+	 */
+	public void setProductresult(List<ProductDto> productresult) {
+		this.productresult = productresult;
+	}
+	
 	
 	
 

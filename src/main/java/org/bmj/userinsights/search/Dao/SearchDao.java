@@ -2,6 +2,7 @@ package org.bmj.userinsights.search.Dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +12,12 @@ import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.InsightsConstants;
 import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.entity.InsightDetail;
 import org.bmj.userinsights.entity.InsightProduct;
 import org.bmj.userinsights.entity.InsightProject;
 import org.bmj.userinsights.entity.InsightTag;
+import org.bmj.userinsights.entity.Product;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
@@ -40,19 +43,101 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 	     List<Object> paramValue = new ArrayList<Object>();
 		 List<SelectValuesDto> lstDateCriteria = InsightsConstants.getDateCriteriaLst();
 		 Map<Integer,SelectValuesDto> dateCriteriaMap = getCodeListMap(lstDateCriteria);
-			 
 		 StringBuffer sbQuery = new StringBuffer();
 		 sbQuery.append("select distinct id from InsightDetail id LEFT JOIN id.products as ip  ");
 		 sbQuery.append("LEFT JOIN id.projects as ipj LEFT JOIN id.tags as it  ");
 		 sbQuery.append("LEFT JOIN ip.product as prod LEFT JOIN ipj.project as proj LEFT JOIN it.tag as tag ");
-		 sbQuery.append("where ((id.title like :keyword) OR (id.plainDescription like :keyword) ");
-		 sbQuery.append("OR (prod.name like :keyword) OR (proj.name like :keyword) OR (tag.name like :keyword)) ");
+		 
+		 if(keyword.isEmpty() || keyword.equals(null) || keyword.trim().length()==0)
+		 {
+			 sbQuery.append("where ((id.title like :keyword) OR (id.plainDescription like :keyword) ");
+			 sbQuery.append("OR (prod.name like :keyword) OR (proj.name like :keyword) OR (tag.name like :keyword)) ");
+			 sbQuery.append("AND id.insightApplicationID = 1 ");
+			 sbQuery.append("AND id.deleteDate is null ");
+			 paramName.add("keyword");
+			 paramValue.add("%"+keyword+"%");
+		 }else{
+		 sbQuery.append("where (");
+ 
+		 String[] words = keyword.split(" ");
+		 for (int i = 0; i < words.length; i++) {
+			 if(i>0){
+				 if(!words[i].equals("")){
+					 sbQuery.append(" OR ");
+				 }
+			 }
+			 if(!words[i].equals("")){
+				 sbQuery.append("(id.title like ");
+				 sbQuery.append(":words"+i);
+				 sbQuery.append(")");
+			 }
+		 }
+		 sbQuery.append(" OR ");
+		 for (int i = 0; i < words.length; i++) {
+			 if(i>0){
+				 if(!words[i].equals("")){
+					 sbQuery.append(" OR ");
+				 }
+			 }			 
+			 if(!words[i].equals("")){
+				 sbQuery.append("(id.plainDescription like ");
+				 sbQuery.append(":words"+i);
+				 sbQuery.append(")");
+			 }
+		 }
+		 sbQuery.append(" OR ");
+		 for (int i = 0; i < words.length; i++) {
+			 if(i>0){
+				 if(!words[i].equals("")){
+					 sbQuery.append(" OR ");
+				 }
+			 }			 
+			 if(!words[i].equals("")){
+				 sbQuery.append("(prod.name like ");
+				 sbQuery.append(":words"+i);
+				 sbQuery.append(")");
+			 }
+		 }
+		 sbQuery.append(" OR ");
+		 for (int i = 0; i < words.length; i++) {
+			 if(i>0){
+				 if(!words[i].equals("")){
+					 sbQuery.append(" OR ");
+				 }
+			 }			 
+			 if(!words[i].equals("")){
+				 sbQuery.append("(proj.name like ");
+				 sbQuery.append(":words"+i);
+				 sbQuery.append(")");
+			 }
+		 }
+		 sbQuery.append(" OR ");
+		 for (int i = 0; i < words.length; i++) {
+			 if(i>0){
+				 if(!words[i].equals("")){
+					 sbQuery.append(" OR ");
+				 }
+			 }			 
+			 if(!words[i].equals("")){
+				 sbQuery.append("(tag.name like ");
+				 sbQuery.append(":words"+i);
+				 sbQuery.append(")");
+			 }
+		 }
+	 
+		 
+		 sbQuery.append(" ) ");
 		 sbQuery.append("AND id.insightApplicationID = 1 ");
 		 sbQuery.append("AND id.deleteDate is null ");
-
 		 
-		 paramName.add("keyword");
-		 paramValue.add("%"+keyword+"%");
+		 for (int i = 0; i < words.length; i++) {
+			 if(!words[i].equals("")){
+				 paramName.add("words"+i);
+				 paramValue.add("%"+words[i]+"%");
+			 }
+		 }
+		
+		 }
 		 
 		 if(insightType!=null && Integer.valueOf(insightType)!=0 ){
 			 sbQuery.append(" AND id.type = "+Integer.valueOf(insightType) );
@@ -92,7 +177,7 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 				 paramName.add("todate");
 				 paramValue.add(getUpperTime(CommonUtils.getYYYYMMDD(toDate)));
 			 }else if(fromDate!=null && !fromDate.equals("From") && toDate!=null && toDate.equals("To") ){				
-				 sbQuery.append(" AND (id.modifiedDate BETWEEN ':frmdate  AND :todate ) ");
+				 sbQuery.append(" AND (id.modifiedDate BETWEEN :frmdate  AND :todate ) ");
 				 paramName.add("frmdate");				
 				 paramValue.add(getLowerTime(CommonUtils.getYYYYMMDD(fromDate)));
 				 paramName.add("todate");
@@ -435,6 +520,25 @@ public class SearchDao extends HibernateDaoSupport implements ISearchDao{
 
 		return tagName;
 	}
-	
+
+	/**
+	 * Get list of product
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<ProductDto> getAllActiveProducts() throws Exception {
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		List<Product> productList = (List<Product>) this.getHibernateTemplate()
+				.findByNamedQuery("Product.getAllActiveProducts");
+		for(Product product: productList){
+			ProductDto productDto = new ProductDto();
+			CommonUtils.copyProperties(productDto, product);
+			productDtoList.add(productDto);
+		}
+		Collections.sort(productDtoList,ProductDto.productNameComparator);
+		return productDtoList;
+	}
+
 	
 }

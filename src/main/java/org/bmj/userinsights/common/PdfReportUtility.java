@@ -15,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.bmj.userinsights.awsbucket.dto.AWSFileDetail;
 import org.bmj.userinsights.awsbucket.service.AwsBucketService;
@@ -114,7 +115,7 @@ public class PdfReportUtility  extends PdfPageEventHelper {
 			
 			
 			constructContentSection(data,rmb.getString("insight_title"),escapingScriptTagForString(insightDto.getTitle()));
-			constructContentSection(data,rmb.getString("insight_desc"),escapingScriptTagForString(insightDto.getDescription()));
+			constructContentSection(data,rmb.getString("insight_desc"),escapingScriptTagForString(StringEscapeUtils.unescapeHtml(insightDto.getDescription())));
 			
 			if(null != insightDto.getFoundDate()){
 				constructContentSection(data,rmb.getString("insight_foundon"),CommonUtils.getEDDMMMYYYY(insightDto.getFoundDate()));

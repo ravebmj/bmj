@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 
 public class DashboardDto implements Serializable {
 
@@ -12,6 +13,7 @@ public class DashboardDto implements Serializable {
 	
 	private List<InsightDetailsDto> recentInsightsLst;	// list conatins recently added insights
 	private List<InsightDetailsDto> strongestEvidenceInsightLst; // this list contains strongest evidence insights
+	private List<ProductDto> productDtoLst;	// list conatins all product
 	private String insightId;
 	private String bannerText;
 	
@@ -70,6 +72,19 @@ public class DashboardDto implements Serializable {
 			List<InsightDetailsDto> strongestEvidenceInsightLst) {
 		this.strongestEvidenceInsightLst = strongestEvidenceInsightLst;
 	}
+	/**
+	 * @return the productDtoLst
+	 */
+	public List<ProductDto> getProductDtoLst() {
+		return productDtoLst;
+	}
+	/**
+	 * @param productDtoLst the productDtoLst to set
+	 */
+	public void setProductDtoLst(List<ProductDto> productDtoLst) {
+		this.productDtoLst = productDtoLst;
+	}
+	
 	
 
 }

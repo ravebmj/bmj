@@ -3,6 +3,7 @@ package org.bmj.userinsights.search.service;
 import java.util.List;
 
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.search.Dao.ISearchDao;
 import org.bmj.userinsights.search.dto.SearchResultDto;
 import org.bmj.userinsights.server.AppContext;
@@ -114,5 +115,18 @@ public class SearchService implements ISearchService {
 	 */
 	public String getInsightKeyWordForProject(Integer insightIds) throws Exception{
 		return getDaoRef().getInsightKeyWordForProject(insightIds);
+	}
+	
+	/**
+	 * Get all product when click on view all
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public SearchResultDto getAllActiveProducts() throws Exception {
+		SearchResultDto dto = new SearchResultDto();		
+		List<ProductDto> productList = getDaoRef().getAllActiveProducts();
+		dto.setProductresult(productList);			
+	   return dto;
 	}
 }

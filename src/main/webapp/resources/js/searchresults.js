@@ -290,6 +290,16 @@ $( document ).ready(function() {
     	   	
     });
 	
+	/*
+    On click event on product view all
+    This method will call search insight
+    And pass recent as parameter
+    */
+	$(".productViewAllClass").click(function(){ 
+    	viewall("product");
+    	   	
+    });
+	
 	$('#gbqfq').bind("enterKey",function(e){
 		doingAdvanceQuickSearch('insight');
 		});
@@ -397,7 +407,6 @@ function hhide(id) {
 }
 
 function show(obj) {
-
 	var e1 = document.getElementById('search-bottom');
 
 	if (e1.style.display == 'none') {
@@ -413,6 +422,7 @@ function show(obj) {
 		document.getElementById('gbqfab').style.display = "none";
 		document.getElementById('gbqfab').style.border = "none";
 		document.getElementById('gbqfab').style.cursor = "pointer";
+		document.getElementById('idDivAdvanceSearch').style.display = "none";
 		// document.getElementById('headbg').style.height="534px";
 		document.getElementById('headbg').style.background = "url(resources/images/headbgclick.png) left top repeat-x";
 	}
@@ -421,7 +431,6 @@ function show(obj) {
 
 function hide(obj) {
 	var el = document.getElementById('search-bottom');
-
 	el.style.display = 'none';
 	document.getElementById('gbqfbw').style.display = "inline";
 	document.getElementById('btn-insight').style.margin = "0px 0px 0px 0";
@@ -429,6 +438,7 @@ function hide(obj) {
 	document.getElementById('search').style.margin = "10px 0px 8px 0";
 	document.getElementById('gbqfab').style.display = "block";
 	document.getElementById('gbqfab').style.cursor = "pointer";
+	document.getElementById('idDivAdvanceSearch').style.display = "block";
 	document.getElementById('headbg').style.height = "299px";
 	document.getElementById('headbg').style.background = "url(resources/images/headbg.png) left top repeat-x";
 

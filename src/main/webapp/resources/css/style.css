@@ -43,8 +43,8 @@ a{text-decoration:none;}
 .font13{font-size:13px;}
 .font23{font-size:23px;}
 .advance-search-title_font{font-size: 28px;}
-.header-title{width:100%;margin:0 auto;border-bottom:1px solid #9da0a4;color:#3c3e40;font-weight:normal;padding:28px 0px 7px 0px; font-size:23px;}
-.advance-search-title{ color: #fff; font-weight: normal; height: 20px; padding: 0 10px 0 13px;}
+.header-title{float:Left;width:100%;margin:0 auto;border-bottom:1px solid #9da0a4;color:#3c3e40;font-weight:normal;padding:0px 0px 7px 0px; font-size:23px;}
+.advance-search-title{float:left; color: #fff; font-weight: normal; height: 20px; padding: 0 10px 0 13px;}
 ul.navmargin{margin:38px 0 0 0 ;}
 ul.nav{margin:38px 0 0 0 ;padding:0px;width:157px;float:right;}
 ul.nav li{display:inline;}
@@ -323,13 +323,13 @@ h2.search-head-title{font-size:25px;color:#fff;font-weight:normal;padding:0px 0 
 
 .viewall-top{padding:40px 6px 0px 0px}
 
-.viewall_bottom{padding:40px 6px 0px 0px}
+.viewall_bottom{padding:64px 6px 0px 0px}
 
 .viewall_bottom a {
     text-decoration: none;
     color: #296dbd;
     font-weight: bold;
-   
+   font-size:14px;
 }
 
 .viewall-top a{text-decoration:none;color:#296dbd;font-weight:bold;}
@@ -419,8 +419,10 @@ fieldset {
 .view a:hover{text-decoration:underline;}
 span{color:#5a5e64;}
 .grey_highlight_11{color:#5d5f64;font-size:11px;}
-.h2_25{color:#3f4144;font-weight:normal;margin:205px 0 15px 0; font-size:23px;}
+.h2_25{color:#3f4144;font-weight:normal;margin:25px 0 15px 0; font-size:23px;}
+.h2_26{color:#3f4144;font-weight:normal;margin:205px 0 15px 0; font-size:23px;clear:both;padding:24px 0 0 0px;}
 .h2_28{color:#3f4144;font-weight:normal;margin:28px 0 15px 0; font-size:23px;}
+#frmInsight{clear:both;}
 .title_text{color:#242627;font-size:18px;margin:0 0 8px 0px;}
 .addedon{color:#666769;}
 .asterisk_red{color:#ff0000}
@@ -1437,3 +1439,35 @@ right:0px;
 
 #errorfooter{background:#296dbd;width:100%;height:14px;color:#fff;padding:22px 0px;position:absolute;bottom:0px;}
 #errorfooter span{display: block; margin: 0 auto; width:998px;color:#fff;}
+
+
+#idDivAdvanceSearch h2{text-decoration:underline;cursor:pointer;}
+
+.recentViewAllClass,.evidViewAllClass{    position: relative;
+    top: 29px;
+}
+
+a.insightProductClass {display:inline-block;    color: #296dbd;
+    text-decoration: none;}
+    
+    .header-title-middle{ 
+    width: 100%;
+    margin:59px auto 0 auto;
+    border-bottom: 1px solid #9da0a4;
+    color: #3c3e40;
+    font-weight: normal;
+    padding: 0px 0px 7px 0px;
+    font-size: 23px;}
+    
+    
+    .insigt-cont{width:100%;}
+    
+    .insigt-det{float:Left;height:30px;    word-break: break-all;
+    padding: 0 1%;}
+    
+    .newpanel{float:left;width:100%;border-bottom:1px solid #9da0a4;padding:30px 0 36px  0px;}
+    
+    #searchTable tr td{border-top:none!important}
+    table.dataTable.no-footer{border-bottom:none!important}
+    
+    

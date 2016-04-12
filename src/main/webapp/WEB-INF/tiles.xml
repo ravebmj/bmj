@@ -67,5 +67,15 @@
     <definition name="ErrorPage" extends="error.definition">
 		<put-attribute name="body" value="/WEB-INF/views/error.jsp" />
 		<put-attribute name="title" value="Error Page" />
+	</definition>
+	<definition name="searchproduct" extends="insight.definition">
+		<put-attribute name="body" value="/WEB-INF/views/searchproduct.jsp" />
+		<put-attribute name="title" value="Search Results" />
 	</definition>			
+	<definition name="googleLogin"  extends="bodytemplate.definition">
+		<put-attribute name="body" value="/WEB-INF/views/googleLogin.jsp" />
+	</definition>
+	<definition name="sessionCheck"  extends="bodytemplate.definition">
+		<put-attribute name="body" value="/WEB-INF/views/sessionCheck.jsp" />
+	</definition>		
 </tiles-definitions>

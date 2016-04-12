@@ -108,6 +108,32 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
+		<div class="newpanel">
+		<div class="viewall_bottom fr">
+					<a id="productViewallid" class="productViewAllClass"><spring:message code="dashboard_viewall_product" /></a></div>
+		<div class="header-title-middle">
+					<spring:message code="dashboard_product_title" />
+					<c:if test="${not empty dashboardDto.productDtoLst}">
+					</c:if>
+				</div>
+		
+		<c:choose>
+		<c:when test="${not empty dashboardDto.productDtoLst}">
+		
+		<c:forEach items="${dashboardDto.productDtoLst}" var="currPro" > 
+		<div class="insigt-cont"><span class="insigt-det">
+    	<br/><a id="${currPro.id}" class="insightProductClass">${currPro.name} </a><br/></span></div>
+       </c:forEach>
+		</c:when>
+		<c:otherwise>
+		<div class="norecordsfound">
+					<spring:message code="dashboard_viewall_norecord" />
+					</div>
+		</c:otherwise>
+		</c:choose>
+		</div>
+		
+		
 		<div id="main-container fl">
 			<div class="row-header fl">
 				<div class="viewall_bottom fr">
@@ -204,6 +230,7 @@
 <c:if test="${not empty dashboardDto.insightId  || not empty dashboardDto.bannerText}">
 <form:form method="GET" id="frmBannerSubmit" action	="dashboard.html" >
 <input type="hidden" name="banner" id="banner" value="true"/>
+<input type="hidden" id="googleSession" name="googleSession" value=""/>
 </form:form>
 <div id="idUndoBanner" style="display: inline;" >
 ${dashboardDto.bannerText}

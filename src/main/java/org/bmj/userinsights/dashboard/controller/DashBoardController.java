@@ -13,6 +13,7 @@ import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dashboard.service.IDashboardService;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.search.dto.SearchCriteriaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,12 +54,25 @@ public class DashBoardController {
 	 */
 	@RequestMapping("/dashboard")
 	public ModelAndView showDashboard(HttpServletRequest request) {
+		
+		String googleSession=request.getParameter("googleSession");// If value of this parameter is "true" then google signin is already exist. 
+		if(googleSession==null || (googleSession!=null && !googleSession.equalsIgnoreCase("true"))){
+			ModelAndView mav = null;
+			request.setAttribute("pageType", "dashboard");// This variable decides final page for navigation after successful google signin.
+			
+			//Navigate to the intermediate page which checks google session. If google session not exist then navigate to BMJ google login. If exist then
+			//navigate to page which is based on "pageType" variable.
+			mav = new ModelAndView("sessionCheck");	
+			return mav;
+		}
+		
 		log.info("Entered in to showdashboard method in DashBoardController");
 		List<SelectValuesDto> lstInsightTypesDto = null;
 		List<SelectValuesDto> lstSeveritiesDto = null;		
 		List<SelectValuesDto> lstDateCriteriaDto = null;
 		List<InsightDetailsDto> lstRecentInsightsDto = null;
 		List<InsightDetailsDto> lstSrongestEvidenceInsightDTO = null;
+		List<ProductDto> lstProductDto = null;
 		DashboardDto dashboardDto = new DashboardDto();
 		ModelAndView mav = new ModelAndView("dashboard");
 		SearchCriteriaDto searchCriteriaDto = new SearchCriteriaDto();
@@ -68,15 +82,14 @@ public class DashBoardController {
 			if(deleteInsightId!=null){
 				HttpSession session = request.getSession();	
 				if(session != null && session.getAttribute("BMJSessionToken")!=null){
-				
-				dashboardDto.setInsightId(deleteInsightId);
-				dashboardDto.setBannerText(messagesProperties.getString("dashboard_banner_message"));
-				log.info("Saving delete date to null for insight id = "+deleteInsightId);
-				dashboardService.saveInsightForDeleteDate(dashboardDto);
+					dashboardDto.setInsightId(deleteInsightId);
+					dashboardDto.setBannerText(messagesProperties.getString("dashboard_banner_message"));
+					log.info("Saving delete date to null for insight id = "+deleteInsightId);
+					dashboardService.saveInsightForDeleteDate(dashboardDto);
 				}else{
-				log.debug("in the dashboard page to delete insight for insightId "+deleteInsightId);
-				request.setAttribute("insightId",deleteInsightId);
-				mav = new ModelAndView("redirectEdit");	
+					log.debug("in the dashboard page to delete insight for insightId "+deleteInsightId);
+					request.setAttribute("insightId",deleteInsightId);
+					mav = new ModelAndView("redirectEdit");	
 					return mav;
 				}
 			}
@@ -101,7 +114,8 @@ public class DashBoardController {
 			// get all strongest evidence insight based on users count
 			lstSrongestEvidenceInsightDTO = dashboardService
 					.getStrongestEvidenceInsights();
-			
+			// get all product
+			lstProductDto = dashboardService.getActiveProducts();
 			if(request.getParameter("banner")!=null){
 				log.info("Setting banner success message");
 				dashboardDto.setBannerText(messagesProperties.getString("dashboard_banner_success_message"));
@@ -120,7 +134,7 @@ public class DashBoardController {
 		dashboardDto.setRecentInsightsLst(lstRecentInsightsDto);
 		dashboardDto
 				.setStrongestEvidenceInsightLst(lstSrongestEvidenceInsightDTO);
-
+		dashboardDto.setProductDtoLst(lstProductDto);
 		mav.addObject("dashboardDto", dashboardDto);
 		mav.addObject("searchCriteria", searchCriteriaDto);
 		log.info("End of the showdashboard method in DashBoardController");

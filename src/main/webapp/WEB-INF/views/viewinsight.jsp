@@ -36,7 +36,7 @@ var sessionExists = '<%=sessionExists%>';
 </script>
 
 <body id="headbg">
-<div id="main-container" class="viewinsight bluebdr">
+<div id="main-container" class="viewinsight viewinsight_1 bluebdr">
 <c:if test="${mInsightDTO.msgSuccess!=''}">
 
 <c:choose>
@@ -51,9 +51,9 @@ var sessionExists = '<%=sessionExists%>';
     
 </c:if>
 
-	<h2 class="h2_25"><spring:message code="viewinsight_title"/></h2>
+	<h2 class="h2_26"><spring:message code="viewinsight_title"/></h2>
 	
-	<div class="edit"><input type="button" value="<spring:message code="viewinsight_edit_button"/>" class="editbtn" onclick="showEditInsight(this.id)" id="idEditButton"></div>
+	<div class="edit edit1"><input type="button" value="<spring:message code="viewinsight_edit_button"/>" class="editbtn right-edit" onclick="showEditInsight(this.id)" id="idEditButton"></div>
 	<div class="insighttitle font18">${mInsightDTO.insightDetailsDto.escpedTitle}    </div>
 	<div><span class="addedon font13"><spring:message code="viewinsight_label_addedon"/> ${mInsightDTO.addedDate} </span>&nbsp;<span class="maillink font13"> <spring:message code="viewinsight_label_by"/> ${mInsightDTO.username}</span></div>
 	<fieldset>
@@ -237,5 +237,6 @@ var sessionExists = '<%=sessionExists%>';
 	</div>
 	<form method="get" id="frmEdit" action="editinsight.html" >
 		<input type="hidden" id="insightId" name="insightId" value="${mInsightDTO.insightDetailsDto.id}"/> 
+		<input type="hidden" id="googleSession" name="googleSession" value=""/>
 	</form>
 	</body>

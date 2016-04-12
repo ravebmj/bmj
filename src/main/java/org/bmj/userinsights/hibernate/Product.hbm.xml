@@ -31,4 +31,10 @@
 		  	where p.product.id = :productId
         ]]>
     </query>
+    <query name="Product.getAllActiveProducts">
+       <![CDATA[
+		  	SELECT DISTINCT pro  FROM Product pro, InsightProduct ipro, InsightDetail insd 
+			WHERE pro.id = ipro.product.id AND ipro.insightDetail.id = insd.id AND insd.deleteDate is null order by pro.name
+        ]]>
+    </query>
 </hibernate-mapping>

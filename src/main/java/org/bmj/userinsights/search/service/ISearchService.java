@@ -76,5 +76,11 @@ public interface ISearchService {
 	 * @throws Exception
 	 */
 	public String getInsightKeyWordForProject(Integer insightIds) throws Exception;
+	/**
+	 * Get all product when click on view all
+	 * @return
+	 * @throws Exception
+	 */
+	SearchResultDto getAllActiveProducts() throws Exception;
 
 }

@@ -1695,7 +1695,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 data,
                 self = this,
                 input,
-                term = search.val(),
+                term = $.trim(search.val()),
                 lastTerm = $.data(this.container, "select2-last-term"),
                 // sequence number used to drop out-of-order responses
                 queryNumber;

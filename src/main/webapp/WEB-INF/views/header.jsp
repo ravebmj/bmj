@@ -7,7 +7,8 @@
 <%@page import="java.util.ResourceBundle"%>
 <link rel="shorcut icon" href="resources/images/favicon.ico" type="image/x-icon" />
 <link href="resources/css/style.css" rel="stylesheet">
-
+
+
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" 
@@ -16,7 +17,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-
+<script src="https://apis.google.com/js/platform.js"></script>
 <% 
 String username="";
 String sessionExists="false";
@@ -58,7 +59,7 @@ var errmsgAdvSeracheDates = '<%=errmsgAdvSeracheDates%>';
 				%>
 				<li><div class="loginname font13 fr" id="idShowUserName" style="display: none"></div></li>
 				<% } %>
-				<li><a href="home.html"><spring:message code="header_message_label_home"/></a></li> 
+				<li><a href="#" onclick="redirectToHome();"><spring:message code="header_message_label_home"/></a></li> 
 
 				<%
 					if (sessionExists.equalsIgnoreCase("true")) {
@@ -78,5 +79,9 @@ var errmsgAdvSeracheDates = '<%=errmsgAdvSeracheDates%>';
 
 </div>
 
-
+<script>
+// Below variables are using (inside viewInsight controller method), for bookmark scenario of view Insight where google session is not already exist.
+var pageType='${pageType}';
+var insightId='${insightId}';
+</script>
 

@@ -656,6 +656,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				if(isProductDeleteRequired(insightDTO, insightProduct)){// Check if current product need to be delete.
 					this.getHibernateTemplate().delete(insightProduct);
 					itrInsightProduct.remove();
+					cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 				}
 		    }
 		}
@@ -695,6 +696,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				insightProduct.setAddedDate(new Date());
 				insightProduct.setAddedUser(insightDTO.getUserId());
 				insightDetail.getProducts().add(insightProduct);
+				cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 			}			
 		}
 	}
@@ -760,6 +762,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				if(isProjectDeleteRequired(insightDTO, insightProject)){// Check if current product need to be delete.
 					this.getHibernateTemplate().delete(insightProject);
 					itrInsightProject.remove();
+					cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 				}
 		    }
 		}
@@ -798,6 +801,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				insightProject.setAddedDate(new Date());
 				insightProject.setAddedUser(insightDTO.getUserId());
 				insightDetail.getProjects().add(insightProject);
+				cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 			}			
 		}
 	}
@@ -863,6 +867,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				if(isTagDeleteRequired(insightDTO, insightTag)){// Check if current product need to be delete.
 					this.getHibernateTemplate().delete(insightTag);
 					itrInsightTag.remove();
+					cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 				}
 		    }
 		}
@@ -901,6 +906,7 @@ public class InsightDao extends HibernateDaoSupport implements IInsightDao{
 				insightTag.setAddedDate(new Date());
 				insightTag.setAddedUser(insightDTO.getUserId());
 				insightDetail.getTags().add(insightTag);
+				cacheService.clearCacheByName(InsightsConstants.CACHE_NAME_SEARCH);
 			}			
 		}
 	}

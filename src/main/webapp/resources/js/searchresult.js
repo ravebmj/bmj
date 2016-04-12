@@ -10,7 +10,8 @@ $(document).ready(function() {
 			document.getElementById("fromdt").value = fromDate;
 			document.getElementById("todate").value = toDate; 
 			document.getElementById("gbqfq").value = keyword;
-			$("#gbqfab").click();
+			
+			$("#idDivAdvanceSearch").click();
 		}
 
 		$("#close").click(function() {

@@ -11,6 +11,7 @@ function showEditInsight(clicked_id){
 
 function perfromSubmitOpeartionForEdit()
 {
+	document.getElementById("googleSession").value=googleStatus;// Parameter to hold current status of google sign in session.
 	document.getElementById("frmEdit").submit();
 
 }

@@ -3,6 +3,8 @@ package org.bmj.userinsights.search.Dao;
 import java.util.List;
 
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
+import org.bmj.userinsights.search.dto.SearchResultDto;
 /**
  * This interface has abstract methods for search criteria
  */
@@ -74,4 +76,10 @@ public interface ISearchDao {
 	 * @throws Exception
 	 */
 	public String getInsightKeyWordForProject(Integer insightIds) throws Exception;
+	/**
+	 * Get all product when click on view all
+	 * @return
+	 * @throws Exception
+	 */
+	List<ProductDto>  getAllActiveProducts() throws Exception;
 }

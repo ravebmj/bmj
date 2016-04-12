@@ -39,7 +39,9 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.sax.BodyContentHandler;
 import org.bmj.userinsights.common.dto.SelectValuesDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.entity.InsightDetail;
+import org.bmj.userinsights.entity.Product;
 import org.bmj.userinsights.insight.service.IInsightService;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
@@ -70,6 +72,8 @@ public class CommonUtils {
 	public static final String CONFIG_VALUE_RECENT_INSIGHT_LIST_SIZE = "RECENT_INSIGHT_LIST_SIZE";
 	public static final String VALID_USER_ADVANCE_SEARCH = "ValidUser AdvSearch";
 	public static final Integer INSIGHT_DELETE_SCHEDULAR_TIME_IN_SECONDS = 180;
+	public static final String CONFIG_VALUE_PRODUCT_LIST_SIZE = "CONFIG_VALUE_PRODUCT_LIST_SIZE";
+
 
 	public static void errorLoggging(Logger log, Exception e, String message) {
 		StringWriter sw = new StringWriter();
@@ -433,5 +437,23 @@ public class CommonUtils {
 		return insightService.getSelectValuesDtoLst(codelistName, applicationId);
 		
 	}
-
+	/**
+	 * Get Base URL of currently requested url.
+	 * @param requestURL
+	 * @param requestURI
+	 * @return
+	 */
+	public static String getBaseUrl(String  requestURL,String  requestURI){
+		String returnUrl = "";
+		try{
+		
+			String appName=requestURI.substring(1, requestURI.indexOf("/", 1));
+			String contextPath = requestURL.substring(0, requestURL.indexOf(appName));
+			returnUrl=contextPath+appName+"/";
+			log.debug(" BaseUrl  "+returnUrl);
+		}catch (Exception e){
+			CommonUtils.errorLoggging(log, e, "Error while retrieving getBaseUrl");
+	    }
+		return returnUrl;
+	}	
 }

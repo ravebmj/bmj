@@ -14,6 +14,8 @@ function undoInsight()
 		data: "&insightid=" + document.getElementById('insightid').value,
 		success : function(result) {
 			document.getElementById("idUndoBanner").style.display = "none";
+			document.getElementById("googleSession").value=googleStatus;// Parameter to hold current status of google sign in session.
+
 			$("#frmBannerSubmit").submit();
 					
 		   },
@@ -27,3 +29,7 @@ setTimeout(function() {
     $('#idUndoBanner').fadeOut('fast');
     document.getElementById("idUndoBanner").style.display = "none";
 }, 60000);
+
+
+function showProduct(id)
+{search("product", id);}

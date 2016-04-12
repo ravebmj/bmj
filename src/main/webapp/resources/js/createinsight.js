@@ -1,6 +1,8 @@
 
 
 $(document).ready(function() {
+	
+	
 	$(window).on('keyup', function(event){
 
 		if(event.keyCode == '9'){
@@ -14,6 +16,7 @@ $(document).ready(function() {
 		    }
 
 	});
+	
 	if((document.getElementById("pageHeader").innerHTML.trim())==('Create New Insight'))
 	{
 		$("#idbuttonPanel").removeClass("btn-panel").addClass("btn-panel-create");
@@ -61,7 +64,7 @@ $(document).ready(function() {
                   return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
                 }).length === 0) {
                     return {
-                        id: term,
+                        id: term.toLowerCase(),
                         text: term,
                         n : "new",
                         s : "",
@@ -141,7 +144,7 @@ $(document).ready(function() {
                   return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
                 }).length === 0) {
                     return {
-                        id: term,
+                        id: term.toLowerCase(),
                         text: term,
                         n : "new",
                         s : "",
@@ -213,14 +216,13 @@ $(document).ready(function() {
 	$('#idTags').select2({
 		tags : true,
 		tokenSeparators : [ ',' ],
-
 		createSearchChoice : function(term,data) {
 			if (term.trim().length > 0) {
                 if ($(data).filter(function () {
                   return this.text.toLowerCase().localeCompare(term.toLowerCase()) === 0;
                 }).length === 0) {
                     return {
-                        id: term,
+                        id: term.toLowerCase(),
                         text: term,
                         n : "new",
                         s : "",
@@ -229,6 +231,7 @@ $(document).ready(function() {
                 }
             }
 		},
+
 		ajax : {
 			url : 'listTags.ajx',
 			dataType : 'json',
@@ -1201,6 +1204,6 @@ function showFieldForInsightPage(insightType)
 function deleteInsight(){
 	console.debug('Inside Delete Insight');
 	document.getElementById("frmInsightDelete").action='dashboard.html';
+	document.getElementById("googleSession").value=googleStatus;// Parameter to hold current status of google sign in session.
 	document.getElementById("frmInsightDelete").submit();
-	
 }

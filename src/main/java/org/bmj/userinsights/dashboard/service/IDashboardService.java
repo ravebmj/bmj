@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 /**
  * This interface having the abstract method which service class can give the implementation
  */
@@ -26,4 +27,10 @@ public interface IDashboardService {
 	 * @throws Exception
 	 */
 	public void saveInsightForDeleteDate(DashboardDto dashboardDto) throws Exception;
+	/**
+	 * Get list of product
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ProductDto> getActiveProducts() throws Exception;
 }

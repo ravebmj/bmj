@@ -608,4 +608,5 @@ function confirmation_popup_close(){
 
 <form:form method="GET" id="frmInsightDelete" modelAttribute="mInsightDTO" action="" >
 <input type="hidden" name="deleteInsightId" id="deleteInsightId" value="${mInsightDTO.insightDetailsDto.id}"/>
+<input type="hidden" id="googleSession" name="googleSession" value=""/>
 </form:form>

@@ -56,11 +56,10 @@ var sessionExists = '<%=sessionExists%>';
 										style="width: 400px;" />
 
 								</div>
-								<div id="gbqfab" onclick="show()" style="cursor: pointer;">
+								<div id="gbqfab" style="cursor: pointer;">
 									<div class="aoo J-JN-I" tabindex="0" gh="sda" role="button"
 										data-tooltip="Show search options"
 										aria-label="Advanced search options">
-										<div class="disclosure-arrow"></div>
 									</div>
 								</div>
 							</div>
@@ -153,6 +152,10 @@ var sessionExists = '<%=sessionExists%>';
 					</button>
 				</div>
 			</div>
+			
+			<div onclick="show()" id="idDivAdvanceSearch" ><h2 class="advance-search-title">
+					Advanced Search
+				</h2></div>
 			<div id="btn-insight">
 				<button id="btnAddNewInsight" name=""
 					onclick="addnewinsight(this.id)" class="btnaddinsight fr font18">

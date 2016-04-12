@@ -70,13 +70,18 @@ public class SearchController {
     	SearchResultDto searchDto=null;
 		try {
 			log.info("starting of the showSearchResults method in SearchController");
-			searchDto = searchService.getAllInsight();
 			if(sortType!=null && sortType.equals("recent")){
+				searchDto = searchService.getAllInsight();
 				log.debug("view all sort type "+sortType);
 				searchDto.setSortFlag(sortType); // this sort flag is using in searchresults.js
 			}else if(sortType!=null && sortType.equals("evidence")){
+				searchDto = searchService.getAllInsight();
 				log.debug("view all sort type "+sortType);
 				searchDto.setSortFlag(sortType); // this sort flag is using in searchresults.js
+			}else if(sortType!=null && sortType.equals("product")){
+				searchDto = searchService.getAllActiveProducts();
+				log.debug("view all sort type "+sortType);
+				return new ModelAndView("searchproduct","searchDto",searchDto);
 			}
 			log.info("ending of the showSearchResults method in SearchController");
 		} catch (Exception e) {
@@ -224,9 +229,13 @@ public class SearchController {
 			@RequestParam("selectedInsights") String selectedInsights) {
 		log.info("starting of the downloadReportDisplay method in SearchController");
     	try{
-    	String fileName = rmb.getString("report_pdf_file_name")+CommonUtils.getCurrentDateString()+".pdf";
-    	CommonUtils.writeFiletoStream(this.getPdfContent(), fileName,
-				response,"pdf");
+	    	String fileName = rmb.getString("report_pdf_file_name")+CommonUtils.getCurrentDateString()+".pdf";
+	    	if(null != this.getPdfContent()){
+	    		CommonUtils.writeFiletoStream(this.getPdfContent(), fileName,
+	    				response,"pdf");
+	    	}else{
+	    		CommonUtils.createErrorPDF(response);
+	    	}    	
     	}catch(Exception e){
     		CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_display_report"));
     		try {
@@ -346,5 +355,10 @@ public class SearchController {
 	@ModelAttribute("dashboardDto")
 	   public DashboardDto populateDashboardDto() {
 	       return new DashboardDto(); // populates form for the first time if its null
+	   }
+	
+	@ModelAttribute("searchDto")
+	   public SearchResultDto populateSearchResultDto() {
+	       return new SearchResultDto(); // populates form for the first time if its null
 	   }
 }

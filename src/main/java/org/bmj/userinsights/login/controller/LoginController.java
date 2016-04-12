@@ -114,24 +114,6 @@ public class LoginController {
 		return originalPassword;
 	}
 	
-	/**
-	 * This method is performing
-	 * operation for logout
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping("/logout")  
-	public String dologinOut(HttpServletRequest request) throws Exception {
-try{
-		HttpSession session=request.getSession(true);
-		session.setAttribute("BMJSessionToken", null);
-		}catch(Exception e)
-		{
-			CommonUtils.errorLoggging(log, e,messagesProperties.getString("error_session"));
-		}
-		log.debug("Setting session value to null and rediredting to dashboard");	
-		return "redirect:dashboard.html"; 
-	}
 	
 	/**
 	 * This method handling

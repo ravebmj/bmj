@@ -51,6 +51,7 @@ public class InsightsConstants {
 	public static final String CACHE_NAME_PROJECT="projectLib";
 	public static final String CACHE_NAME_TAG="tagLib";
 	public static final String CACHE_NAME_INSIGHT_TITLE="insightTitleCache";
+	public static final String CACHE_NAME_SEARCH="searchCache";
 	public static final Integer CREATED_DATE_VALUE=1;
 	public static final Integer EDITED_DATE_VALUE=2;
 	
@@ -64,6 +65,13 @@ public class InsightsConstants {
 		imageFileList.add(".tiff");
 		imageFileList.add(".tif");
 		imageFileList.add(".gif");		
+		imageFileList.add(".JPG");
+		imageFileList.add(".JPEG");
+		imageFileList.add(".PNG");
+		imageFileList.add(".BMP");
+		imageFileList.add(".TIFF");
+		imageFileList.add(".TIF");
+		imageFileList.add(".GIF");	
 		return imageFileList;
 	}
 	
@@ -103,6 +111,22 @@ public class InsightsConstants {
 		lstValidFIleExtensions.add(".pptx");
 		lstValidFIleExtensions.add(".csv");	
 		lstValidFIleExtensions.add(".pdf");	
+		
+		lstValidFIleExtensions.add(".JPG");
+		lstValidFIleExtensions.add(".JPEG");
+		lstValidFIleExtensions.add(".PNG");
+		lstValidFIleExtensions.add(".BMP");
+		lstValidFIleExtensions.add(".TIFF");
+		lstValidFIleExtensions.add(".TIF");
+		lstValidFIleExtensions.add(".GIF");		
+		lstValidFIleExtensions.add(".DOC");
+		lstValidFIleExtensions.add(".DOCX");
+		lstValidFIleExtensions.add(".XLS");
+		lstValidFIleExtensions.add(".XLSX");
+		lstValidFIleExtensions.add(".PPT");
+		lstValidFIleExtensions.add(".PPTX");
+		lstValidFIleExtensions.add(".CSV");	
+		lstValidFIleExtensions.add(".PDF");	
 		return lstValidFIleExtensions;
 	}
 	public static final int MAX_FILE_NAME_LENGTH=255;

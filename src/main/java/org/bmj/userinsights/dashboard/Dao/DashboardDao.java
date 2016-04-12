@@ -1,5 +1,6 @@
 package org.bmj.userinsights.dashboard.Dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -10,7 +11,9 @@ import org.bmj.userinsights.common.CommonUtils;
 import org.bmj.userinsights.common.DeleteInsightSchedular;
 import org.bmj.userinsights.dashboard.dto.DashboardDto;
 import org.bmj.userinsights.dto.InsightDetailsDto;
+import org.bmj.userinsights.dto.ProductDto;
 import org.bmj.userinsights.entity.InsightDetail;
+import org.bmj.userinsights.entity.Product;
 import org.bmj.userinsights.server.AppContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
@@ -75,6 +78,27 @@ public class DashboardDao extends HibernateDaoSupport implements IDashboardDao{
 		ScheduledExecutorService insightDeleteScheduler = Executors.newSingleThreadScheduledExecutor();
 		insightDeleteScheduler.schedule(delInsightsch, CommonUtils.INSIGHT_DELETE_SCHEDULAR_TIME_IN_SECONDS, TimeUnit.SECONDS);
 		
+	}
+
+	/**
+	 * Get list of product
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public List<ProductDto> getActiveProducts() throws Exception {
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		String limit = CommonUtils.getConfigValue(CommonUtils.CONFIG_VALUE_PRODUCT_LIST_SIZE);
+		getHibernateTemplate().setMaxResults(Integer.parseInt(limit));
+		List<Product> productList = (List<Product>) this.getHibernateTemplate()
+				.findByNamedQuery("Product.getAllActiveProducts");
+		for(Product product: productList){
+			ProductDto productDto = new ProductDto();
+			CommonUtils.copyProperties(productDto, product);
+			productDtoList.add(productDto);
+		}
+		getHibernateTemplate().setMaxResults(0);
+		return productDtoList;
 	}
 	
 	
